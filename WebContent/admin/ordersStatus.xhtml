@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+			<p:ajax event="close" listener="#{menubean.handleClose}"  update=":mainCenterForm"/>
+			<p:panelGrid style="width: 85%">
+				<p:row>
+					<p:column>
+						<p:dataTable resizableColumns="true" id="tblOrderStatus" var="r" value="#{ordersstatusbean.slave}" paginator="true" paginatorPosition="bottom" rows="15" selectionMode="single" selection="#{ordersstatusbean.selectedRow}" rowKey="#{r.id}">
+					        <f:facet name="header">
+					            <p:commandButton icon="ui-icon-plus" value="เพิ่ม" actionListener="#{ordersstatusbean.btnNewClick}" oncomplete="PF('newObjectDlg').show()" process="@this" update=":mainCenterForm" resetValues="true"/>
+					        </f:facet>
+					        <p:column headerText="Id">
+					            <h:outputText value="#{r.id}" />
+					        </p:column>
+					        <p:column headerText="Name">
+					            <h:outputText value="#{r.statusName}" />
+					        </p:column>
+					        <p:column headerText="Create Date">
+					            <h:outputText value="#{r.createDate}" />
+					        </p:column>
+					        <p:column headerText="Update Date">
+					            <h:outputText value="#{r.updateDate}" />
+					        </p:column>
+					        <p:column headerText="">
+					        	<p:commandLink value="แก้ไข" actionListener="#{ordersstatusbean.btnEditClick(r)}" oncomplete="PF('newObjectDlg').show()" process="@this" update=":mainCenterForm" resetValues="true"/>
+					        </p:column>
+							<p:column headerText="">
+								<p:commandLink value="ลบ" actionListener="#{ordersstatusbean.btnDeleteClick(r)}" oncomplete="PF('confirmDeleteCarDialog').show()" process="@this" resetValues="true"/>
+							</p:column>
+				    	</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+		
+		<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{ordersstatusbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+	  </p:confirmDialog>
+		
+		<p:dialog id="newObjectDlg" header="เพิ่ม #{vasessionbean.programName}" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+			<h:panelGrid columns="2" id="panelInput">
+				<h:outputText for="inName" value="Privilege name : " />
+				<p:inputText id="inName" value="#{ordersstatusbean.selectedRow.statusName}"/>
+				<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{ordersstatusbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+				<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
+			</h:panelGrid>
+		</p:dialog>
+	</ui:composition>
+</html>

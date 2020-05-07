@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
+			<p:panelGrid>
+				<p:row>
+					<p:column style="text-align: center">
+					<h:outputText value="Customer:"/>
+						<p:selectOneMenu id="selMaster"
+							value="#{docketbean.selectedMasterId}">
+							<f:selectItems value="#{docketbean.master}" var="c" itemLabel="#{c.company}" itemValue="#{c.id}" />
+							<p:ajax event="valueChange" listener="#{docketbean.selMasterChange}" process="@this" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:panelGrid style="width: 100%">
+							<p:row>
+								<p:column>
+									<p:dataTable resizableColumns="true" id="tblDocker" var="r" value="#{dockerbean.slave}"
+									paginator="true" paginatorPosition="bottom" rows="15"
+									selectionMode="single" selection="#{dockerbean.selectedRow}"
+									rowKey="#{r.id}">
+									<f:facet name="header">
+										<p:commandButton disabled="#{dockerbean.addDisabled}"
+											icon="ui-icon-plus" value="เพิ่ม"
+											actionListener="#{dockerbean.btnNewClick}"
+											oncomplete="PF('newObjectDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</f:facet>
+									</p:dataTable>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+	</ui:composition>
+</html>

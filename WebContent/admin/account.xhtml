@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+			<p:ajax event="close" listener="#{menubean.handleClose}"  update=":mainCenterForm"/>
+			<p:panelGrid style="width: 85%">
+				<p:row>
+					<p:column>
+						<p:dataTable resizableColumns="true" id="tblAccount" var="r" value="#{accountbean.slave}" paginator="true" paginatorPosition="bottom" rows="15">
+					        <p:column headerText="Username">
+					            <h:outputText value="#{r.username}" />
+					        </p:column>
+					        <p:column headerText="Password">
+					            <h:outputText value="#{r.password}" />
+					        </p:column>
+					        <p:column headerText="First name">
+					            <h:outputText value="#{r.firstName}" />
+					        </p:column>
+					        <p:column headerText="Last name">
+					            <h:outputText value="#{r.lastName}" />
+					        </p:column>
+					        <p:column headerText="e-mail">
+					            <h:outputText value="#{r.mailAddr}" />
+					        </p:column>
+					        <p:column headerText="Date register">
+					            <h:outputText value="#{r.dateRegis}" />
+					        </p:column>
+					        <p:column headerText="Encryption">
+					        	<h:outputText value="#{r.encryption}" />
+					        </p:column>
+					        <p:column headerText="Status">
+					        	<h:outputText value="#{r.status}" />
+					        </p:column>
+			    		</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+	</ui:composition>
+</html>

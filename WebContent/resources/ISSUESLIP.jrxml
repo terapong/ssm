@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_5.5*9" pageWidth="648" pageHeight="396" orientation="Landscape" columnWidth="576" leftMargin="36" rightMargin="36" topMargin="14" bottomMargin="14" uuid="63f5270a-169b-4652-b84e-9d50f0f67b74">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ssm_test"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ssm_test.`xTbl_Docket`.id,
+	ssm_test.`xTbl_Docket`.`DocketNo`,
+	ssm_test.`xTbl_Docket`.`DocketRef`,
+	ssm_test.`xTbl_Docket`.`OrderID`,
+	ssm_test.`xTbl_Docket`.`QtyDocket`,
+	ssm_test.`xTbl_Docket`.`QtyTruck`,
+	ssm_test.`xTbl_Docket`.`QtyNet`,
+	ssm_test.`xTbl_Docket`.`QtyBatch`,
+	ssm_test.`xTbl_Docket`.`QtyPerBatch`,
+	ssm_test.`xTbl_Docket`.`CustomerID`,
+	ssm_test.`xTbl_Docket`.`TruckID`,
+	ssm_test.`xTbl_Docket`.`JobSiteID`,
+	ssm_test.`xTbl_Docket`.`MixID`,
+	ssm_test.`xTbl_Docket`.`Finished`,
+	ssm_test.`xTbl_Docket`.`CountDoc`,
+	ssm_test.`xTbl_Docket`.`WC`,
+	ssm_test.`xTbl_Docket`.`Driver`,
+	ssm_test.`xTbl_Docket`.`DateBatch`,
+	ssm_test.`xTbl_Docket`.`Time_Load`,
+	ssm_test.`xTbl_Docket`.`Time_Ex`,
+	ssm_test.`xTbl_Docket`.`Remark`,
+	ssm_test.`xTbl_Docket`.`Price`,
+	ssm_test.`xTbl_Docket`.`Vat`,
+	ssm_test.`xTbl_Docket`.`TotalCost`,
+	ssm_test.`xTbl_Docket`.`Fuel`,
+	ssm_test.`xTbl_Docket`.`UserName`,
+	ssm_test.`xTbl_Docket`.`Status`,
+	ssm_test.`xTbl_Docket`.`QF`,
+	ssm_test.`xTbl_Docket`.`QW`,
+	ssm_test.`xTbl_Docket`.`QN`,
+	ssm_test.`xTbl_Docket`.`Moist1`,
+	ssm_test.`xTbl_Docket`.`Moist2`,
+	ssm_test.`xTbl_Docket`.`Moist3`,
+	ssm_test.`xTbl_Docket`.`Moist4`,
+	ssm_test.`xTbl_Docket`.`Agg1Mix`,
+	ssm_test.`xTbl_Docket`.`Agg2Mix`,
+	ssm_test.`xTbl_Docket`.`Agg3Mix`,
+	ssm_test.`xTbl_Docket`.`Agg4Mix`,
+	ssm_test.`xTbl_Docket`.`Agg1Sp`,
+	ssm_test.`xTbl_Docket`.`Agg2Sp`,
+	ssm_test.`xTbl_Docket`.`Agg3Sp`,
+	ssm_test.`xTbl_Docket`.`Agg4Sp`,
+	ssm_test.`xTbl_Docket`.`Cemt1Mix`,
+	ssm_test.`xTbl_Docket`.`Cemt2Mix`,
+	ssm_test.`xTbl_Docket`.`Cemt3Mix`,
+	ssm_test.`xTbl_Docket`.`Cemt4Mix`,
+	ssm_test.`xTbl_Docket`.`Cemt1Sp`,
+	ssm_test.`xTbl_Docket`.`Cemt2Sp`,
+	ssm_test.`xTbl_Docket`.`Cemt3Sp`,
+	ssm_test.`xTbl_Docket`.`Cemt4Sp`,
+	ssm_test.`xTbl_Docket`.`Admix1Sp`,
+	ssm_test.`xTbl_Docket`.`Admix2Sp`,
+	ssm_test.`xTbl_Docket`.`Admix3Sp`,
+	ssm_test.`xTbl_Docket`.`Admix4Sp`,
+	ssm_test.`xTbl_Docket`.`WaterSp`,
+	ssm_test.`xTbl_Docket`.`Uploaded`,
+	ssm_test.`xTbl_Docket`.`DPType`,
+	ssm_test.`xTbl_Docket`.`Temp0`,
+	ssm_test.`xTbl_Docket`.`Temp1`
+FROM ssm_test.`xTbl_Docket`]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="DocketNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DocketNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="DocketRef" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DocketRef"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="OrderID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="OrderID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QtyDocket" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QtyDocket"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QtyTruck" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QtyTruck"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QtyNet" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QtyNet"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QtyBatch" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QtyBatch"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QtyPerBatch" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QtyPerBatch"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="CustomerID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CustomerID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="TruckID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TruckID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="JobSiteID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="JobSiteID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="MixID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MixID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Finished" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Finished"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="CountDoc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CountDoc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="WC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="WC"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Driver" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Driver"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="DateBatch" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DateBatch"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Time_Load" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Time_Load"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Time_Ex" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Time_Ex"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Remark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Remark"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Price" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Vat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="TotalCost" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TotalCost"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Fuel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fuel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="UserName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="UserName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QF" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QF"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QW" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QW"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="QN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="QN"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Moist1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Moist1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Moist2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Moist2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Moist3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Moist3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Moist4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Moist4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg1Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg1Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg2Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg2Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg3Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg3Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg4Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg4Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg1Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg1Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg2Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg2Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg3Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg3Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Agg4Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Agg4Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt1Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt1Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt2Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt2Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt3Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt3Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt4Mix" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt4Mix"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt1Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt1Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt2Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt2Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt3Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt3Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Cemt4Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cemt4Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Admix1Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Admix1Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Admix2Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Admix2Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Admix3Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Admix3Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Admix4Sp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Admix4Sp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="WaterSp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="WaterSp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Uploaded" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Uploaded"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="DPType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DPType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Temp0" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Temp0"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<field name="Temp1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Temp1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="xTbl_Docket"/>
+	</field>
+	<detail>
+		<band height="368" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="576" height="30" uuid="f0e7d512-3d55-4e70-9499-9c9b22a1735c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16"/>
+				</textElement>
+				<text><![CDATA[บริษัท เอส เอส เอ็ม แอนด์ แมชชินเนอรี จำกัด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="30" width="220" height="20" uuid="50261a90-57f9-4469-a1d8-d707a85c23c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="13"/>
+				</textElement>
+				<text><![CDATA[ปทุมธานี]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="30" width="75" height="20" uuid="f1e2cff6-5655-4052-b312-66e04d03f453"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[เลขที่]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="576" height="30" uuid="dffc4dcc-5990-4990-9c5f-417149b8413b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16"/>
+				</textElement>
+				<text><![CDATA[ใบจ่ายสินค้า ISSUE SLIP]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="90" width="285" height="20" uuid="e045467c-9bbd-4c31-a3c2-8a0f428d6cf2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="90" width="290" height="20" uuid="76e394e5-e478-48a1-a40f-f1e4296201c0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="110" width="285" height="20" uuid="dd3a19f0-7708-4d46-9d98-84d09fb0a7ab"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="110" width="290" height="20" uuid="e0509d67-66b9-4f2b-8213-e5e55842cedb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="130" width="110" height="20" uuid="1cc2ec71-78f7-4408-aff6-6b577e4074a2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="130" width="175" height="20" uuid="662c8aaf-01c3-48da-9c9e-9cb881e3d6f2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="150" width="175" height="20" uuid="2523a529-07ed-4a1c-8963-e777fe5c69b8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="150" width="110" height="20" uuid="ba538f72-5a05-4c8e-a9b5-8aea94a24326"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="170" width="110" height="20" uuid="e8d2ee38-c198-4522-9a19-6014a755751a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="190" width="110" height="20" uuid="1b652d8f-41e1-44b0-9836-69f54935dbfc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="170" width="87" height="20" uuid="71fdfe7d-cbab-4657-bfac-a1751d621a78">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="197" y="170" width="88" height="20" uuid="43df27c7-1aa0-474b-8a1e-91af095d2b61">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="190" width="87" height="20" uuid="f22e5894-3b85-4b30-9f75-59cbbdf1a587">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="197" y="190" width="88" height="20" uuid="b642786b-44a7-4175-bf68-77bd6ee591ca">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="130" width="145" height="20" uuid="3166ad7c-2d10-4daa-8f59-993948b2dad4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="130" width="145" height="20" uuid="6da20d9f-7c9e-42ca-bc99-5fba21788720"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="150" width="145" height="20" uuid="18a00b82-1891-47a7-ab23-74558291b811"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="150" width="145" height="20" uuid="fddf7f61-2b00-4bcf-a491-0738c1a6fdc8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="170" width="72" height="20" uuid="04ffca83-a7bc-49df-b8e1-6dd186fd660e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="357" y="170" width="73" height="20" uuid="1a40499a-8ed4-4cfc-b01d-6dba746a7ccd">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="170" width="72" height="20" uuid="01304d7a-0c2e-4419-b5a0-da1039d64363">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="502" y="170" width="73" height="20" uuid="15e8ceff-bc1e-40bb-ba5a-062c210f599e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="190" width="72" height="20" uuid="07bbfb8e-1ec8-4722-85a6-512e07f6c604">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="357" y="190" width="73" height="20" uuid="db9d6db5-418c-4235-b543-04319a2ac602">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="190" width="72" height="20" uuid="3f31e430-498a-403c-aedf-ecbc97a1a630">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="502" y="190" width="73" height="20" uuid="77f28b4b-e839-421d-aa0e-e7ff9b148bc3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="210" width="285" height="157" uuid="e3b06e6a-deac-476f-8673-89ebb271533e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="210" width="290" height="69" uuid="b8d281a4-e794-42a6-a9db-d93142e5af01"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="90" width="75" height="20" uuid="c4b7414a-3d17-44a1-9b2c-408bac28020c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[รหัสจ่ายสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="110" width="75" height="20" uuid="952ccf2b-0bd0-4c2d-8310-060df2ba825d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[ชื่อลูกค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="108" height="20" uuid="42798fd4-ae8c-4726-a9af-d240702cf8be">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[รหัสสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="130" width="174" height="20" uuid="48885abb-220c-4f27-ab57-d8af34d720b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[รายการสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="170" width="108" height="20" uuid="fdc44417-25f3-45ba-b395-8228c732c6b3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[ชื่อผู้ขนส่ง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="170" width="86" height="20" uuid="9a0647f5-40f4-4986-87ea-0550d4d6c937"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[หมายเลขรถ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="170" width="86" height="20" uuid="0e3c0b47-388e-4d95-9d63-b43053fee469"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[พนักงานขับรถ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="170" width="71" height="20" uuid="5f94c31e-c2dc-4165-8dbb-7fd017341045"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[เวลาออก]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="170" width="71" height="20" uuid="ec7dfaa2-a1a6-4bc9-9596-a80ea1909469"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[รถถึงหน้างาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="170" width="70" height="20" uuid="062fe3e1-c3d1-47e5-99d1-0a6d387fa044"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[เวลาเริ่มเท]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="503" y="170" width="71" height="20" uuid="682e1035-9332-4b86-b646-3dff4426487c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[เวลาเทเสร็จ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="130" width="145" height="20" uuid="10bb59c3-84e5-4e92-be74-c23cb23805b9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[จำนวน (ลบ.ม.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="130" width="144" height="20" uuid="f888fb78-c5ea-40f1-adb9-2e2425b4b5cd">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[กำหนดชำละเงิน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="90" width="86" height="20" uuid="e141ec65-0a5c-4a33-afb0-f70ecd06e2ee"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[วันที่จ่ายสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="110" width="86" height="20" uuid="8487f573-8d41-46ec-b41a-6a161c223c10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[สถานที่ส่งสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="210" width="284" height="156" uuid="ea5c6b01-8891-4fe0-bb86-f7d5954b258b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Serif" size="7.3"/>
+				</textElement>
+				<text><![CDATA[เงื่อนไข..
+1.รายการสินค้าข้างต้นทดสอบกำลังอัดด้วยตัวอย่างทรงลูกบาศก์
+2.ค่ายุบตัวตามส่วนผสมที่กำหนดทดสอบเมื่อรอคอนกรีตถึงหน่วยงานของผู้ซื้อ
+3.คอนกรีตจะต้องใช่คอนกรีตภายใน 120 นาที นับตั้งแต่รถออกจากโรงงานยกเว้นบริษัทฯ
+จะระบุอย่างอื่นกรณีเทคอนกรีตช้าเกินกำหนดผู้ซื้อจะต้องรับผิดชอบในกรณีคอนกรีต
+เสื่อมสภาพ
+4.วิธีเก็บตัวอย่างเพื่อทดสอบให้เป็นไปตามมาครฐาน ASTM การประเมินผมตาม
+มาตรฐาน ACI 
+5.หากได้รับคอนกรีตไม่ตรงตามจำนวนคิวที่ระบไว้ในDOนี้โปรดแจ้งให้บริษัททราบทันที
+6.บริษัทขอสงวนสิทธิ์ที่จะปรับปรุงราคาให้ให้เท่ากับการซื้อขายในวันรับสินค้าหากมี
+การชำระเงินให้ถือเป็นเพียงมัดจำ
+7.ผู้ซื้อจะต้องจัดเส้นทางเข้า-ออกเพื่อในการขนส่งคอนกรีตให้อยู่ในสภาพที่ดีและใช้งานได้โดยสะดวก
+8.ในกรณีคอนกรีตต่ำกว่า 4 คิว คิดค่าขนส่ง 500 บาท/เที่ยว ยกเว้นกรณีปิดแบบ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="285" y="279" width="290" height="87" uuid="047ce79f-f87b-4363-863d-6d52979b82d7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="285" y="210" width="289" height="16" uuid="4fb53142-7b17-4642-bf55-aa0047961518">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[ได้รับสินค้าตามรายการข้างต้นเรียบร้อยแล้ว]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="250" width="144" height="28" uuid="ce723cf9-29fd-4540-bafd-9c70f0814937">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[......................................
+ผู้จ่ายสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="250" width="144" height="28" uuid="ed531948-8be1-4443-a7d0-85c77d84d971">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[......................................
+ผู้รับสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="280" width="289" height="60" uuid="c0407452-1eda-4605-9983-2b82a3ba72e7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[คอนกรีตผสมเสร็จจำนวนที่ได้รับการผสมน้ำตามอัตราส่วนที่ถูกต้อง
+แล้วหากท่านเติมน้ำเพื่อให้คอนกรีตเหลวทางบริษัทจะไม่รับผิดชอบ
+ความเสียหายที่เกิดขึ้นกับงานก่อสร้างของท่านและขำให้ท่านลงนาม
+เพื่อรับผิดชอบในการสั่งเติมน้ำครั้งนี้ด้วย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="350" width="289" height="16" uuid="34fc0329-2ee3-4825-a6b4-380564854368"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[ลงชื่อ............................................................ผู้รับผิดชอบ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="471" y="30" width="100" height="20" uuid="0d1f8697-34c8-48b1-a342-5dae4d5b6311">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OrderID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="90" width="100" height="20" uuid="5bcafa10-75b1-45b4-a55e-e76c37c5cb04">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DocketNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="110" width="100" height="20" uuid="27fc4820-d9db-46a0-8cb0-1c96b7174c30">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CustomerID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="90" width="100" height="20" uuid="b38a8718-9706-4c91-b78d-3c91cbde3982">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DateBatch}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="110" width="100" height="20" uuid="9fa7b2c7-e2ab-48c6-ae27-31f733aae44d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JobSiteID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="190" width="110" height="20" uuid="7eabee65-d631-4a1c-88c7-d7914d207d0d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="150" width="174" height="20" uuid="7f267aa6-fb75-4300-a136-f5d2229058df">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DocketNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="150" width="110" height="20" uuid="070dcfa0-9dc6-4d3a-896c-51733056b7b3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DocketRef}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="190" width="86" height="20" uuid="b6392894-ca67-41e1-8cd1-b4c90ca3614d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TruckID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="190" width="86" height="20" uuid="e5936686-82c2-498a-ac18-2c6b70ca0980">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Driver}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="150" width="144" height="20" uuid="044a6cb2-0557-4191-8d3b-bb0e61e21156">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DocketNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="150" width="144" height="20" uuid="f9b37072-e6c2-4f45-b871-77ab08ec6eab">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DocketNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="190" width="70" height="20" uuid="671f1701-3bd0-442b-bb1c-d19a09f3225e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Time_Load}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="190" width="70" height="20" uuid="b937e4b0-e49b-4bcc-a341-d9a49b8ac7e2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Time_Ex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="190" width="70" height="20" uuid="268b5d2f-8281-4499-a3ec-d8c45cdcb60d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Time_Load}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="503" y="190" width="70" height="20" uuid="cd9280c1-b2c1-4ca5-b07e-8f4d86631246">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Uploaded}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

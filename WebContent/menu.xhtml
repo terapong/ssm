@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<h:form id="mainMenuForm" prependId="false">
+			<p:panelGrid columns="1" styleClass="alignTopCenterMenu">
+				<p:menu style="width:250px">  
+					<p:menuitem value="Customer order" icon="ui-icon-home" action="#{menubean.orderClick}" ajax="false"/>
+	  				<p:menuitem value="Report PO" icon="ui-icon-home" action="#{menubean.PoClick}" ajax="false"/>
+	  				<p:menuitem value="Report transport" icon="ui-icon-home" action="#{menubean.TransportClick}" ajax="false"/>
+	  				<p:menuitem value="Report tax" icon="ui-icon-disk" action="#{menubean.TaxClick}" ajax="false"/>
+	     		</p:menu>
+     		<p:separator/>
+     		<p:panelMenu style="width:250px">
+     			<p:submenu label="Manage System">
+	        		<p:menuitem value="Privilege Data" icon="ui-icon-gear" action="#{menubean.privilegeClick}" ajax="false"/>
+	        		<p:menuitem value="Employeee Data" icon="ui-icon-person" action="#{menubean.employeeClick}" ajax="false"/>
+	        		<p:menuitem value="Customer Data" icon="ui-icon-person" action="#{menubean.customerClick}" ajax="false"/>
+	        		<p:menuitem value="Order tax status Data" icon="ui-icon-person" action="#{menubean.ordersTaxStatusClick}" ajax="false"/>
+	        		<p:menuitem value="Order status Data" icon="ui-icon-person" action="#{menubean.ordersStatusClick}" ajax="false"/>
+	        		<p:menuitem value="Order detail Data" icon="ui-icon-person" action="#{menubean.orderDetailClick}" ajax="false"/>
+	        		<p:menuitem value="Inventory transaction Types Data" icon="ui-icon-person" action="#{menubean.inventoryTtranSactionTypesClick}" ajax="false"/>
+	        		<p:menuitem value="Order detail Data" icon="ui-icon-person" action="#{menubean.orderDetailClick}" ajax="false"/>
+	        		<p:menuitem value="Purchse order status Data" icon="ui-icon-person" action="#{menubean.purchseorderstatusClick}" ajax="false"/>
+	        		<p:menuitem value="PLC Data" icon="ui-icon-person" action="#{menubean.plcClick}" ajax="false"/>
+	        	</p:submenu>
+     		</p:panelMenu> 
+     		 
+     		<p:separator/>
+       		<p:panel style="width: 250px;">
+       			<a href="images/tms.pdf" target="blank">คู่มือการใช้งาน</a>
+       		</p:panel>
+      	<p:separator/>
+      	
+      	<p:panel style="width: 300px;">
+     			<p:panelGrid columns="1" columnClasses="alignTopCenterMenu">
+     				<p:row>
+     					<p:column><h:outputText value="ผู้ใช้งานระบบ : " style="font-weight: bold"/></p:column>
+     					<p:column><h:outputText value="#{indexbean.employee.firstName}" style="font-weight: bold"/></p:column>
+     				</p:row>
+     				<p:row>
+     					<p:column colspan="2">
+     						<p:commandLink value="เปลี่ยนรหัสผ่าน" onclick="PF('changePassDlg').show()"/>
+     					</p:column>
+     				</p:row>
+     				<p:row>
+     					<p:column colspan="2">
+     						<p:commandButton value="ออกจากระบบ" ajax="false" action="#{indexbean.logout}" icon="ui-icon-extlink"/>
+     					</p:column>
+     				</p:row>
+     			</p:panelGrid>
+     		</p:panel>
+			</p:panelGrid>
+			
+			<p:dialog dynamic="true" id="changePassDlg" header="เปลี่ยนรหัสผ่าน" widgetVar="changePassDlg"  modal="true" appendTo="@(body)" closable="true"  width="400px" height="200px">
+				<i><h:outputText value="กรอกข้อมูลทุกช่องที่มี *" style="color: red; vertical-align: middle; line-height: 25px"/></i>
+				<p:panelGrid id="changePassPanel">
+					<p:row>
+						<p:column>
+							<h:outputText value="Password เก่า : "/><h:outputText styleClass="required" value="*" />
+						</p:column>
+						<p:column>
+							<p:password value="#{indexbean.oldPass}" feedback= "false" required="true" requiredMessage="ต้องกรอกรหัสผ่านเดิม"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Password ใหม่ : "/><h:outputText styleClass="required" value="*" />
+						</p:column>
+						<p:column>
+							<p:password value="#{indexbean.newPass}" feedback= "true" goodLabel="เหมาะสม" strongLabel="ดีมาก" 
+							weakLabel="อ่อนแอ" match="conPwd" promptLabel="กรอกรหัสผ่าน" validatorMessage="รหัสผ่านใหม่กับรหัสผ่านยืนยัน ต้องเหมือนกัน" required="true" requiredMessage="ต้องกรอกรหัสผ่านใหม่"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Password ใหม่ (อีกครั้ง) : "/><h:outputText styleClass="required" value="*" />
+						</p:column>
+						<p:column>
+							<p:password id="conPwd" value="#{indexbean.newPassAgain}" feedback= "true" goodLabel="เหมาะสม" strongLabel="ดีมาก" 
+							weakLabel="อ่อนแอ" promptLabel="กรอกรหัสผ่าน" required="true" requiredMessage="ต้องกรอกรหัสผ่านใหม่ยืนยัน"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton value="ตกลง" actionListener="#{indexbean.changPassClick}" process="@this changePassPanel" 
+							oncomplete="if (args.validationFailed) {PF('changePassDlg').show();} else {PF('changePassDlg').hide();}"/>
+							<p:commandButton value="ยกเลิก" onclick="PF('changePassDlg').hide()"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:composition>
+</html>

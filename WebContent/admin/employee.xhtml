@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
+		<p:panelGrid>
+			<p:row>
+				<p:column style="text-align: center">
+					<p:selectOneMenu id="selMaster"
+						value="#{employeebean.selectedMasterId}">
+						<f:selectItems value="#{employeebean.master}" var="m"
+							itemLabel="#{m.privilegeName}" itemValue="#{m.id}" />
+						<p:ajax event="valueChange" listener="#{employeebean.selMasterChange}" update="tblEmployee" process="@this" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid style="width: 85%">
+						<p:row>
+							<p:column>
+								<p:dataTable resizableColumns="true" id="tblEmployee" var="r" value="#{employeebean.slave}"
+									paginator="true" paginatorPosition="bottom" rows="15"
+									selectionMode="single" selection="#{employeebean.selectedRow}"
+									rowKey="#{r.id}">
+									<f:facet name="header">
+										<p:commandButton disabled="#{employeebean.addDisabled}"
+											icon="ui-icon-plus" value="เพิ่ม"
+											actionListener="#{employeebean.btnNewClick}"
+											oncomplete="PF('newObjectDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</f:facet>
+									<p:column headerText="Id">
+										<h:outputText value="#{r.id}" />
+									</p:column>
+									<p:column headerText="Name">
+										<h:outputText value="#{r.userName}" />
+									</p:column>
+									<p:column headerText="Password">
+										<h:outputText value="#{r.password}" />
+									</p:column>
+									<p:column headerText="Create Date">
+										<h:outputText value="#{r.updateDate}" />
+									</p:column>
+									<p:column headerText="">
+										<p:commandLink value="แก้ไข"
+											actionListener="#{employeebean.btnEditClick(r)}"
+											oncomplete="PF('newObjectDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</p:column>
+									<p:column headerText="">
+										<p:commandLink value="ลบ"
+											actionListener="#{employeebean.btnDeleteClick(r)}"
+											oncomplete="PF('confirmDeleteCarDialog').show()" process="@this"
+											resetValues="true" rendered="#{r.renderedDelete}"/>
+									</p:column>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+	
+	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
+	  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{employeebean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+	  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+  	</p:confirmDialog>
+  	
+  	<p:dialog id="newObjectDlg" header="เพิ่มผู้ใช้งาน" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+			<p:panelGrid id="panelInput">
+				<p:row>
+					<p:column>
+						<h:outputText for="firstName" value="ชื่อ : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="firstName" value="#{employeebean.selectedRow.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="lastName" value="นามสกุล : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="lastName" value="#{employeebean.selectedRow.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="mobilePhone" value="เบอร์โทรมือถือ : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="mobilePhone" value="#{employeebean.selectedRow.mobilePhone}"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="businessPhone" value="เบอร์โทรที่ทำงาน : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="businessPhone" value="#{employeebean.selectedRow.businessPhone}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="homePhone" value="เบอร์โทรบ้าน: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="homePhone" value="#{employeebean.selectedRow.homePhone}"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="faxPhone" value="แฟกช์ : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="faxPhone" value="#{employeebean.selectedRow.faxNumber}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="company" value="บริษัท: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="company" value="#{employeebean.selectedRow.company}"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="webpage" value="website: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="webpage" value="#{employeebean.selectedRow.webPage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+				<p:column>
+						<h:outputText for="email" value="email: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="email" value="#{employeebean.selectedRow.emailAddress}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="Address" value="ที่อยู่ : " />
+					</p:column>
+					<p:column>
+						<p:inputTextarea id="Address" value="#{employeebean.selectedRow.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="attachments" value="Comment: " />
+					</p:column>
+					<p:column>
+						<p:inputTextarea id="attachments" value="#{employeebean.selectedRow.notes}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="inName" value="userName : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="inName" value="#{employeebean.selectedRow.userName}" required="true" requiredMessage="กรุณา กรอกชื่อผู้ใช้งาน"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="inPassword" value="Password : " />
+					</p:column>
+					<p:column>
+						<p:password id="inPassword" value="#{employeebean.tempPass}" feedback="true" rendered="true" requiredMessage="กรุณา กรอกรหัสผ่าน"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align: center">
+						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{employeebean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+	</p:dialog>
+	  
+	</ui:composition>
+</html>
+
+<!-- <p:row>
+					<p:column>
+						<h:outputText for="city" value="จังหวัด: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="city" value="#{employeebean.selectedRow.city}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="zippostcode" value="รหัสไปรษณีย์: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="zippostcode" value="#{employeebean.selectedRow.zipPostalCode}"/>
+					</p:column>
+				</p:row> -->

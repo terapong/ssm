@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+			<p:ajax event="close" listener="#{menubean.handleClose}"  update=":mainCenterForm"/>
+			<p:dataTable resizableColumns="true" id="tblTopic" var="r" value="#{topicbean.topics}" paginator="true" paginatorPosition="bottom" rows="15">
+        <p:column headerText="Id">
+        	<h:outputText value="#{r.id}" />
+        </p:column>
+        <p:column headerText="Topic" sortBy="#{r.name}">
+            <h:outputText value="#{r.name}" />
+        </p:column>
+        <p:column headerText="NodeMCU" sortBy="#{r.mcp.mcpname}">
+        	<h:outputText value="#{r.mcp.mcpname}" />
+        </p:column>
+        <p:column headerText="Update Date">
+        	<h:outputText value="#{r.updateDate}" />
+        </p:column>
+    	</p:dataTable>
+		</p:panel>
+	</ui:composition>
+</html>
