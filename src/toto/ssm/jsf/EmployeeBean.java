@@ -1,9 +1,7 @@
 package toto.ssm.jsf;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -25,7 +23,7 @@ public class EmployeeBean implements Serializable {
 	private List<Privileges> master;
 	private Privileges selectedMaster;
 	private long selectedMasterId;
-	private List<Employees> slave;
+	private Set<Employees> slave;
 	private Employees selectedRow;
 	
 	private String addDisabled;
@@ -122,7 +120,7 @@ public class EmployeeBean implements Serializable {
 	
 	public void selMasterChange() {
 		selectedMaster = session.querryPrivilegeById(selectedMasterId);
-//		slave = selectedMaster.getEmployeeses();
+		slave = selectedMaster.getEmployeeses();
 		for(Employees r : slave) {
 			if(r.getUsername().equals("admin")) {
 				r.setRenderedDelete("false");
@@ -156,11 +154,11 @@ public class EmployeeBean implements Serializable {
 		this.selectedMasterId = selectedMasterId;
 	}
 
-	public List<Employees> getSlave() {
+	public Set<Employees> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Employees> slave) {
+	public void setSlave(Set<Employees> slave) {
 		this.slave = slave;
 	}
 

@@ -2,7 +2,7 @@ package toto.ssm.session;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.*;
+import java.util.Set;
 import javax.ejb.*;
 import toto.ssm.entity.*;
 import javax.persistence.*;
@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Stateless
 @LocalBean
 public class VaSession implements Serializable{
-	private static final long serialVersionUID = 1L;
-	private static final transient Logger log = Logger.getLogger("VaSession");
+	//private static final long serialVersionUID = 1L;
+	//private static final transient Logger log = Logger.getLogger("VaSession");
 	
-	@PersistenceContext(unitName="ssmPU")
+	@PersistenceContext(unitName="ssm_testPU")
 	EntityManager em;
 
 	public List<Privileges> querryAllPrivilege() {
@@ -37,8 +37,8 @@ public class VaSession implements Serializable{
 		return em.createNativeQuery("select * from employees", Employees.class).getResultList(); 
 	}
 	
-	public List<Employees> querryEmployeeByPrivilegeID(long id) {
-		return em.createNativeQuery("select * from employees where privilege_id = " + id, Employees.class).getResultList();
+	public Set<Employees> querryEmployeeByPrivilegeID(long id) {
+		return (Set) em.createNativeQuery("select * from employees where privilege_id = " + id, Employees.class).getResultList();
 	}
 	
 	public Employees querryEmployeeById(long id) {
@@ -165,7 +165,7 @@ public class VaSession implements Serializable{
 	}
 	
 	public List<Orders> querryAllOrder() {
-		return em.createNativeQuery("select * from order", Orders.class).getResultList();
+		return em.createNativeQuery("select * from orders", Orders.class).getResultList();
 	}
 	
 	public List<Orders> querryAllOrderByCustomerID(Long id) {
