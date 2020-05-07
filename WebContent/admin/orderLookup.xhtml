@@ -21,19 +21,13 @@
 			</p:row>
 			<p:row>
 				<p:column>
-					<p:panelGrid style="width: 85%">
+					<p:panelGrid style="width: 75%">
 						<p:row>
 							<p:column>
 								<p:dataTable resizableColumns="true" id="tblOrder" var="r" value="#{orderbean.slave}"
 									paginator="true" paginatorPosition="bottom" rows="15"
 									selectionMode="single" selection="#{orderbean.selectedRow}"
 									rowKey="#{r.id}">
-									<f:facet name="header">
-										<p:commandButton con="ui-icon-plus" value="เพิ่ม"
-											actionListener="#{orderbean.btnNewClick}"
-											oncomplete="PF('newObjectDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</f:facet>
 									<p:column headerText="Order name">
 										<h:outputText value="#{r.shipName}" />
 									</p:column>
@@ -48,20 +42,18 @@
 									<p:column headerText="qty">
 										<h:outputText value="#{r.qty}" />
 									</p:column>
-									<p:column headerText="">
-										<p:commandLink value="Order status"
+									<p:column headerText="สถานะ ใบสั่งซื้อ">
+										<p:commandButton value="สถานะ ใบสั่งซื้อ"
 											actionListener="#{orderbean.btnOrderStatusClick(r)}"
 											oncomplete="PF('newOrderStatustDlg').show()" process="@this"
 											update=":mainCenterForm" resetValues="true" />
+										</p:column>
+										<p:column headerText="">
+										<p:commandButton value="รายละเอียด"
+												actionListener="#{orderbean.btnEditClick(r)}"
+												oncomplete="PF('newObjectDlg').show()" process="@this"
+												update=":mainCenterForm" resetValues="true" />
 									</p:column>
-									
-									<p:column headerText="">
-										<p:commandLink value="แก้ไข"
-											actionListener="#{orderbean.btnEditClick(r)}"
-											oncomplete="PF('newObjectDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</p:column>
-									
 								</p:dataTable>
 							</p:column>
 						</p:row>
@@ -71,19 +63,15 @@
 		</p:panelGrid>
 	</p:panel>
 	
-	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
-	  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{orderbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-	  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
-  	</p:confirmDialog>
   	
-  	<p:dialog id="newObjectDlg" header="Orders" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+  	<p:dialog id="newObjectDlg" header="รายละเอียด ใบสั่งซื้อ" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="350px" closable="true">
 			<p:panelGrid id="panelInput">
 				<p:row>
 					<p:column>
 						<h:outputText for="shipName" value="Order : " />
 					</p:column>
-					<p:column>
-						<p:inputText id="shipName" value="#{orderbean.selectedRow.shipName}" required="true" requiredMessage="กรุณา กรอกชื่อหมายเลข การสั้ง"/>
+					<p:column colspan="3">
+						<p:inputText id="shipName" value="#{orderbean.selectedRow.shipName}" readonly="true" size="60"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -91,15 +79,17 @@
 						<h:outputText for="orderDate" value="Order date : " />
 					</p:column>
 					<p:column>
-						<p:calendar id="orderDate" value="#{orderbean.selectedRow.orderDate}"/>
+						<p:inputText id="orderDate" value="#{orderbean.selectedRow.orderDate}" readonly="true">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</p:inputText>
 					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="paidDate" value="Paid date : " />
 					</p:column>
 					<p:column>
-						<p:calendar id="paidDate" value="#{orderbean.selectedRow.paidDate}"/>
+						<p:inputText id="paidDate" value="#{orderbean.selectedRow.paidDate}" readonly="true">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</p:inputText>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -107,23 +97,13 @@
 						<h:outputText for="paymentType" value="Payment type : " />
 					</p:column>
 					<p:column>
-						<p:inputText id="paymentType" value="#{orderbean.selectedRow.paymentType}"/>
+						<p:inputText id="paymentType" value="#{orderbean.selectedRow.paymentType}" readonly="true"/>
 					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipAddress" value="Ship address: " />
-					</p:column>
-					<p:column>
-						<p:inputTextarea id="shipAddress" value="#{orderbean.selectedRow.shipAddress}"/>
-					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="shipCity" value="Ship city: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipCity" value="#{orderbean.selectedRow.shipCity}"/>
+						<p:inputText id="shipCity" value="#{orderbean.selectedRow.shipCity}" readonly="true"/>
 					</p:column>			
 				</p:row>
 				<p:row>
@@ -131,15 +111,21 @@
 						<h:outputText for="shipCountry" value="Ship country: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipCountry" value="#{orderbean.selectedRow.shipCountryRegion}"/>
+						<p:inputText id="shipCountry" value="#{orderbean.selectedRow.shipCountryRegion}" readonly="true"/>
 					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="shipStartProvince" value="Ship province: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipStartProvince" value="#{orderbean.selectedRow.shipStateProvince}"/>
+						<p:inputText id="shipStartProvince" value="#{orderbean.selectedRow.shipStateProvince}" readonly="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="shipAddress" value="Ship address: " />
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText id="shipAddress" value="#{orderbean.selectedRow.shipAddress}" readonly="true" size="60"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -147,15 +133,13 @@
 						<h:outputText for="shipPostalcode" value="Ship postalcode: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipPostalcode" value="#{orderbean.selectedRow.shipZipPostalCode}"/>
+						<p:inputText id="shipPostalcode" value="#{orderbean.selectedRow.shipZipPostalCode}" readonly="true"/>
 					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="shipFree" value="ship free: " />
 					</p:column>
 					<p:column>
-						<p:inputTextarea id="shipFree" value="#{orderbean.selectedRow.shippingFee}"/>
+						<p:inputText id="shipFree" value="#{orderbean.selectedRow.shippingFee}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -163,15 +147,13 @@
 						<h:outputText for="taxRate" value="tax rate: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="taxRate" value="#{orderbean.selectedRow.taxRate}"/>
+						<p:inputText id="taxRate" value="#{orderbean.selectedRow.taxRate}" readonly="true"/>
 					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="taxes" value="taxes: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="taxes" value="#{orderbean.selectedRow.taxes}"/>
+						<p:inputText id="taxes" value="#{orderbean.selectedRow.taxes}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -179,23 +161,20 @@
 						<h:outputText for="recipe" value="recipe: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="recipe" value="#{orderbean.selectedRow.recipe}"/>
+						<p:inputText id="recipe" value="#{orderbean.selectedRow.recipe}" readonly="true"/>
 					</p:column>
-				</p:row>
-				<p:row>
 					<p:column>
 						<h:outputText for="qty" value="qty: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="qty" value="#{orderbean.selectedRow.qty}"/>
+						<p:inputText id="qty" value="#{orderbean.selectedRow.qty}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
-					<p:column colspan="2" style="text-align: center">
-						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+					<p:column colspan="4">
 						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
 					</p:column>
-				</p:row>
+				</p:row>				
 			</p:panelGrid>
 	</p:dialog>
 	

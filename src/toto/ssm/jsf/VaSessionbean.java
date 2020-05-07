@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import java.util.List;
 
 import toto.ssm.entity.*;
+import toto.ssm.session.VaSession;
 
 @ManagedBean(name = "vasessionbean")
 @SessionScoped
@@ -18,10 +22,16 @@ public class VaSessionbean implements Serializable{
 	private java.lang.String username;
 	private java.lang.String programName;
 	//private String contentCenter = "log.xhtml";
-	private java.lang.String contentCenter = "blank.xhtml";
+	private java.lang.String contentCenter = "orderLookup.xhtml";
+
+	@EJB private VaSession session;
 	
 	@PostConstruct
 	public void init() {
+		List<Orders> os = session.querryAllOrderByCustomerID(1L);
+		if(os == null) {
+			contentCenter = "blank.xhtml";
+		}
 	}
 	
 	@PreDestroy
@@ -56,6 +66,12 @@ public class VaSessionbean implements Serializable{
 	public void setProgramName(String programName) {
 		this.programName = programName;
 	}
-	
-	
+
+	public VaSession getSession() {
+		return session;
+	}
+
+	public void setSession(VaSession session) {
+		this.session = session;
+	}
 }

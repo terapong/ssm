@@ -29,9 +29,7 @@ public class IdGen  implements java.io.Serializable {
        this.genValue = genValue;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="GEN_KEY", unique=true, nullable=false)
     public String getGenKey() {
         return this.genKey;

@@ -23,7 +23,7 @@
 						</p:column>
 						<p:column>
 							<p:selectOneMenu id="selemployees" value="#{indexbean.employee.id}">
-		            <f:selectItems value="#{indexbean.employees}" var="employee" itemLabel="#{employee.userName}" itemValue="#{employee.id}" />
+		            <f:selectItems value="#{indexbean.employees}" var="employee" itemLabel="#{employee.username}" itemValue="#{employee.id}" />
 		            <p:ajax event="valueChange" listener="#{indexbean.selEmployeeChange}" process="@this"/>
 		        </p:selectOneMenu>
 						</p:column>

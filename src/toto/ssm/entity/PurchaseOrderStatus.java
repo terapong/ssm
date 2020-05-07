@@ -8,9 +8,12 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -44,10 +47,16 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
        this.purchaseOrderses = purchaseOrderses;
     }
    
-     @Id 
-
-    
-    @Column(name="id", unique=true, nullable=false)
+    @TableGenerator(
+            name="SSMGen", 
+            table="ID_GEN", 
+            pkColumnName="GEN_KEY", 
+            valueColumnName="GEN_VALUE", 
+            pkColumnValue="PURCHESEORDERSTATUS_ID", 
+            allocationSize=1)
+    @Id 
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="SSMGen")
     public int getId() {
         return this.id;
     }

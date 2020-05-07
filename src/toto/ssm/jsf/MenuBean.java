@@ -48,14 +48,20 @@ public class MenuBean implements Serializable{
 	}
 	
 	public String orderClick() {
-		vaSessionbean.setProgramName("Customer orders");
+		vaSessionbean.setProgramName("เปิดคำสั่งซื้อใหม่");
 		vaSessionbean.setContentCenter("admin/order.xhtml");
 		return "main?facesRedirect=true";
 	}
 	
-	public String docketClick() {
-		vaSessionbean.setProgramName("Docket data");
-		vaSessionbean.setContentCenter("admin/docket.xhtml");
+//	public String docketClick() {
+//		vaSessionbean.setProgramName("เปิดคำสั่งซื้อใหม่");
+//		vaSessionbean.setContentCenter("admin/docket.xhtml");
+//		return "main?facesRedirect=true";
+//	}
+	
+	public String orderLookupClick() {
+		vaSessionbean.setProgramName("คำสั่งซื้อ");
+		vaSessionbean.setContentCenter("admin/orderLookup.xhtml");
 		return "main?facesRedirect=true";
 	}
 	
