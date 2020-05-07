@@ -10,9 +10,8 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class OrdersStatusOrdersId  implements java.io.Serializable {
-
-
-     private long ordersStatusId;
+	private static final long serialVersionUID = 1L;
+	private long ordersStatusId;
      private long ordersId;
 
     public OrdersStatusOrdersId() {
