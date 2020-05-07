@@ -13,15 +13,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import toto.ssm.entity.Privilege;
+import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
 @ManagedBean(name = "privilegebean")
 @ViewScoped
 public class PrivilegeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Privilege> slave;
-	private Privilege selectedRow;
+	private List<Privileges> slave;
+	private Privileges selectedRow;
 	private Calendar cal;
 	
 	private String renderedDelete;
@@ -35,8 +35,8 @@ public class PrivilegeBean implements Serializable {
 	private void init() {
 		cal = Calendar.getInstance();
 		slave = session.querryAllPrivilege();
-		for(Privilege r : slave) {
-			if(r.getEmployees().isEmpty()) {
+		for(Privileges r : slave) {
+			if(r.getEmployeeses().isEmpty()) {
 				r.setRenderedDelete("true");
 			} else {
 				r.setRenderedDelete("false");
@@ -50,7 +50,7 @@ public class PrivilegeBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Privilege();
+		selectedRow = new Privileges();
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
 	}
@@ -61,7 +61,7 @@ public class PrivilegeBean implements Serializable {
 		init();
 	}
 	
-	public void btnEditClick(Privilege o) {
+	public void btnEditClick(Privileges o) {
 		selectedRow = o;
 	}
 	
@@ -78,19 +78,19 @@ public class PrivilegeBean implements Serializable {
 		}
 	}
 	
-	public List<Privilege> getSlave() {
+	public List<Privileges> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Privilege> slave) {
+	public void setSlave(List<Privileges> slave) {
 		this.slave = slave;
 	}
 
-	public Privilege getSelectedRow() {
+	public Privileges getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Privilege selectedRow) {
+	public void setSelectedRow(Privileges selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 
@@ -102,7 +102,7 @@ public class PrivilegeBean implements Serializable {
 		this.renderedDelete = renderedDelete;
 	}
 
-	public void btnDeleteClick(Privilege o) {
+	public void btnDeleteClick(Privileges o) {
 		selectedRow = o;
 	}
 

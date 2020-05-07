@@ -15,7 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import toto.ssm.session.*;
-import toto.ssm.entity.Employee;
+import toto.ssm.entity.*;
 import toto.util.FWUtil;
 
 @ManagedBean(name = "indexbean")
@@ -24,9 +24,9 @@ public class IndexBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static final ResourceBundle resources = ResourceBundle.getBundle("resources.Index");
 	private static final ResourceBundle indexR = ResourceBundle.getBundle("resources.Index");
-	private Employee employee;
+	private Employees employee;
 	private long employeeId;
-	private List<Employee> employees;
+	private List<Employees> employees;
 	private String username;
 	private String password;
 	private String oldPass;
@@ -45,7 +45,7 @@ public class IndexBean implements Serializable{
 		employees = session.querryAllEmployee();
 		if(employees.size() != 0) {
 			employee = employees.get(0);
-			username = employee.getUserName();
+			username = employee.getUsername();
 			vasessionbean.setEmployee(employee);
 			vasessionbean.setUsername(username);
 			employeeId = employee.getId();
@@ -184,11 +184,11 @@ public class IndexBean implements Serializable{
 		this.vasessionbean = vasessionbean;
 	}
 
-	public Employee getEmployee() {
+	public Employees getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Employees employee) {
 		this.employee = employee;
 	}
 
@@ -200,11 +200,11 @@ public class IndexBean implements Serializable{
 		this.employeeId = employeeId;
 	}
 
-	public List<Employee> getEmployees() {
+	public List<Employees> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(List<Employee> employees) {
+	public void setEmployees(List<Employees> employees) {
 		this.employees = employees;
 	}
 }

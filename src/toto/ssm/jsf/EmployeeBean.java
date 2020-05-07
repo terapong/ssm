@@ -3,6 +3,7 @@ package toto.ssm.jsf;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -13,8 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import toto.ssm.entity.Employee;
-import toto.ssm.entity.Privilege;
+import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 import toto.util.FWUtil;
 
@@ -22,11 +22,11 @@ import toto.util.FWUtil;
 @ViewScoped
 public class EmployeeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Privilege> master;
-	private Privilege selectedMaster;
+	private List<Privileges> master;
+	private Privileges selectedMaster;
 	private long selectedMasterId;
-	private List<Employee> slave;
-	private Employee selectedRow;
+	private List<Employees> slave;
+	private Employees selectedRow;
 	
 	private String addDisabled;
 	private String tempPass;
@@ -53,8 +53,8 @@ public class EmployeeBean implements Serializable {
 			slave = session.querryEmployeeByPrivilegeID(selectedMaster.getId());
 			selectedMasterId = selectedMaster.getId();
 			
-			for(Employee r : slave) {
-				if(r.getUserName().equals("admin")) {
+			for(Employees r : slave) {
+				if(r.getUsername().equals("admin")) {
 					r.setRenderedDelete("false");
 				} else {
 					r.setRenderedDelete("true");
@@ -69,8 +69,8 @@ public class EmployeeBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Employee();
-		selectedRow.setPrivilege(selectedMaster);
+		selectedRow = new Employees();
+		selectedRow.setPrivileges(selectedMaster);
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
 	}
@@ -99,7 +99,7 @@ public class EmployeeBean implements Serializable {
 		init();
 	}
 
-		public void btnEditClick(Employee o) {
+		public void btnEditClick(Employees o) {
 		selectedRow = o;
 	}
 	
@@ -116,15 +116,15 @@ public class EmployeeBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(Employee o) {
+	public void btnDeleteClick(Employees o) {
 		selectedRow = o;
 	}
 	
 	public void selMasterChange() {
 		selectedMaster = session.querryPrivilegeById(selectedMasterId);
-		slave = selectedMaster.getEmployees();
-		for(Employee r : slave) {
-			if(r.getUserName().equals("admin")) {
+//		slave = selectedMaster.getEmployeeses();
+		for(Employees r : slave) {
+			if(r.getUsername().equals("admin")) {
 				r.setRenderedDelete("false");
 			} else {
 				r.setRenderedDelete("true");
@@ -132,19 +132,19 @@ public class EmployeeBean implements Serializable {
 		}
 	}
 
-	public List<Privilege> getMaster() {
+	public List<Privileges> getMaster() {
 		return master;
 	}
 
-	public void setMaster(List<Privilege> master) {
+	public void setMaster(List<Privileges> master) {
 		this.master = master;
 	}
 
-	public Privilege getSelectedMaster() {
+	public Privileges getSelectedMaster() {
 		return selectedMaster;
 	}
 
-	public void setSelectedMaster(Privilege selectedMaster) {
+	public void setSelectedMaster(Privileges selectedMaster) {
 		this.selectedMaster = selectedMaster;
 	}
 
@@ -156,19 +156,19 @@ public class EmployeeBean implements Serializable {
 		this.selectedMasterId = selectedMasterId;
 	}
 
-	public List<Employee> getSlave() {
+	public List<Employees> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Employee> slave) {
+	public void setSlave(List<Employees> slave) {
 		this.slave = slave;
 	}
 
-	public Employee getSelectedRow() {
+	public Employees getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Employee selectedRow) {
+	public void setSelectedRow(Employees selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 

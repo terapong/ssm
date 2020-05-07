@@ -11,10 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import toto.ssm.entity.Customer;
-import toto.ssm.entity.Order;
-import toto.ssm.entity.OrdersStatus;
-import toto.ssm.entity.XtblDocket;
+import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
 @ManagedBean(name = "blankbean")

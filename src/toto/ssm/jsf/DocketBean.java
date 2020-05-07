@@ -22,8 +22,8 @@ public class DocketBean implements Serializable {
 	private List<Customer> master;
 	private Customer selectedMaster;
 	private long selectedMasterId;
-	private List<Order> slave;
-	private Order selectedRow;
+	private List<Orders> slave;
+	private Orders selectedRow;
 	
 	private Calendar cal;
 	
@@ -65,7 +65,7 @@ public class DocketBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Order();
+		selectedRow = new Orders();
 		selectedRow.setCustomer(selectedMaster);
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
@@ -75,8 +75,8 @@ public class DocketBean implements Serializable {
 		try {
 			selectedRow.setCustomer(selectedMaster);
 			selectedRow.setUpdateDate(cal.getTime());
-			selectedRow.setEmployee(null);
-			selectedRow.setOrdersStatus(null);
+			selectedRow.setEmployees(null);
+			selectedRow.setOrdersStatusOrderses(null);
 			selectedRow.setTaxes(null);
 			session.updateOrders(selectedRow);
 			
@@ -86,7 +86,7 @@ public class DocketBean implements Serializable {
 		init();
 	}
 
-		public void btnEditClick(Order o) {
+		public void btnEditClick(Orders o) {
 		selectedRow = o;
 	}
 	
@@ -103,7 +103,7 @@ public class DocketBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(Order o) {
+	public void btnDeleteClick(Orders o) {
 		selectedRow = o;
 	}
 	
@@ -137,19 +137,19 @@ public class DocketBean implements Serializable {
 		this.selectedMaster = selectedMaster;
 	}
 
-	public List<Order> getSlave() {
+	public List<Orders> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Order> slave) {
+	public void setSlave(List<Orders> slave) {
 		this.slave = slave;
 	}
 
-	public Order getSelectedRow() {
+	public Orders getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Order selectedRow) {
+	public void setSelectedRow(Orders selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 

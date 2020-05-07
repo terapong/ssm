@@ -10,46 +10,46 @@ import javax.persistence.*;
 @Stateless
 @LocalBean
 public class VaSession implements Serializable{
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	private static final transient Logger log = Logger.getLogger("VaSession");
 	
 	@PersistenceContext(unitName="ssmPU")
 	EntityManager em;
 
-	public List<Privilege> querryAllPrivilege() {
-		return em.createNativeQuery("select * from privileges", Privilege.class).getResultList();
+	public List<Privileges> querryAllPrivilege() {
+		return em.createNativeQuery("select * from privileges", Privileges.class).getResultList();
 	}
 	
-	public Privilege querryPrivilegeById(long id) {
-		return em.find(Privilege.class, id);
+	public Privileges querryPrivilegeById(long id) {
+		return em.find(Privileges.class, id);
 	}
 	
-	public void updatePrivilege(Privilege r) {
+	public void updatePrivilege(Privileges r) {
 		em.merge(r);
 	}
 	
-	public void deletePrivilege(Privilege r) throws Exception {
+	public void deletePrivilege(Privileges r) throws Exception {
 		r = querryPrivilegeById(r.getId());
 		em.remove(r);
 	}
 	
-	public List<Employee> querryAllEmployee() {
-		return em.createNativeQuery("select * from employees", Employee.class).getResultList(); 
+	public List<Employees> querryAllEmployee() {
+		return em.createNativeQuery("select * from employees", Employees.class).getResultList(); 
 	}
 	
-	public List<Employee> querryEmployeeByPrivilegeID(long id) {
-		return em.createNativeQuery("select * from employees where privilege_id = " + id, Employee.class).getResultList();
+	public List<Employees> querryEmployeeByPrivilegeID(long id) {
+		return em.createNativeQuery("select * from employees where privilege_id = " + id, Employees.class).getResultList();
 	}
 	
-	public Employee querryEmployeeById(long id) {
-		return em.find(Employee.class, id );
+	public Employees querryEmployeeById(long id) {
+		return em.find(Employees.class, id );
 	}
 	
-	public void updateEmployee(Employee u) {
+	public void updateEmployee(Employees u) {
 		em.merge(u);
 	}
 	
-	public void deleteEmployee(Employee u) throws Exception {
+	public void deleteEmployee(Employees u) throws Exception {
 		u = querryEmployeeById(u.getId());
 		em.remove(u);
 	}
@@ -113,36 +113,36 @@ public class VaSession implements Serializable{
 		em.remove(c);
 	}
 	
-	public List<SalesReport> querryAllSalesReport() {
-		return em.createNativeQuery("select * from sales_reports", OrdersStatus.class).getResultList();
+	public List<SalesReports> querryAllSalesReport() {
+		return em.createNativeQuery("select * from sales_reports", SalesReports.class).getResultList();
 	}
 	
-	public SalesReport querrySalesReporstById(long id) {
-		return em.find(SalesReport.class, id );
+	public SalesReports querrySalesReporstById(long id) {
+		return em.find(SalesReports.class, id );
 	}
 	
-	public void updateSalesReport(SalesReport c) {
+	public void updateSalesReport(SalesReports c) {
 		em.merge(c);
 	}
 	
-	public void deleteSalesReport(SalesReport c) {
+	public void deleteSalesReport(SalesReports c) {
 		c = querrySalesReporstById(c.getId());
 		em.remove(c);
 	}
 	
-	public List<InventoryTransactionType> querryAllInventoryTransactionType() {
-		return em.createNativeQuery("select * from inventory_transaction_types", InventoryTransactionType.class).getResultList();
+	public List<InventoryTransactionTypes> querryAllInventoryTransactionType() {
+		return em.createNativeQuery("select * from inventory_transaction_types", InventoryTransactionTypes.class).getResultList();
 	}
 	
-	public InventoryTransactionType querryInventoryTransactionTypeById(long id) {
-		return em.find(InventoryTransactionType.class, id );
+	public InventoryTransactionTypes querryInventoryTransactionTypeById(long id) {
+		return em.find(InventoryTransactionTypes.class, id );
 	}
 	
-	public void updateInventoryTransactionType(InventoryTransactionType c) {
+	public void updateInventoryTransactionType(InventoryTransactionTypes c) {
 		em.merge(c);
 	}
 	
-	public void deleteInventoryTransactionType(InventoryTransactionType c) {
+	public void deleteInventoryTransactionType(InventoryTransactionTypes c) {
 		c = querryInventoryTransactionTypeById(c.getId());
 		em.remove(c);
 	}
@@ -164,23 +164,23 @@ public class VaSession implements Serializable{
 		em.remove(c);
 	}
 	
-	public List<Order> querryAllOrder() {
-		return em.createNativeQuery("select * from order", PurchaseOrderStatus.class).getResultList();
+	public List<Orders> querryAllOrder() {
+		return em.createNativeQuery("select * from order", Orders.class).getResultList();
 	}
 	
-	public List<Order> querryAllOrderByCustomerID(Long id) {
-		return em.createNativeQuery("select * from orders where customer_id = " + id, Order.class).getResultList();
+	public List<Orders> querryAllOrderByCustomerID(Long id) {
+		return em.createNativeQuery("select * from orders where customer_id = " + id, Orders.class).getResultList();
 	}
 	
-	public Order querryOrderById(long id) {
-		return em.find(Order.class, id );
+	public Orders querryOrderById(long id) {
+		return em.find(Orders.class, id );
 	}
 	
-	public void updateOrders(Order c) {
+	public void updateOrders(Orders c) {
 		em.merge(c);
 	}
 	
-	public void deleteOrder(Order c) {
+	public void deleteOrder(Orders c) {
 		c = querryOrderById(c.getId());
 		em.remove(c);
 	}

@@ -13,15 +13,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import toto.ssm.entity.SalesReport;
+import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
 @ManagedBean(name = "salesreportbean")
 @ViewScoped
 public class SalesReportBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<SalesReport> slave;
-	private SalesReport selectedRow;
+	private List<SalesReports> slave;
+	private SalesReports selectedRow;
 	private Calendar cal;
 	
 	@ManagedProperty(value = "#{VaSessionbean}")
@@ -41,8 +41,9 @@ public class SalesReportBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new SalesReport();
+		selectedRow = new SalesReports();
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateDate(cal.getTime());
 	}
 	
 	public void btnSaveClick() {
@@ -50,7 +51,7 @@ public class SalesReportBean implements Serializable {
 		init();
 	}
 	
-	public void btnEditClick(SalesReport o) {
+	public void btnEditClick(SalesReports o) {
 		selectedRow = o;
 	}
 	
@@ -67,23 +68,23 @@ public class SalesReportBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(SalesReport o) {
+	public void btnDeleteClick(SalesReports o) {
 		selectedRow = o;
 	}
 
-	public List<SalesReport> getSlave() {
+	public List<SalesReports> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<SalesReport> slave) {
+	public void setSlave(List<SalesReports> slave) {
 		this.slave = slave;
 	}
 
-	public SalesReport getSelectedRow() {
+	public SalesReports getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(SalesReport selectedRow) {
+	public void setSelectedRow(SalesReports selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 

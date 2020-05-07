@@ -14,7 +14,7 @@ import toto.ssm.entity.*;
 public class VaSessionbean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private Employee employee;
+	private Employees employee;
 	private java.lang.String username;
 	private java.lang.String programName;
 	//private String contentCenter = "log.xhtml";
@@ -28,11 +28,11 @@ public class VaSessionbean implements Serializable{
 	public void destroy() {
 	}
 	
-	public Employee getEmployee() {
+	public Employees getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Employees employee) {
 		this.employee = employee;
 	}
 

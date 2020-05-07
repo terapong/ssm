@@ -13,15 +13,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import toto.ssm.entity.InventoryTransactionType;
+import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
 @ManagedBean(name = "inventorytransactiongtypebean")
 @ViewScoped
 public class InventoryTransactionTypeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<InventoryTransactionType> slave;
-	private InventoryTransactionType selectedRow;
+	private List<InventoryTransactionTypes> slave;
+	private InventoryTransactionTypes selectedRow;
 	private Calendar cal;
 	
 	@ManagedProperty(value = "#{VaSessionbean}")
@@ -41,7 +41,7 @@ public class InventoryTransactionTypeBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new InventoryTransactionType();
+		selectedRow = new InventoryTransactionTypes();
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
 	}
@@ -51,7 +51,7 @@ public class InventoryTransactionTypeBean implements Serializable {
 		init();
 	}
 	
-	public void btnEditClick(InventoryTransactionType o) {
+	public void btnEditClick(InventoryTransactionTypes o) {
 		selectedRow = o;
 	}
 	
@@ -68,23 +68,23 @@ public class InventoryTransactionTypeBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(InventoryTransactionType o) {
+	public void btnDeleteClick(InventoryTransactionTypes o) {
 		selectedRow = o;
 	}
 
-	public List<InventoryTransactionType> getSlave() {
+	public List<InventoryTransactionTypes> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<InventoryTransactionType> slave) {
+	public void setSlave(List<InventoryTransactionTypes> slave) {
 		this.slave = slave;
 	}
 
-	public InventoryTransactionType getSelectedRow() {
+	public InventoryTransactionTypes getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(InventoryTransactionType selectedRow) {
+	public void setSelectedRow(InventoryTransactionTypes selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 

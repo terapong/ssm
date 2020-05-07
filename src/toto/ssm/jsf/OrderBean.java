@@ -23,8 +23,8 @@ public class OrderBean implements Serializable {
 	private List<Customer> master;
 	private Customer selectedMaster;
 	private long selectedMasterId;
-	private List<Order> slave;
-	private Order selectedRow;
+	private List<Orders> slave;
+	private Orders selectedRow;
 	private String addDisabled;
 	private List<OrdersStatus> OrderStatus;
 	
@@ -68,7 +68,7 @@ public class OrderBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Order();
+		selectedRow = new Orders();
 		selectedRow.setCustomer(selectedMaster);
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
@@ -78,8 +78,8 @@ public class OrderBean implements Serializable {
 		try {
 			selectedRow.setCustomer(selectedMaster);
 			selectedRow.setUpdateDate(cal.getTime());
-			selectedRow.setEmployee(null);
-			selectedRow.setOrdersStatus(null);
+			selectedRow.setEmployees(null);
+			selectedRow.setOrdersStatusOrderses(null);
 			selectedRow.setTaxes(null);
 			session.updateOrders(selectedRow);
 			
@@ -89,7 +89,7 @@ public class OrderBean implements Serializable {
 		init();
 	}
 	
-	public void btnOrderStatusClick(Order o) {
+	public void btnOrderStatusClick(Orders o) {
 		OrderStatus = session.querryAllOrdersStatus();
 		
 		System.out.println("1111111111111111111vvvvvv");
@@ -100,7 +100,7 @@ public class OrderBean implements Serializable {
 		System.out.println("222222");
 	}
 
-	public void btnEditClick(Order o) {
+	public void btnEditClick(Orders o) {
 		selectedRow = o;
 	}
 	
@@ -117,7 +117,7 @@ public class OrderBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(Order o) {
+	public void btnDeleteClick(Orders o) {
 		selectedRow = o;
 	}
 	
@@ -151,19 +151,19 @@ public class OrderBean implements Serializable {
 		this.selectedMaster = selectedMaster;
 	}
 
-	public List<Order> getSlave() {
+	public List<Orders> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Order> slave) {
+	public void setSlave(List<Orders> slave) {
 		this.slave = slave;
 	}
 
-	public Order getSelectedRow() {
+	public Orders getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Order selectedRow) {
+	public void setSelectedRow(Orders selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 
