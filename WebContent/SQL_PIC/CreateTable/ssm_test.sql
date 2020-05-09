@@ -27,6 +27,31 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+CREATE TABLE `plant` (
+  `id` bigint(20) NOT NULL,
+  `address` varchar(500) DEFAULT NULL,
+  `attachments` varchar(500) DEFAULT NULL,
+  `business_phone` varchar(20) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `company` varchar(200) DEFAULT NULL,
+  `country_region` varchar(255) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_user` varchar(255) DEFAULT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `fax_number` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `home_phone` varchar(255) DEFAULT NULL,
+  `job_title` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `mobile_phone` varchar(255) DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `state_province` varchar(255) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `web_page` varchar(255) DEFAULT NULL,
+  `zip_postal_code` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `company`
 --
@@ -240,6 +265,7 @@ CREATE TABLE `orders` (
   `customer_id` bigint(20) DEFAULT NULL,
   `employee_id` bigint(20) DEFAULT NULL,
   `tax_status_id` bigint(20) DEFAULT NULL,
+  `plant_id` bigint(20) DEFAULT NULL,
   `shipper_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -247,8 +273,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `create_date`, `create_user`, `current_status`, `notes`, `order_date`, `paid_date`, `payment_type`, `qty`, `recipe`, `ship_address`, `ship_city`, `ship_country_region`, `ship_name`, `ship_state_province`, `ship_zip_postal_code`, `shipped_date`, `shipping_fee`, `tax_rate`, `taxes`, `update_date`, `customer_id`, `employee_id`, `tax_status_id`, `shipper_id`) VALUES
-(1, '2020-03-17 17:24:35', NULL, 1, '1', '2020-03-17 00:00:00', '2020-03-20 00:00:00', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2020-03-19 00:00:00', NULL, 1, NULL, '2020-03-17 17:24:35', 1, NULL, NULL, NULL);
+INSERT INTO `orders` (`id`, `create_date`, `create_user`, `current_status`, `notes`, `order_date`, `paid_date`, `payment_type`, `qty`, `recipe`, `ship_address`, `ship_city`, `ship_country_region`, `ship_name`, `ship_state_province`, `ship_zip_postal_code`, `shipped_date`, `shipping_fee`, `tax_rate`, `taxes`, `update_date`, `customer_id`, `employee_id`, `tax_status_id`, `plant_id`, `shipper_id`) VALUES
+(1, '2020-03-17 17:24:35', NULL, 1, '1', '2020-03-17 00:00:00', '2020-03-20 00:00:00', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2020-03-19 00:00:00', NULL, 1, NULL, '2020-03-17 17:24:35', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -819,7 +845,8 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `FK624gtjin3po807j3vix093tlf` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   ADD CONSTRAINT `FK7collrvo86jelcgiexmd86q0k` FOREIGN KEY (`tax_status_id`) REFERENCES `orders_tax_status` (`id`),
   ADD CONSTRAINT `FKfhl8bv0xn3sj33q2f3scf1bq6` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `FKsk2tyu7xrdu2ienuay5yrpgoe` FOREIGN KEY (`shipper_id`) REFERENCES `shippers` (`id`);
+  ADD CONSTRAINT `FKsk2tyu7xrdu2ienuay5yrpgoe` FOREIGN KEY (`shipper_id`) REFERENCES `shippers` (`id`),
+  ADD CONSTRAINT `FKpo5s3o9rsi37eu5topbkbaouu` FOREIGN KEY (`plant_id`) REFERENCES `plant` (`id`);
 
 --
 -- Constraints for table `orders_orders_status`

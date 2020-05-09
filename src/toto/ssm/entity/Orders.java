@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -59,7 +61,7 @@ public class Orders  implements java.io.Serializable {
      private List<OrdersStatusOrders> ordersStatusOrderses = new ArrayList<OrdersStatusOrders>(0);
      private List<Invoices> invoiceses = new ArrayList<Invoices>(0);
      private List<OrdersTaxStatus> ordersTaxStatuses = new ArrayList<OrdersTaxStatus>(0);
-     
+     private Plant plant;
      
 
     public Orders() {
@@ -123,7 +125,7 @@ public class Orders  implements java.io.Serializable {
         this.id = id;
     }
 
-public void setCustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
@@ -278,8 +280,8 @@ public void setCustomer(Customer customer) {
 	}
 
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="customer_id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="customer_id")
     public Customer getCustomer() {
         return this.customer;
     }
@@ -288,7 +290,7 @@ public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
     public Employees getEmployees() {
         return this.employees;
@@ -298,7 +300,7 @@ public void setCustomer(Customer customer) {
         this.employees = employees;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="tax_status_id")
     public OrdersTaxStatus getOrdersTaxStatus() {
         return this.ordersTaxStatus;
@@ -308,7 +310,7 @@ public void setCustomer(Customer customer) {
         this.ordersTaxStatus = ordersTaxStatus;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="shipper_id")
     public Shippers getShippers() {
         return this.shippers;
@@ -317,14 +319,25 @@ public void setCustomer(Customer customer) {
     public void ListShippers(Shippers shippers) {
         this.shippers = shippers;
     }
+    
 
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
     @Column(name="create_date", length=19)
     public Date getCreateDate() {
         return this.createDate;
     }
     
-    public void ListCreateDate(Date createDate) {
+	@OneToOne
+    public Plant getPlant() {
+		return plant;
+	}
+
+	public void setPlant(Plant plant) {
+		this.plant = plant;
+	}
+
+
+	public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
