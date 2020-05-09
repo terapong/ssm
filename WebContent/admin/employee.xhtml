@@ -38,14 +38,16 @@
 									<p:column headerText="Id">
 										<h:outputText value="#{r.id}" />
 									</p:column>
-									<p:column headerText="Name">
-										<h:outputText value="#{r.username}" />
+									<p:column headerText="ชื่อ">
+										<h:outputText value="#{r.firstName}" />
 									</p:column>
-									<p:column headerText="Password">
-										<h:outputText value="#{r.password}" />
+									<p:column headerText="นามสกุล">
+										<h:outputText value="#{r.lastName}" />
 									</p:column>
 									<p:column headerText="Create Date">
-										<h:outputText value="#{r.updateDate}" />
+										<h:outputText value="#{r.updateDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
 									</p:column>
 									<p:column headerText="">
 										<p:commandLink value="แก้ไข"

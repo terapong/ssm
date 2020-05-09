@@ -24,9 +24,14 @@ public class IndexBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static final ResourceBundle resources = ResourceBundle.getBundle("resources.Index");
 	private static final ResourceBundle indexR = ResourceBundle.getBundle("resources.Index");
+	private List<Privileges> privileges = new ArrayList<Privileges>(0);
+	private Privileges privilege;
+	private Long privilegeId;
+	
+	private List<Employees> employees;
 	private Employees employee;
 	private long employeeId;
-	private List<Employees> employees;
+	
 	private String username;
 	private String password;
 	private String oldPass;
@@ -42,13 +47,18 @@ public class IndexBean implements Serializable{
 	@PostConstruct
 	private void init() {
 		cal = Calendar.getInstance();
-		employees = session.querryAllEmployee();
-		if(employees.size() != 0) {
-			employee = employees.get(0);
-			username = employee.getUsername();
-			vasessionbean.setEmployee(employee);
-			vasessionbean.setUsername(username);
-			employeeId = employee.getId();
+		privileges = session.querryAllPrivilege();
+		if(privileges != null) {
+			privilege = privileges.get(0);
+			//employees = session.querryAllEmployee();
+			employees = privilege.getEmployeeses();
+			if(employees != null) {
+				employee = employees.get(0);
+				username = employee.getUsername();
+				vasessionbean.setEmployee(employee);
+				vasessionbean.setUsername(username);
+				employeeId = employee.getId();
+			}
 		}
 	}
 	
@@ -61,6 +71,19 @@ public class IndexBean implements Serializable{
 		employee = session.querryEmployeeById(employeeId);
 		vasessionbean.setEmployee(employee);
 		vasessionbean.setUsername(username);
+	}
+	
+	public void selprivilegesChange() {
+		employees = session.querryEmployeeByPrivilegeID(privilegeId);
+		if(employees.size() != 0) {
+			employee = employees.get(0);
+			username = employee.getUsername();
+			vasessionbean.setEmployee(employee);
+			vasessionbean.setUsername(username);
+			employeeId = employee.getId();
+		} else {
+			employees = new ArrayList<Employees>(0);
+		}
 	}
 	
 	public String loginClick() {
@@ -206,5 +229,37 @@ public class IndexBean implements Serializable{
 
 	public void setEmployees(List<Employees> employees) {
 		this.employees = employees;
+	}
+
+	public List<Privileges> getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(List<Privileges> privileges) {
+		this.privileges = privileges;
+	}
+
+	public VaSession getSession() {
+		return session;
+	}
+
+	public void setSession(VaSession session) {
+		this.session = session;
+	}
+
+	public Privileges getPrivilege() {
+		return privilege;
+	}
+
+	public void setPrivilege(Privileges privilege) {
+		this.privilege = privilege;
+	}
+
+	public Long getPrivilegeId() {
+		return privilegeId;
+	}
+
+	public void setPrivilegeId(Long privilegeId) {
+		this.privilegeId = privilegeId;
 	}
 }

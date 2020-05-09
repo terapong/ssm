@@ -131,7 +131,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `address`, `attachments`, `business_phone`, `city`, `company`, `country_region`, `create_date`, `create_user`, `email_address`, `fax_number`, `first_name`, `home_phone`, `job_title`, `last_name`, `mobile_phone`, `notes`, `password`, `renderedDelete`, `state_province`, `update_date`, `username`, `web_page`, `zip_postal_code`, `privilege_id`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '356a192b7913b04c54574d18c28d46e6395428ab', NULL, NULL, '2020-03-17 17:22:32', 'admin', NULL, NULL, 1);
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '356a192b7913b04c54574d18c28d46e6395428ab', 'true', NULL, '2020-03-17 17:22:32', 'admin', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 

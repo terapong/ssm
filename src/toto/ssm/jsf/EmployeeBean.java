@@ -31,7 +31,7 @@ public class EmployeeBean implements Serializable {
 	
 	private Calendar cal;
 	
-	@ManagedProperty(value = "#{VaSessionbean}")
+	@ManagedProperty(value = "#{vasessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;
@@ -72,6 +72,7 @@ public class EmployeeBean implements Serializable {
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
 		selectedRow.setCreateUser(vasessionbean.getUsername());
+		selectedRow.setRenderedDelete("true");
 	}
 	
 	public void btnSaveClick() {
