@@ -43,6 +43,8 @@ public class SalesReportBean implements Serializable {
 	public void btnNewClick() {
 		selectedRow = new SalesReports();
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

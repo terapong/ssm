@@ -44,6 +44,7 @@ public class InventoryTransactionTypeBean implements Serializable {
 		selectedRow = new InventoryTransactionTypes();
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

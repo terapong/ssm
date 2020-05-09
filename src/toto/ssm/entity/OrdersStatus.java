@@ -3,8 +3,8 @@ package toto.ssm.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,8 +29,8 @@ public class OrdersStatus  implements java.io.Serializable {
      private String createUser;
      private String statusName;
      private Date updateDate;
-     private Set<OrdersOrdersStatus> ordersOrdersStatuses = new HashSet<OrdersOrdersStatus>(0);
-     private Set<OrdersStatusOrders> ordersStatusOrderses = new HashSet<OrdersStatusOrders>(0);
+     private List<OrdersOrdersStatus> ordersOrdersStatuses = new ArrayList<OrdersOrdersStatus>(0);
+     private List<OrdersStatusOrders> ordersStatusOrderses = new ArrayList<OrdersStatusOrders>(0);
 
     public OrdersStatus() {
     }
@@ -39,7 +39,7 @@ public class OrdersStatus  implements java.io.Serializable {
     public OrdersStatus(long id) {
         this.id = id;
     }
-    public OrdersStatus(long id, Date createDate, String createUser, String statusName, Date updateDate, Set<OrdersOrdersStatus> ordersOrdersStatuses, Set<OrdersStatusOrders> ordersStatusOrderses) {
+    public OrdersStatus(long id, Date createDate, String createUser, String statusName, Date updateDate, List<OrdersOrdersStatus> ordersOrdersStatuses, List<OrdersStatusOrders> ordersStatusOrderses) {
        this.id = id;
        this.createDate = createDate;
        this.createUser = createUser;
@@ -63,7 +63,7 @@ public class OrdersStatus  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -73,7 +73,7 @@ public class OrdersStatus  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -83,7 +83,7 @@ public class OrdersStatus  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -93,7 +93,7 @@ public class OrdersStatus  implements java.io.Serializable {
         return this.statusName;
     }
     
-    public void setStatusName(String statusName) {
+    public void ListStatusName(String statusName) {
         this.statusName = statusName;
     }
 
@@ -103,27 +103,62 @@ public class OrdersStatus  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="ordersStatus")
-    public Set<OrdersOrdersStatus> getOrdersOrdersStatuses() {
+    public List<OrdersOrdersStatus> getOrdersOrdersStatuses() {
         return this.ordersOrdersStatuses;
     }
     
-    public void setOrdersOrdersStatuses(Set<OrdersOrdersStatus> ordersOrdersStatuses) {
+    public void ListOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
         this.ordersOrdersStatuses = ordersOrdersStatuses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="ordersStatus")
-    public Set<OrdersStatusOrders> getOrdersStatusOrderses() {
+    public List<OrdersStatusOrders> getOrdersStatusOrderses() {
         return this.ordersStatusOrderses;
     }
     
-    public void setOrdersStatusOrderses(Set<OrdersStatusOrders> ordersStatusOrderses) {
+    public void ListOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
         this.ordersStatusOrderses = ordersStatusOrderses;
     }
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
+		this.ordersOrdersStatuses = ordersOrdersStatuses;
+	}
+
+
+	public void setOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
+		this.ordersStatusOrderses = ordersStatusOrderses;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

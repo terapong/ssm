@@ -72,6 +72,7 @@ public class OrderBean implements Serializable {
 		selectedRow.setCustomer(selectedMaster);
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

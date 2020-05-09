@@ -23,7 +23,7 @@ public class EmployeeBean implements Serializable {
 	private List<Privileges> master;
 	private Privileges selectedMaster;
 	private long selectedMasterId;
-	private Set<Employees> slave;
+	private List<Employees> slave;
 	private Employees selectedRow;
 	
 	private String addDisabled;
@@ -71,6 +71,7 @@ public class EmployeeBean implements Serializable {
 		selectedRow.setPrivileges(selectedMaster);
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {
@@ -154,11 +155,11 @@ public class EmployeeBean implements Serializable {
 		this.selectedMasterId = selectedMasterId;
 	}
 
-	public Set<Employees> getSlave() {
+	public List<Employees> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(Set<Employees> slave) {
+	public void setSlave(List<Employees> slave) {
 		this.slave = slave;
 	}
 

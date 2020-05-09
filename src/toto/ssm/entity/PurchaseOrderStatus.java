@@ -3,8 +3,8 @@ package toto.ssm.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +29,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
      private String createUser;
      private String status;
      private Date updateDate;
-     private Set<PurchaseOrders> purchaseOrderses = new HashSet<PurchaseOrders>(0);
+     private List<PurchaseOrders> purchaseOrderses = new ArrayList<PurchaseOrders>(0);
 
     public PurchaseOrderStatus() {
     }
@@ -38,7 +38,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
     public PurchaseOrderStatus(int id) {
         this.id = id;
     }
-    public PurchaseOrderStatus(int id, Date createDate, String createUser, String status, Date updateDate, Set<PurchaseOrders> purchaseOrderses) {
+    public PurchaseOrderStatus(int id, Date createDate, String createUser, String status, Date updateDate, List<PurchaseOrders> purchaseOrderses) {
        this.id = id;
        this.createDate = createDate;
        this.createUser = createUser;
@@ -61,7 +61,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void ListId(int id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -81,7 +81,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -91,7 +91,7 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
         return this.status;
     }
     
-    public void setStatus(String status) {
+    public void ListStatus(String status) {
         this.status = status;
     }
 
@@ -101,18 +101,48 @@ public class PurchaseOrderStatus  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="purchaseOrderStatus")
-    public Set<PurchaseOrders> getPurchaseOrderses() {
+    public List<PurchaseOrders> getPurchaseOrderses() {
         return this.purchaseOrderses;
     }
     
-    public void setPurchaseOrderses(Set<PurchaseOrders> purchaseOrderses) {
+    public void ListPurchaseOrderses(List<PurchaseOrders> purchaseOrderses) {
         this.purchaseOrderses = purchaseOrderses;
     }
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setPurchaseOrderses(List<PurchaseOrders> purchaseOrderses) {
+		this.purchaseOrderses = purchaseOrderses;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 
 

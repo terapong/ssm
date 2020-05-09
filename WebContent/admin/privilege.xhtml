@@ -22,10 +22,14 @@
 					            <h:outputText value="#{r.privilegeName}" />
 					        </p:column>
 					        <p:column headerText="Create Date">
-					            <h:outputText value="#{r.createDate}" />
+					            <h:outputText value="#{r.createDate}" >
+					            	<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+					            </h:outputText>
 					        </p:column>
 					        <p:column headerText="Update Date">
-					            <h:outputText value="#{r.updateDate}" />
+					            <h:outputText value="#{r.updateDate}" >
+					            	<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+					            </h:outputText>
 					        </p:column>
 					        <p:column headerText="">
 					        	<p:commandLink value="แก้ไข" actionListener="#{privilegebean.btnEditClick(r)}" oncomplete="PF('newObjectDlg').show()" process="@this" update=":mainCenterForm" resetValues="true"/>

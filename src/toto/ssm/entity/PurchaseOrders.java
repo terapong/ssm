@@ -4,8 +4,8 @@ package toto.ssm.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,8 +46,8 @@ public class PurchaseOrders  implements java.io.Serializable {
      private Date submittedDate;
      private BigDecimal taxes;
      private Date updateDate;
-     private Set<InventoryTransactions> inventoryTransactionses = new HashSet<InventoryTransactions>(0);
-     private Set<PurchaseOrderDetails> purchaseOrderDetailses = new HashSet<PurchaseOrderDetails>(0);
+     private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
+     private List<PurchaseOrderDetails> purchaseOrderDetailses = new ArrayList<PurchaseOrderDetails>(0);
 
     public PurchaseOrders() {
     }
@@ -56,7 +56,7 @@ public class PurchaseOrders  implements java.io.Serializable {
     public PurchaseOrders(long id) {
         this.id = id;
     }
-    public PurchaseOrders(long id, Employees employees, PurchaseOrderStatus purchaseOrderStatus, Suppliers suppliers, Integer approvedBy, Date approvedDate, Date createDate, String createUser, Date creationDate, Date expectedDate, String notes, BigDecimal paymentAmount, Date paymentDate, String paymentMethod, BigDecimal shippingFee, Integer submittedBy, Date submittedDate, BigDecimal taxes, Date updateDate, Set<InventoryTransactions> inventoryTransactionses, Set<PurchaseOrderDetails> purchaseOrderDetailses) {
+    public PurchaseOrders(long id, Employees employees, PurchaseOrderStatus purchaseOrderStatus, Suppliers suppliers, Integer approvedBy, Date approvedDate, Date createDate, String createUser, Date creationDate, Date expectedDate, String notes, BigDecimal paymentAmount, Date paymentDate, String paymentMethod, BigDecimal shippingFee, Integer submittedBy, Date submittedDate, BigDecimal taxes, Date updateDate, List<InventoryTransactions> inventoryTransactionses, List<PurchaseOrderDetails> purchaseOrderDetailses) {
        this.id = id;
        this.employees = employees;
        this.purchaseOrderStatus = purchaseOrderStatus;
@@ -94,7 +94,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -104,7 +104,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.employees;
     }
     
-    public void setEmployees(Employees employees) {
+    public void ListEmployees(Employees employees) {
         this.employees = employees;
     }
 
@@ -114,7 +114,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.purchaseOrderStatus;
     }
     
-    public void setPurchaseOrderStatus(PurchaseOrderStatus purchaseOrderStatus) {
+    public void ListPurchaseOrderStatus(PurchaseOrderStatus purchaseOrderStatus) {
         this.purchaseOrderStatus = purchaseOrderStatus;
     }
 
@@ -124,7 +124,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.suppliers;
     }
     
-    public void setSuppliers(Suppliers suppliers) {
+    public void ListSuppliers(Suppliers suppliers) {
         this.suppliers = suppliers;
     }
 
@@ -134,7 +134,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.approvedBy;
     }
     
-    public void setApprovedBy(Integer approvedBy) {
+    public void ListApprovedBy(Integer approvedBy) {
         this.approvedBy = approvedBy;
     }
 
@@ -144,7 +144,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.approvedDate;
     }
     
-    public void setApprovedDate(Date approvedDate) {
+    public void ListApprovedDate(Date approvedDate) {
         this.approvedDate = approvedDate;
     }
 
@@ -154,7 +154,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -164,7 +164,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -174,7 +174,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.creationDate;
     }
     
-    public void setCreationDate(Date creationDate) {
+    public void ListCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -184,7 +184,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.expectedDate;
     }
     
-    public void setExpectedDate(Date expectedDate) {
+    public void ListExpectedDate(Date expectedDate) {
         this.expectedDate = expectedDate;
     }
 
@@ -194,7 +194,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.notes;
     }
     
-    public void setNotes(String notes) {
+    public void ListNotes(String notes) {
         this.notes = notes;
     }
 
@@ -204,7 +204,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.paymentAmount;
     }
     
-    public void setPaymentAmount(BigDecimal paymentAmount) {
+    public void ListPaymentAmount(BigDecimal paymentAmount) {
         this.paymentAmount = paymentAmount;
     }
 
@@ -214,7 +214,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.paymentDate;
     }
     
-    public void setPaymentDate(Date paymentDate) {
+    public void ListPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -224,7 +224,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.paymentMethod;
     }
     
-    public void setPaymentMethod(String paymentMethod) {
+    public void ListPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -234,7 +234,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.shippingFee;
     }
     
-    public void setShippingFee(BigDecimal shippingFee) {
+    public void ListShippingFee(BigDecimal shippingFee) {
         this.shippingFee = shippingFee;
     }
 
@@ -244,7 +244,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.submittedBy;
     }
     
-    public void setSubmittedBy(Integer submittedBy) {
+    public void ListSubmittedBy(Integer submittedBy) {
         this.submittedBy = submittedBy;
     }
 
@@ -254,7 +254,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.submittedDate;
     }
     
-    public void setSubmittedDate(Date submittedDate) {
+    public void ListSubmittedDate(Date submittedDate) {
         this.submittedDate = submittedDate;
     }
 
@@ -264,7 +264,7 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.taxes;
     }
     
-    public void setTaxes(BigDecimal taxes) {
+    public void ListTaxes(BigDecimal taxes) {
         this.taxes = taxes;
     }
 
@@ -274,27 +274,132 @@ public class PurchaseOrders  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="purchaseOrders")
-    public Set<InventoryTransactions> getInventoryTransactionses() {
+    public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }
     
-    public void setInventoryTransactionses(Set<InventoryTransactions> inventoryTransactionses) {
+    public void ListInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
         this.inventoryTransactionses = inventoryTransactionses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="purchaseOrders")
-    public Set<PurchaseOrderDetails> getPurchaseOrderDetailses() {
+    public List<PurchaseOrderDetails> getPurchaseOrderDetailses() {
         return this.purchaseOrderDetailses;
     }
     
-    public void setPurchaseOrderDetailses(Set<PurchaseOrderDetails> purchaseOrderDetailses) {
+    public void ListPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
         this.purchaseOrderDetailses = purchaseOrderDetailses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public void setEmployees(Employees employees) {
+		this.employees = employees;
+	}
+
+
+	public void setPurchaseOrderStatus(PurchaseOrderStatus purchaseOrderStatus) {
+		this.purchaseOrderStatus = purchaseOrderStatus;
+	}
+
+
+	public void setSuppliers(Suppliers suppliers) {
+		this.suppliers = suppliers;
+	}
+
+
+	public void setApprovedBy(Integer approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+
+	public void setApprovedDate(Date approvedDate) {
+		this.approvedDate = approvedDate;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+	public void setPaymentAmount(BigDecimal paymentAmount) {
+		this.paymentAmount = paymentAmount;
+	}
+
+
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+
+	public void setShippingFee(BigDecimal shippingFee) {
+		this.shippingFee = shippingFee;
+	}
+
+
+	public void setSubmittedBy(Integer submittedBy) {
+		this.submittedBy = submittedBy;
+	}
+
+
+	public void setSubmittedDate(Date submittedDate) {
+		this.submittedDate = submittedDate;
+	}
+
+
+	public void setTaxes(BigDecimal taxes) {
+		this.taxes = taxes;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
+
+
+	public void setPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
+		this.purchaseOrderDetailses = purchaseOrderDetailses;
+	}
 }
 
 

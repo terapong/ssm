@@ -43,6 +43,7 @@ public class CustomerBean implements Serializable {
 	public void btnNewClick() {
 		selectedRow = new Customer();
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

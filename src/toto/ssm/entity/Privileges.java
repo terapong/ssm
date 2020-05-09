@@ -2,9 +2,9 @@ package toto.ssm.entity;
 // Generated May 7, 2020 10:21:16 AM by Hibernate Tools 4.3.1
 
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +30,7 @@ public class Privileges  implements java.io.Serializable {
      private String privilegeName;
      private String renderedDelete;
      private Date updateDate;
-     private Set<Employees> employeeses = new HashSet<Employees>(0);
+     private List<Employees> employeeses = new ArrayList<Employees>(0);
 
     public Privileges() {
     }
@@ -39,7 +39,7 @@ public class Privileges  implements java.io.Serializable {
     public Privileges(long id) {
         this.id = id;
     }
-    public Privileges(long id, Date createDate, String createUser, String privilegeName, String renderedDelete, Date updateDate, Set<Employees> employeeses) {
+    public Privileges(long id, Date createDate, String createUser, String privilegeName, String renderedDelete, Date updateDate, List<Employees> employeeses) {
        this.id = id;
        this.createDate = createDate;
        this.createUser = createUser;
@@ -57,7 +57,6 @@ public class Privileges  implements java.io.Serializable {
             pkColumnValue="PRIVILEGE_ID", 
             allocationSize=1)
     @Id 
-    @Column(name="id")
     @GeneratedValue(strategy=GenerationType.TABLE, generator="SSMGen")
     public long getId() {
         return this.id;
@@ -117,12 +116,12 @@ public class Privileges  implements java.io.Serializable {
         this.updateDate = updateDate;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="privileges")
-    public Set<Employees> getEmployeeses() {
+@OneToMany(fetch=FetchType.EAGER, mappedBy="privileges")
+    public List<Employees> getEmployeeses() {
         return this.employeeses;
     }
     
-    public void setEmployeeses(Set<Employees> employeeses) {
+    public void setEmployeeses(List<Employees> employeeses) {
         this.employeeses = employeeses;
     }
 

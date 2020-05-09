@@ -4,8 +4,8 @@ package toto.ssm.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,13 +52,13 @@ public class Orders  implements java.io.Serializable {
      private Double taxRate;
      private BigDecimal taxes;
      private Date updateDate;
-     private Set<XtblDocket> xtblDockets = new HashSet<XtblDocket>(0);
-     private Set<InventoryTransactions> inventoryTransactionses = new HashSet<InventoryTransactions>(0);
-     private Set<OrdersOrdersStatus> ordersOrdersStatuses = new HashSet<OrdersOrdersStatus>(0);
-     private Set<OrderDetails> orderDetailses = new HashSet<OrderDetails>(0);
-     private Set<OrdersStatusOrders> ordersStatusOrderses = new HashSet<OrdersStatusOrders>(0);
-     private Set<Invoices> invoiceses = new HashSet<Invoices>(0);
-     private Set<OrdersTaxStatus> ordersTaxStatuses = new HashSet<OrdersTaxStatus>(0);
+     private List<XtblDocket> xtblDockets = new ArrayList<XtblDocket>(0);
+     private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
+     private List<OrdersOrdersStatus> ordersOrdersStatuses = new ArrayList<OrdersOrdersStatus>(0);
+     private List<OrderDetails> orderDetailses = new ArrayList<OrderDetails>(0);
+     private List<OrdersStatusOrders> ordersStatusOrderses = new ArrayList<OrdersStatusOrders>(0);
+     private List<Invoices> invoiceses = new ArrayList<Invoices>(0);
+     private List<OrdersTaxStatus> ordersTaxStatuses = new ArrayList<OrdersTaxStatus>(0);
      
      
 
@@ -70,7 +70,7 @@ public class Orders  implements java.io.Serializable {
         this.id = id;
     }
     
-    public Orders(long id, Customer customer, Employees employees, OrdersTaxStatus ordersTaxStatus, Shippers shippers, Date createDate, String createUser, Long currentStatus, String notes, Date orderDate, Date paidDate, String paymentType, String qty, String recipe, String shipAddress, String shipCity, String shipCountryRegion, String shipName, String shipStateProvince, String shipZipPostalCode, Date shippedDate, BigDecimal shippingFee, Double taxRate, BigDecimal taxes, Date updateDate, Set<XtblDocket> xtblDockets, Set<InventoryTransactions> inventoryTransactionses, Set<OrdersOrdersStatus> ordersOrdersStatuses, Set<OrderDetails> orderDetailses, Set<OrdersStatusOrders> ordersStatusOrderses, Set<Invoices> invoiceses, Set<OrdersTaxStatus> ordersTaxStatuses) {
+    public Orders(long id, Customer customer, Employees employees, OrdersTaxStatus ordersTaxStatus, Shippers shippers, Date createDate, String createUser, Long currentStatus, String notes, Date orderDate, Date paidDate, String paymentType, String qty, String recipe, String shipAddress, String shipCity, String shipCountryRegion, String shipName, String shipStateProvince, String shipZipPostalCode, Date shippedDate, BigDecimal shippingFee, Double taxRate, BigDecimal taxes, Date updateDate, List<XtblDocket> xtblDockets, List<InventoryTransactions> inventoryTransactionses, List<OrdersOrdersStatus> ordersOrdersStatuses, List<OrderDetails> orderDetailses, List<OrdersStatusOrders> ordersStatusOrderses, List<Invoices> invoiceses, List<OrdersTaxStatus> ordersTaxStatuses) {
        this.id = id;
        this.customer = customer;
        this.employees = employees;
@@ -119,9 +119,164 @@ public class Orders  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
+
+public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+	public void setEmployees(Employees employees) {
+		this.employees = employees;
+	}
+
+
+	public void setOrdersTaxStatus(OrdersTaxStatus ordersTaxStatus) {
+		this.ordersTaxStatus = ordersTaxStatus;
+	}
+
+
+	public void setShippers(Shippers shippers) {
+		this.shippers = shippers;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setCurrentStatus(Long currentStatus) {
+		this.currentStatus = currentStatus;
+	}
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+
+	public void setPaidDate(Date paidDate) {
+		this.paidDate = paidDate;
+	}
+
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+
+	public void setQty(String qty) {
+		this.qty = qty;
+	}
+
+
+	public void setRecipe(String recipe) {
+		this.recipe = recipe;
+	}
+
+
+	public void setShipAddress(String shipAddress) {
+		this.shipAddress = shipAddress;
+	}
+
+
+	public void setShipCity(String shipCity) {
+		this.shipCity = shipCity;
+	}
+
+
+	public void setShipCountryRegion(String shipCountryRegion) {
+		this.shipCountryRegion = shipCountryRegion;
+	}
+
+
+	public void setShipName(String shipName) {
+		this.shipName = shipName;
+	}
+
+
+	public void setShipStateProvince(String shipStateProvince) {
+		this.shipStateProvince = shipStateProvince;
+	}
+
+
+	public void setShipZipPostalCode(String shipZipPostalCode) {
+		this.shipZipPostalCode = shipZipPostalCode;
+	}
+
+
+	public void setShippedDate(Date shippedDate) {
+		this.shippedDate = shippedDate;
+	}
+
+
+	public void setShippingFee(BigDecimal shippingFee) {
+		this.shippingFee = shippingFee;
+	}
+
+
+	public void setTaxRate(Double taxRate) {
+		this.taxRate = taxRate;
+	}
+
+
+	public void setTaxes(BigDecimal taxes) {
+		this.taxes = taxes;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setXtblDockets(List<XtblDocket> xtblDockets) {
+		this.xtblDockets = xtblDockets;
+	}
+
+
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
+
+
+	public void setOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
+		this.ordersOrdersStatuses = ordersOrdersStatuses;
+	}
+
+
+	public void setOrderDetailses(List<OrderDetails> orderDetailses) {
+		this.orderDetailses = orderDetailses;
+	}
+
+
+	public void setOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
+		this.ordersStatusOrderses = ordersStatusOrderses;
+	}
+
+
+	public void setInvoiceses(List<Invoices> invoiceses) {
+		this.invoiceses = invoiceses;
+	}
+
+
+	public void setOrdersTaxStatuses(List<OrdersTaxStatus> ordersTaxStatuses) {
+		this.ordersTaxStatuses = ordersTaxStatuses;
+	}
+
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="customer_id")
@@ -129,7 +284,7 @@ public class Orders  implements java.io.Serializable {
         return this.customer;
     }
     
-    public void setCustomer(Customer customer) {
+    public void ListCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -139,7 +294,7 @@ public class Orders  implements java.io.Serializable {
         return this.employees;
     }
     
-    public void setEmployees(Employees employees) {
+    public void ListEmployees(Employees employees) {
         this.employees = employees;
     }
 
@@ -149,7 +304,7 @@ public class Orders  implements java.io.Serializable {
         return this.ordersTaxStatus;
     }
     
-    public void setOrdersTaxStatus(OrdersTaxStatus ordersTaxStatus) {
+    public void ListOrdersTaxStatus(OrdersTaxStatus ordersTaxStatus) {
         this.ordersTaxStatus = ordersTaxStatus;
     }
 
@@ -159,7 +314,7 @@ public class Orders  implements java.io.Serializable {
         return this.shippers;
     }
     
-    public void setShippers(Shippers shippers) {
+    public void ListShippers(Shippers shippers) {
         this.shippers = shippers;
     }
 
@@ -169,7 +324,7 @@ public class Orders  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -179,7 +334,7 @@ public class Orders  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -189,7 +344,7 @@ public class Orders  implements java.io.Serializable {
         return this.currentStatus;
     }
     
-    public void setCurrentStatus(Long currentStatus) {
+    public void ListCurrentStatus(Long currentStatus) {
         this.currentStatus = currentStatus;
     }
 
@@ -199,7 +354,7 @@ public class Orders  implements java.io.Serializable {
         return this.notes;
     }
     
-    public void setNotes(String notes) {
+    public void ListNotes(String notes) {
         this.notes = notes;
     }
 
@@ -209,7 +364,7 @@ public class Orders  implements java.io.Serializable {
         return this.orderDate;
     }
     
-    public void setOrderDate(Date orderDate) {
+    public void ListOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -219,7 +374,7 @@ public class Orders  implements java.io.Serializable {
         return this.paidDate;
     }
     
-    public void setPaidDate(Date paidDate) {
+    public void ListPaidDate(Date paidDate) {
         this.paidDate = paidDate;
     }
 
@@ -229,7 +384,7 @@ public class Orders  implements java.io.Serializable {
         return this.paymentType;
     }
     
-    public void setPaymentType(String paymentType) {
+    public void ListPaymentType(String paymentType) {
         this.paymentType = paymentType;
     }
 
@@ -239,7 +394,7 @@ public class Orders  implements java.io.Serializable {
         return this.qty;
     }
     
-    public void setQty(String qty) {
+    public void ListQty(String qty) {
         this.qty = qty;
     }
 
@@ -249,7 +404,7 @@ public class Orders  implements java.io.Serializable {
         return this.recipe;
     }
     
-    public void setRecipe(String recipe) {
+    public void ListRecipe(String recipe) {
         this.recipe = recipe;
     }
 
@@ -259,7 +414,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipAddress;
     }
     
-    public void setShipAddress(String shipAddress) {
+    public void ListShipAddress(String shipAddress) {
         this.shipAddress = shipAddress;
     }
 
@@ -269,7 +424,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipCity;
     }
     
-    public void setShipCity(String shipCity) {
+    public void ListShipCity(String shipCity) {
         this.shipCity = shipCity;
     }
 
@@ -279,7 +434,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipCountryRegion;
     }
     
-    public void setShipCountryRegion(String shipCountryRegion) {
+    public void ListShipCountryRegion(String shipCountryRegion) {
         this.shipCountryRegion = shipCountryRegion;
     }
 
@@ -289,7 +444,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipName;
     }
     
-    public void setShipName(String shipName) {
+    public void ListShipName(String shipName) {
         this.shipName = shipName;
     }
 
@@ -299,7 +454,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipStateProvince;
     }
     
-    public void setShipStateProvince(String shipStateProvince) {
+    public void ListShipStateProvince(String shipStateProvince) {
         this.shipStateProvince = shipStateProvince;
     }
 
@@ -309,7 +464,7 @@ public class Orders  implements java.io.Serializable {
         return this.shipZipPostalCode;
     }
     
-    public void setShipZipPostalCode(String shipZipPostalCode) {
+    public void ListShipZipPostalCode(String shipZipPostalCode) {
         this.shipZipPostalCode = shipZipPostalCode;
     }
 
@@ -319,7 +474,7 @@ public class Orders  implements java.io.Serializable {
         return this.shippedDate;
     }
     
-    public void setShippedDate(Date shippedDate) {
+    public void ListShippedDate(Date shippedDate) {
         this.shippedDate = shippedDate;
     }
 
@@ -329,7 +484,7 @@ public class Orders  implements java.io.Serializable {
         return this.shippingFee;
     }
     
-    public void setShippingFee(BigDecimal shippingFee) {
+    public void ListShippingFee(BigDecimal shippingFee) {
         this.shippingFee = shippingFee;
     }
 
@@ -339,7 +494,7 @@ public class Orders  implements java.io.Serializable {
         return this.taxRate;
     }
     
-    public void setTaxRate(Double taxRate) {
+    public void ListTaxRate(Double taxRate) {
         this.taxRate = taxRate;
     }
 
@@ -349,7 +504,7 @@ public class Orders  implements java.io.Serializable {
         return this.taxes;
     }
     
-    public void setTaxes(BigDecimal taxes) {
+    public void ListTaxes(BigDecimal taxes) {
         this.taxes = taxes;
     }
 
@@ -359,72 +514,77 @@ public class Orders  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
     
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<XtblDocket> getXtblDockets() {
+    public List<XtblDocket> getXtblDockets() {
         return this.xtblDockets;
     }
     
-    public void setXtblDockets(Set<XtblDocket> xtblDockets) {
+    public void ListXtblDockets(List<XtblDocket> xtblDockets) {
         this.xtblDockets = xtblDockets;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<InventoryTransactions> getInventoryTransactionses() {
+    public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }
     
-    public void setInventoryTransactionses(Set<InventoryTransactions> inventoryTransactionses) {
+    public void ListInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
         this.inventoryTransactionses = inventoryTransactionses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<OrdersOrdersStatus> getOrdersOrdersStatuses() {
+    public List<OrdersOrdersStatus> getOrdersOrdersStatuses() {
         return this.ordersOrdersStatuses;
     }
     
-    public void setOrdersOrdersStatuses(Set<OrdersOrdersStatus> ordersOrdersStatuses) {
+    public void ListOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
         this.ordersOrdersStatuses = ordersOrdersStatuses;
     }
     
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<OrderDetails> getOrderDetailses() {
+    public List<OrderDetails> getOrderDetailses() {
         return this.orderDetailses;
     }
     
-    public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
+    public void ListOrderDetailses(List<OrderDetails> orderDetailses) {
         this.orderDetailses = orderDetailses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<OrdersStatusOrders> getOrdersStatusOrderses() {
+    public List<OrdersStatusOrders> getOrdersStatusOrderses() {
         return this.ordersStatusOrderses;
     }
     
-    public void setOrdersStatusOrderses(Set<OrdersStatusOrders> ordersStatusOrderses) {
+    public void ListOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
         this.ordersStatusOrderses = ordersStatusOrderses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<Invoices> getInvoiceses() {
+    public List<Invoices> getInvoiceses() {
         return this.invoiceses;
     }
     
-    public void setInvoiceses(Set<Invoices> invoiceses) {
+    public void ListInvoiceses(List<Invoices> invoiceses) {
         this.invoiceses = invoiceses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public Set<OrdersTaxStatus> getOrdersTaxStatuses() {
+    public List<OrdersTaxStatus> getOrdersTaxStatuses() {
         return this.ordersTaxStatuses;
     }
     
-    public void setOrdersTaxStatuses(Set<OrdersTaxStatus> ordersTaxStatuses) {
+    public void ListOrdersTaxStatuses(List<OrdersTaxStatus> ordersTaxStatuses) {
         this.ordersTaxStatuses = ordersTaxStatuses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

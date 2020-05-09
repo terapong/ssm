@@ -3,8 +3,8 @@ package toto.ssm.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,7 +32,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
      private String createUser;
      private String taxStatusName;
      private Date updateDate;
-     private Set<Orders> orderses = new HashSet<Orders>(0);
+     private List<Orders> orderses = new ArrayList<Orders>(0);
 
     public OrdersTaxStatus() {
     }
@@ -41,7 +41,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
     public OrdersTaxStatus(long id) {
         this.id = id;
     }
-    public OrdersTaxStatus(long id, Orders orders, Date createDate, String createUser, String taxStatusName, Date updateDate, Set<Orders> orderses) {
+    public OrdersTaxStatus(long id, Orders orders, Date createDate, String createUser, String taxStatusName, Date updateDate, List<Orders> orderses) {
        this.id = id;
        this.orders = orders;
        this.createDate = createDate;
@@ -65,7 +65,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -75,7 +75,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.orders;
     }
     
-    public void setOrders(Orders orders) {
+    public void ListOrders(Orders orders) {
         this.orders = orders;
     }
 
@@ -85,7 +85,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -95,7 +95,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -105,7 +105,7 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.taxStatusName;
     }
     
-    public void setTaxStatusName(String taxStatusName) {
+    public void ListTaxStatusName(String taxStatusName) {
         this.taxStatusName = taxStatusName;
     }
 
@@ -115,18 +115,53 @@ public class OrdersTaxStatus  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="ordersTaxStatus")
-    public Set<Orders> getOrderses() {
+    public List<Orders> getOrderses() {
         return this.orderses;
     }
     
-    public void setOrderses(Set<Orders> orderses) {
+    public void ListOrderses(List<Orders> orderses) {
         this.orderses = orderses;
     }
+
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setTaxStatusName(String taxStatusName) {
+		this.taxStatusName = taxStatusName;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setOrderses(List<Orders> orderses) {
+		this.orderses = orderses;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

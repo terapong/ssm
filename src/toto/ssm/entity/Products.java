@@ -4,8 +4,8 @@ package toto.ssm.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,9 +42,9 @@ public class Products  implements java.io.Serializable {
      private String supplierIds;
      private Integer targetLevel;
      private Date updateDate;
-     private Set<InventoryTransactions> inventoryTransactionses = new HashSet<InventoryTransactions>(0);
-     private Set<PurchaseOrderDetails> purchaseOrderDetailses = new HashSet<PurchaseOrderDetails>(0);
-     private Set<OrderDetails> orderDetailses = new HashSet<OrderDetails>(0);
+     private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
+     private List<PurchaseOrderDetails> purchaseOrderDetailses = new ArrayList<PurchaseOrderDetails>(0);
+     private List<OrderDetails> orderDetailses = new ArrayList<OrderDetails>(0);
 
     public Products() {
     }
@@ -53,7 +53,7 @@ public class Products  implements java.io.Serializable {
     public Products(long id) {
         this.id = id;
     }
-    public Products(long id, String attachments, String category, Date createDate, String createUser, String description, String discontinued, BigDecimal listPrice, Integer minimumReorderQuantity, String productCode, String productName, String quantityPerUnit, Integer reorderLevel, BigDecimal standardCost, String supplierIds, Integer targetLevel, Date updateDate, Set<InventoryTransactions> inventoryTransactionses, Set<PurchaseOrderDetails> purchaseOrderDetailses, Set<OrderDetails> orderDetailses) {
+    public Products(long id, String attachments, String category, Date createDate, String createUser, String description, String discontinued, BigDecimal listPrice, Integer minimumReorderQuantity, String productCode, String productName, String quantityPerUnit, Integer reorderLevel, BigDecimal standardCost, String supplierIds, Integer targetLevel, Date updateDate, List<InventoryTransactions> inventoryTransactionses, List<PurchaseOrderDetails> purchaseOrderDetailses, List<OrderDetails> orderDetailses) {
        this.id = id;
        this.attachments = attachments;
        this.category = category;
@@ -90,7 +90,7 @@ public class Products  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -100,7 +100,7 @@ public class Products  implements java.io.Serializable {
         return this.attachments;
     }
     
-    public void setAttachments(String attachments) {
+    public void ListAttachments(String attachments) {
         this.attachments = attachments;
     }
 
@@ -110,7 +110,7 @@ public class Products  implements java.io.Serializable {
         return this.category;
     }
     
-    public void setCategory(String category) {
+    public void ListCategory(String category) {
         this.category = category;
     }
 
@@ -120,7 +120,7 @@ public class Products  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -130,7 +130,7 @@ public class Products  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -140,7 +140,7 @@ public class Products  implements java.io.Serializable {
         return this.description;
     }
     
-    public void setDescription(String description) {
+    public void ListDescription(String description) {
         this.description = description;
     }
 
@@ -150,7 +150,7 @@ public class Products  implements java.io.Serializable {
         return this.discontinued;
     }
     
-    public void setDiscontinued(String discontinued) {
+    public void ListDiscontinued(String discontinued) {
         this.discontinued = discontinued;
     }
 
@@ -160,7 +160,7 @@ public class Products  implements java.io.Serializable {
         return this.listPrice;
     }
     
-    public void setListPrice(BigDecimal listPrice) {
+    public void ListListPrice(BigDecimal listPrice) {
         this.listPrice = listPrice;
     }
 
@@ -170,7 +170,7 @@ public class Products  implements java.io.Serializable {
         return this.minimumReorderQuantity;
     }
     
-    public void setMinimumReorderQuantity(Integer minimumReorderQuantity) {
+    public void ListMinimumReorderQuantity(Integer minimumReorderQuantity) {
         this.minimumReorderQuantity = minimumReorderQuantity;
     }
 
@@ -180,7 +180,7 @@ public class Products  implements java.io.Serializable {
         return this.productCode;
     }
     
-    public void setProductCode(String productCode) {
+    public void ListProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -190,7 +190,7 @@ public class Products  implements java.io.Serializable {
         return this.productName;
     }
     
-    public void setProductName(String productName) {
+    public void ListProductName(String productName) {
         this.productName = productName;
     }
 
@@ -200,7 +200,7 @@ public class Products  implements java.io.Serializable {
         return this.quantityPerUnit;
     }
     
-    public void setQuantityPerUnit(String quantityPerUnit) {
+    public void ListQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }
 
@@ -210,7 +210,7 @@ public class Products  implements java.io.Serializable {
         return this.reorderLevel;
     }
     
-    public void setReorderLevel(Integer reorderLevel) {
+    public void ListReorderLevel(Integer reorderLevel) {
         this.reorderLevel = reorderLevel;
     }
 
@@ -220,7 +220,7 @@ public class Products  implements java.io.Serializable {
         return this.standardCost;
     }
     
-    public void setStandardCost(BigDecimal standardCost) {
+    public void ListStandardCost(BigDecimal standardCost) {
         this.standardCost = standardCost;
     }
 
@@ -230,7 +230,7 @@ public class Products  implements java.io.Serializable {
         return this.supplierIds;
     }
     
-    public void setSupplierIds(String supplierIds) {
+    public void ListSupplierIds(String supplierIds) {
         this.supplierIds = supplierIds;
     }
 
@@ -240,7 +240,7 @@ public class Products  implements java.io.Serializable {
         return this.targetLevel;
     }
     
-    public void setTargetLevel(Integer targetLevel) {
+    public void ListTargetLevel(Integer targetLevel) {
         this.targetLevel = targetLevel;
     }
 
@@ -250,36 +250,136 @@ public class Products  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="products")
-    public Set<InventoryTransactions> getInventoryTransactionses() {
+    public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }
     
-    public void setInventoryTransactionses(Set<InventoryTransactions> inventoryTransactionses) {
+    public void ListInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
         this.inventoryTransactionses = inventoryTransactionses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="products")
-    public Set<PurchaseOrderDetails> getPurchaseOrderDetailses() {
+    public List<PurchaseOrderDetails> getPurchaseOrderDetailses() {
         return this.purchaseOrderDetailses;
     }
     
-    public void setPurchaseOrderDetailses(Set<PurchaseOrderDetails> purchaseOrderDetailses) {
+    public void ListPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
         this.purchaseOrderDetailses = purchaseOrderDetailses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="products")
-    public Set<OrderDetails> getOrderDetailses() {
+    public List<OrderDetails> getOrderDetailses() {
         return this.orderDetailses;
     }
     
-    public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
+    public void ListOrderDetailses(List<OrderDetails> orderDetailses) {
         this.orderDetailses = orderDetailses;
     }
+
+
+	public void setAttachments(String attachments) {
+		this.attachments = attachments;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public void setDiscontinued(String discontinued) {
+		this.discontinued = discontinued;
+	}
+
+
+	public void setListPrice(BigDecimal listPrice) {
+		this.listPrice = listPrice;
+	}
+
+
+	public void setMinimumReorderQuantity(Integer minimumReorderQuantity) {
+		this.minimumReorderQuantity = minimumReorderQuantity;
+	}
+
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
+	public void setQuantityPerUnit(String quantityPerUnit) {
+		this.quantityPerUnit = quantityPerUnit;
+	}
+
+
+	public void setReorderLevel(Integer reorderLevel) {
+		this.reorderLevel = reorderLevel;
+	}
+
+
+	public void setStandardCost(BigDecimal standardCost) {
+		this.standardCost = standardCost;
+	}
+
+
+	public void setSupplierIds(String supplierIds) {
+		this.supplierIds = supplierIds;
+	}
+
+
+	public void setTargetLevel(Integer targetLevel) {
+		this.targetLevel = targetLevel;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
+
+
+	public void setPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
+		this.purchaseOrderDetailses = purchaseOrderDetailses;
+	}
+
+
+	public void setOrderDetailses(List<OrderDetails> orderDetailses) {
+		this.orderDetailses = orderDetailses;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

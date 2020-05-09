@@ -2,9 +2,9 @@ package toto.ssm.entity;
 // Generated May 7, 2020 10:21:16 AM by Hibernate Tools 4.3.1
 
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +38,7 @@ public class InventoryTransactions  implements java.io.Serializable {
      private Date transactionCreatedDate;
      private Date transactionModifiedDate;
      private Date updateDate;
-     private Set<PurchaseOrderDetails> purchaseOrderDetailses = new HashSet<PurchaseOrderDetails>(0);
+     private List<PurchaseOrderDetails> purchaseOrderDetailses = new ArrayList<PurchaseOrderDetails>(0);
 
     public InventoryTransactions() {
     }
@@ -48,7 +48,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         this.id = id;
         this.quantity = quantity;
     }
-    public InventoryTransactions(long id, InventoryTransactionTypes inventoryTransactionTypes, Orders orders, Products products, PurchaseOrders purchaseOrders, String comments, Date createDate, String createUser, int quantity, Date transactionCreatedDate, Date transactionModifiedDate, Date updateDate, Set<PurchaseOrderDetails> purchaseOrderDetailses) {
+    public InventoryTransactions(long id, InventoryTransactionTypes inventoryTransactionTypes, Orders orders, Products products, PurchaseOrders purchaseOrders, String comments, Date createDate, String createUser, int quantity, Date transactionCreatedDate, Date transactionModifiedDate, Date updateDate, List<PurchaseOrderDetails> purchaseOrderDetailses) {
        this.id = id;
        this.inventoryTransactionTypes = inventoryTransactionTypes;
        this.orders = orders;
@@ -78,7 +78,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -88,7 +88,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.inventoryTransactionTypes;
     }
     
-    public void setInventoryTransactionTypes(InventoryTransactionTypes inventoryTransactionTypes) {
+    public void ListInventoryTransactionTypes(InventoryTransactionTypes inventoryTransactionTypes) {
         this.inventoryTransactionTypes = inventoryTransactionTypes;
     }
 
@@ -98,7 +98,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.orders;
     }
     
-    public void setOrders(Orders orders) {
+    public void ListOrders(Orders orders) {
         this.orders = orders;
     }
 
@@ -108,7 +108,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.products;
     }
     
-    public void setProducts(Products products) {
+    public void ListProducts(Products products) {
         this.products = products;
     }
 
@@ -118,7 +118,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.purchaseOrders;
     }
     
-    public void setPurchaseOrders(PurchaseOrders purchaseOrders) {
+    public void ListPurchaseOrders(PurchaseOrders purchaseOrders) {
         this.purchaseOrders = purchaseOrders;
     }
 
@@ -128,7 +128,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.comments;
     }
     
-    public void setComments(String comments) {
+    public void ListComments(String comments) {
         this.comments = comments;
     }
 
@@ -138,7 +138,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -148,7 +148,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -158,7 +158,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.quantity;
     }
     
-    public void setQuantity(int quantity) {
+    public void ListQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -168,7 +168,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.transactionCreatedDate;
     }
     
-    public void setTransactionCreatedDate(Date transactionCreatedDate) {
+    public void ListTransactionCreatedDate(Date transactionCreatedDate) {
         this.transactionCreatedDate = transactionCreatedDate;
     }
 
@@ -178,7 +178,7 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.transactionModifiedDate;
     }
     
-    public void setTransactionModifiedDate(Date transactionModifiedDate) {
+    public void ListTransactionModifiedDate(Date transactionModifiedDate) {
         this.transactionModifiedDate = transactionModifiedDate;
     }
 
@@ -188,18 +188,83 @@ public class InventoryTransactions  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="inventoryTransactions")
-    public Set<PurchaseOrderDetails> getPurchaseOrderDetailses() {
+    public List<PurchaseOrderDetails> getPurchaseOrderDetailses() {
         return this.purchaseOrderDetailses;
     }
     
-    public void setPurchaseOrderDetailses(Set<PurchaseOrderDetails> purchaseOrderDetailses) {
+    public void ListPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
         this.purchaseOrderDetailses = purchaseOrderDetailses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public void setInventoryTransactionTypes(InventoryTransactionTypes inventoryTransactionTypes) {
+		this.inventoryTransactionTypes = inventoryTransactionTypes;
+	}
+
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+
+	public void setPurchaseOrders(PurchaseOrders purchaseOrders) {
+		this.purchaseOrders = purchaseOrders;
+	}
+
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public void setTransactionCreatedDate(Date transactionCreatedDate) {
+		this.transactionCreatedDate = transactionCreatedDate;
+	}
+
+
+	public void setTransactionModifiedDate(Date transactionModifiedDate) {
+		this.transactionModifiedDate = transactionModifiedDate;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setPurchaseOrderDetailses(List<PurchaseOrderDetails> purchaseOrderDetailses) {
+		this.purchaseOrderDetailses = purchaseOrderDetailses;
+	}
 
 
 

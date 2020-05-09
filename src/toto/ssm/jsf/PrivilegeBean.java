@@ -53,6 +53,7 @@ public class PrivilegeBean implements Serializable {
 		selectedRow = new Privileges();
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getProgramName());
 	}
 	
 	public void btnSaveClick() {

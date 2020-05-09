@@ -3,8 +3,8 @@ package toto.ssm.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +29,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
      private String createUser;
      private String statusName;
      private Date updateDate;
-     private Set<OrderDetails> orderDetailses = new HashSet<OrderDetails>(0);
+     private List<OrderDetails> orderDetailses = new ArrayList<OrderDetails>(0);
 
     public OrderDetailsStatus() {
     }
@@ -38,7 +38,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
     public OrderDetailsStatus(long id) {
         this.id = id;
     }
-    public OrderDetailsStatus(long id, Date createDate, String createUser, String statusName, Date updateDate, Set<OrderDetails> orderDetailses) {
+    public OrderDetailsStatus(long id, Date createDate, String createUser, String statusName, Date updateDate, List<OrderDetails> orderDetailses) {
        this.id = id;
        this.createDate = createDate;
        this.createUser = createUser;
@@ -61,7 +61,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -81,7 +81,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -91,7 +91,7 @@ public class OrderDetailsStatus  implements java.io.Serializable {
         return this.statusName;
     }
     
-    public void setStatusName(String statusName) {
+    public void ListStatusName(String statusName) {
         this.statusName = statusName;
     }
 
@@ -101,18 +101,48 @@ public class OrderDetailsStatus  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orderDetailsStatus")
-    public Set<OrderDetails> getOrderDetailses() {
+    public List<OrderDetails> getOrderDetailses() {
         return this.orderDetailses;
     }
     
-    public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
+    public void ListOrderDetailses(List<OrderDetails> orderDetailses) {
         this.orderDetailses = orderDetailses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setOrderDetailses(List<OrderDetails> orderDetailses) {
+		this.orderDetailses = orderDetailses;
+	}
 
 
 

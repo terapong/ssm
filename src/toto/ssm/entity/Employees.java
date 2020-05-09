@@ -3,8 +3,8 @@ package toto.ssm.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,8 +51,8 @@ public class Employees  implements java.io.Serializable {
      private String username;
      private String webPage;
      private String zipPostalCode;
-     private Set<PurchaseOrders> purchaseOrderses = new HashSet<PurchaseOrders>(0);
-     private Set<Orders> orderses = new HashSet<Orders>(0);
+     private List<PurchaseOrders> purchaseOrderses = new ArrayList<PurchaseOrders>(0);
+     private List<Orders> orderses = new ArrayList<Orders>(0);
 
     public Employees() {
     }
@@ -61,7 +61,7 @@ public class Employees  implements java.io.Serializable {
     public Employees(long id) {
         this.id = id;
     }
-    public Employees(long id, Privileges privileges, String address, String attachments, String businessPhone, String city, String company, String countryRegion, Date createDate, String createUser, String emailAddress, String faxNumber, String firstName, String homePhone, String jobTitle, String lastName, String mobilePhone, String notes, String password, String renderedDelete, String stateProvince, Date updateDate, String username, String webPage, String zipPostalCode, Set<PurchaseOrders> purchaseOrderses, Set<Orders> orderses) {
+    public Employees(long id, Privileges privileges, String address, String attachments, String businessPhone, String city, String company, String countryRegion, Date createDate, String createUser, String emailAddress, String faxNumber, String firstName, String homePhone, String jobTitle, String lastName, String mobilePhone, String notes, String password, String renderedDelete, String stateProvince, Date updateDate, String username, String webPage, String zipPostalCode, List<PurchaseOrders> purchaseOrderses, List<Orders> orderses) {
        this.id = id;
        this.privileges = privileges;
        this.address = address;
@@ -105,7 +105,7 @@ public class Employees  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -115,17 +115,147 @@ public class Employees  implements java.io.Serializable {
         return this.privileges;
     }
     
-    public void setPrivileges(Privileges privileges) {
+    public void ListPrivileges(Privileges privileges) {
         this.privileges = privileges;
     }
 
     
-    @Column(name="address")
+    public void setPrivileges(Privileges privileges) {
+		this.privileges = privileges;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public void setAttachments(String attachments) {
+		this.attachments = attachments;
+	}
+
+
+	public void setBusinessPhone(String businessPhone) {
+		this.businessPhone = businessPhone;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+
+	public void setCountryRegion(String countryRegion) {
+		this.countryRegion = countryRegion;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public void setRenderedDelete(String renderedDelete) {
+		this.renderedDelete = renderedDelete;
+	}
+
+
+	public void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public void setWebPage(String webPage) {
+		this.webPage = webPage;
+	}
+
+
+	public void setZipPostalCode(String zipPostalCode) {
+		this.zipPostalCode = zipPostalCode;
+	}
+
+
+	public void setPurchaseOrderses(List<PurchaseOrders> purchaseOrderses) {
+		this.purchaseOrderses = purchaseOrderses;
+	}
+
+
+	public void setOrderses(List<Orders> orderses) {
+		this.orderses = orderses;
+	}
+
+
+	@Column(name="address")
     public String getAddress() {
         return this.address;
     }
     
-    public void setAddress(String address) {
+    public void ListAddress(String address) {
         this.address = address;
     }
 
@@ -135,7 +265,7 @@ public class Employees  implements java.io.Serializable {
         return this.attachments;
     }
     
-    public void setAttachments(String attachments) {
+    public void ListAttachments(String attachments) {
         this.attachments = attachments;
     }
 
@@ -145,7 +275,7 @@ public class Employees  implements java.io.Serializable {
         return this.businessPhone;
     }
     
-    public void setBusinessPhone(String businessPhone) {
+    public void ListBusinessPhone(String businessPhone) {
         this.businessPhone = businessPhone;
     }
 
@@ -155,7 +285,7 @@ public class Employees  implements java.io.Serializable {
         return this.city;
     }
     
-    public void setCity(String city) {
+    public void ListCity(String city) {
         this.city = city;
     }
 
@@ -165,7 +295,7 @@ public class Employees  implements java.io.Serializable {
         return this.company;
     }
     
-    public void setCompany(String company) {
+    public void ListCompany(String company) {
         this.company = company;
     }
 
@@ -175,7 +305,7 @@ public class Employees  implements java.io.Serializable {
         return this.countryRegion;
     }
     
-    public void setCountryRegion(String countryRegion) {
+    public void ListCountryRegion(String countryRegion) {
         this.countryRegion = countryRegion;
     }
 
@@ -185,7 +315,7 @@ public class Employees  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -195,7 +325,7 @@ public class Employees  implements java.io.Serializable {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -205,7 +335,7 @@ public class Employees  implements java.io.Serializable {
         return this.emailAddress;
     }
     
-    public void setEmailAddress(String emailAddress) {
+    public void ListEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
@@ -215,7 +345,7 @@ public class Employees  implements java.io.Serializable {
         return this.faxNumber;
     }
     
-    public void setFaxNumber(String faxNumber) {
+    public void ListFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
     }
 
@@ -225,7 +355,7 @@ public class Employees  implements java.io.Serializable {
         return this.firstName;
     }
     
-    public void setFirstName(String firstName) {
+    public void ListFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -235,7 +365,7 @@ public class Employees  implements java.io.Serializable {
         return this.homePhone;
     }
     
-    public void setHomePhone(String homePhone) {
+    public void ListHomePhone(String homePhone) {
         this.homePhone = homePhone;
     }
 
@@ -245,7 +375,7 @@ public class Employees  implements java.io.Serializable {
         return this.jobTitle;
     }
     
-    public void setJobTitle(String jobTitle) {
+    public void ListJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
 
@@ -255,7 +385,7 @@ public class Employees  implements java.io.Serializable {
         return this.lastName;
     }
     
-    public void setLastName(String lastName) {
+    public void ListLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -265,7 +395,7 @@ public class Employees  implements java.io.Serializable {
         return this.mobilePhone;
     }
     
-    public void setMobilePhone(String mobilePhone) {
+    public void ListMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
@@ -275,7 +405,7 @@ public class Employees  implements java.io.Serializable {
         return this.notes;
     }
     
-    public void setNotes(String notes) {
+    public void ListNotes(String notes) {
         this.notes = notes;
     }
 
@@ -285,7 +415,7 @@ public class Employees  implements java.io.Serializable {
         return this.password;
     }
     
-    public void setPassword(String password) {
+    public void ListPassword(String password) {
         this.password = password;
     }
 
@@ -295,7 +425,7 @@ public class Employees  implements java.io.Serializable {
         return this.renderedDelete;
     }
     
-    public void setRenderedDelete(String renderedDelete) {
+    public void ListRenderedDelete(String renderedDelete) {
         this.renderedDelete = renderedDelete;
     }
 
@@ -305,7 +435,7 @@ public class Employees  implements java.io.Serializable {
         return this.stateProvince;
     }
     
-    public void setStateProvince(String stateProvince) {
+    public void ListStateProvince(String stateProvince) {
         this.stateProvince = stateProvince;
     }
 
@@ -315,7 +445,7 @@ public class Employees  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -325,7 +455,7 @@ public class Employees  implements java.io.Serializable {
         return this.username;
     }
     
-    public void setUsername(String username) {
+    public void ListUsername(String username) {
         this.username = username;
     }
 
@@ -335,7 +465,7 @@ public class Employees  implements java.io.Serializable {
         return this.webPage;
     }
     
-    public void setWebPage(String webPage) {
+    public void ListWebPage(String webPage) {
         this.webPage = webPage;
     }
 
@@ -345,27 +475,32 @@ public class Employees  implements java.io.Serializable {
         return this.zipPostalCode;
     }
     
-    public void setZipPostalCode(String zipPostalCode) {
+    public void ListZipPostalCode(String zipPostalCode) {
         this.zipPostalCode = zipPostalCode;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
-    public Set<PurchaseOrders> getPurchaseOrderses() {
+    public List<PurchaseOrders> getPurchaseOrderses() {
         return this.purchaseOrderses;
     }
     
-    public void setPurchaseOrderses(Set<PurchaseOrders> purchaseOrderses) {
+    public void ListPurchaseOrderses(List<PurchaseOrders> purchaseOrderses) {
         this.purchaseOrderses = purchaseOrderses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
-    public Set<Orders> getOrderses() {
+    public List<Orders> getOrderses() {
         return this.orderses;
     }
     
-    public void setOrderses(Set<Orders> orderses) {
+    public void ListOrderses(List<Orders> orderses) {
         this.orderses = orderses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

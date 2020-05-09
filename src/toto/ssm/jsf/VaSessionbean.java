@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class VaSessionbean implements Serializable{
 	private java.lang.String username;
 	private java.lang.String programName;
 	//private String contentCenter = "log.xhtml";
-	private java.lang.String contentCenter = "orderLookup.xhtml";
+	private java.lang.String contentCenter = "admin/orderLookup.xhtml";
 
 	@EJB private VaSession session;
 	

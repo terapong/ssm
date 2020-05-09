@@ -44,6 +44,7 @@ public class PurchaseOrderStatusBean implements Serializable {
 		selectedRow = new PurchaseOrderStatus();
 		selectedRow.setCreateDate(cal.getTime());
 		selectedRow.setUpdateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

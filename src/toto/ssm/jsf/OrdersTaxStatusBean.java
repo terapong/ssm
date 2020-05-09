@@ -44,6 +44,7 @@ public class OrdersTaxStatusBean implements Serializable {
 		selectedRow = new OrdersTaxStatus();
 		selectedRow.setUpdateDate(cal.getTime());
 		selectedRow.setCreateDate(cal.getTime());
+		selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

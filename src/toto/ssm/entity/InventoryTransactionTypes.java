@@ -2,9 +2,9 @@ package toto.ssm.entity;
 // Generated May 7, 2020 10:21:16 AM by Hibernate Tools 4.3.1
 
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +29,7 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
      private String createUser;
      private String typeName;
      private Date updateDate;
-     private Set<InventoryTransactions> inventoryTransactionses = new HashSet<InventoryTransactions>(0);
+     private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
 
     public InventoryTransactionTypes() {
     }
@@ -38,7 +38,7 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
     public InventoryTransactionTypes(long id) {
         this.id = id;
     }
-    public InventoryTransactionTypes(long id, Date createDate, String createUser, String typeName, Date updateDate, Set<InventoryTransactions> inventoryTransactionses) {
+    public InventoryTransactionTypes(long id, Date createDate, String createUser, String typeName, Date updateDate, List<InventoryTransactions> inventoryTransactionses) {
        this.id = id;
        this.createDate = createDate;
        this.createUser = createUser;
@@ -61,7 +61,7 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void ListId(long id) {
         this.id = id;
     }
 
@@ -71,17 +71,42 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
         return this.createDate;
     }
     
-    public void setCreateDate(Date createDate) {
+    public void ListCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
     
-    @Column(name="create_user")
+    public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
+
+
+	@Column(name="create_user")
     public String getCreateUser() {
         return this.createUser;
     }
     
-    public void setCreateUser(String createUser) {
+    public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -91,7 +116,7 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
         return this.typeName;
     }
     
-    public void setTypeName(String typeName) {
+    public void ListTypeName(String typeName) {
         this.typeName = typeName;
     }
 
@@ -101,18 +126,23 @@ public class InventoryTransactionTypes  implements java.io.Serializable {
         return this.updateDate;
     }
     
-    public void setUpdateDate(Date updateDate) {
+    public void ListUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="inventoryTransactionTypes")
-    public Set<InventoryTransactions> getInventoryTransactionses() {
+    public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }
     
-    public void setInventoryTransactionses(Set<InventoryTransactions> inventoryTransactionses) {
+    public void ListInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
         this.inventoryTransactionses = inventoryTransactionses;
     }
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
 

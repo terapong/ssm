@@ -39,7 +39,7 @@
 										<h:outputText value="#{r.id}" />
 									</p:column>
 									<p:column headerText="Name">
-										<h:outputText value="#{r.userName}" />
+										<h:outputText value="#{r.username}" />
 									</p:column>
 									<p:column headerText="Password">
 										<h:outputText value="#{r.password}" />
@@ -160,7 +160,7 @@
 						<h:outputText for="inName" value="userName : " />
 					</p:column>
 					<p:column>
-						<p:inputText id="inName" value="#{employeebean.selectedRow.userName}" required="true" requiredMessage="กรุณา กรอกชื่อผู้ใช้งาน"/>
+						<p:inputText id="inName" value="#{employeebean.selectedRow.username}" required="true" requiredMessage="กรุณา กรอกชื่อผู้ใช้งาน"/>
 					</p:column>
 				</p:row>
 				<p:row>
