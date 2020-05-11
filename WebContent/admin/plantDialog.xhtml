@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<p:dialog id="newPlantDlg" header="เพิ่ม Plant" widgetVar="newPlantDlg"  modal="true" appendTo="@(body)" width="700px" height="700px" closable="true">
+		<p:panelGrid  id="panelInput">
+			<p:row>
+				<p:column>
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<h:outputText  value="ชื่อ : " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
+							</p:column>
+							<p:column>
+								<h:outputText  value="นามสกุล : " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText  value="เบอร์โทรมือถือ : " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{orderbean.selectedMaster.mobilePhone}"/>
+							</p:column>
+							<p:column>
+								<h:outputText  value="เบอร์โทรที่ทำงาน : " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.businessPhone}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText  value="เบอร์โทรบ้าน: " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.homePhone}"/>
+							</p:column>
+							<p:column>
+								<h:outputText  value="แฟกช์ : " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.faxNumber}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText  value="ชื่อ บริษัท: " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{orderbean.selectedMaster.company}"/>
+							</p:column>
+							<p:column>
+								<h:outputText  value="website: " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.webPage}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="email: " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectedMaster.emailAddress}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText  value="ที่อยู่ : " />
+							</p:column>
+							<p:column>
+								<p:inputTextarea  value="#{orderbean.selectedMaster.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText  value="Comment: " />
+							</p:column>
+							<p:column>
+								<p:inputTextarea  value="#{orderbean.selectedMaster.notes}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="2" style="text-align: center">
+								<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSavePlantClick}" update="panelInput" process="@this panelInput" />
+								<p:commandButton value="ยกเลิก" type="button" icon="ui-icon-close" onclick="PF('newPlantDlg').hide();"/>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
+				<p:row>
+					<p:column>
+						<p:dataTable resizableColumns="true" var="r" value="#{orderbean.master}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectedMasterTable}"	rowKey="#{r.id}">
+								<p:column headerText="ชื่อ บริษัท:">
+		                <h:outputText value="#{r.company}" />
+		            </p:column>
+		            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{r.address}" />
+			            </p:column>
+			            <p:column headerText="เบอร์มือถือ">
+			                <h:outputText value="#{r.mobilePhone}"/>
+			            </p:column>
+			            <p:column headerText="">
+			                <p:commandButton value="แก้ไข" actionListener="#{orderbean.btnEditPlantClick(r)}"
+												update="panelInput" resetValues="true"/>
+			            </p:column>
+			            <p:column headerText="">
+			            <p:commandButton value="ลบ"
+									actionListener="#{orderbean.btnDeletePlantClick(r)}"
+									oncomplete="PF('confirmDeleteMasterDialog').show()" process="@this"
+									update="panelInput" resetValues="true"/>
+			            </p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+		
+		
+</ui:composition>
+</html>

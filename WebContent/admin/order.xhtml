@@ -10,200 +10,251 @@
 		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
 		<p:panelGrid>
 			<p:row>
-				<p:column style="text-align: center">
-					<h:outputText value="รายชื่อลูกค้า : " />
-					<p:selectOneMenu id="selMaster" value="#{orderbean.selectedMasterId}">
-						<f:selectItems value="#{orderbean.master}" var="m"
-							itemLabel="#{m.company}" itemValue="#{m.id}" />
-						<p:ajax event="valueChange" listener="#{orderbean.selMasterChange}" update="tblOrder" process="@this" />
-					</p:selectOneMenu>
-				</p:column>
-			</p:row>
-			<p:row>
 				<p:column>
-					<p:panelGrid style="width: 85%">
+					<p:panelGrid>
 						<p:row>
 							<p:column>
-								<p:dataTable resizableColumns="true" id="tblOrder" var="r" value="#{orderbean.slave}"
-									paginator="true" paginatorPosition="bottom" rows="15"
-									selectionMode="single" selection="#{orderbean.selectedRow}"
-									rowKey="#{r.id}">
-									<f:facet name="header">
-										<p:commandButton con="ui-icon-plus" value="เพิ่ม"
-											actionListener="#{orderbean.btnNewClick}"
-											oncomplete="PF('newObjectDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</f:facet>
-									<p:column headerText="Order name">
-										<h:outputText value="#{r.shipName}" />
-									</p:column>
-									<p:column headerText="Order Date">
-										<h:outputText value="#{r.orderDate}">
-											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-										</h:outputText>
-									</p:column>
-									<p:column headerText="recipe">
-										<h:outputText value="#{r.recipe}" />
-									</p:column>
-									<p:column headerText="qty">
-										<h:outputText value="#{r.qty}" />
-									</p:column>
-									<p:column headerText="">
-										<p:commandLink value="Order status"
-											actionListener="#{orderbean.btnOrderStatusClick(r)}"
-											oncomplete="PF('newOrderStatustDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</p:column>
-									
-									<p:column headerText="">
-										<p:commandLink value="แก้ไข"
-											actionListener="#{orderbean.btnEditClick(r)}"
-											oncomplete="PF('newObjectDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</p:column>
-									
+								<h:outputText value="Plant name :" />
+							</p:column>
+							<p:column>
+								<p:inputText id="plantName" readonly="true" value="#{orderbean.selectedMasterOverlay.company}"/>
+								<p:commandButton id="plantOverlay" value=".."/>
+								<p:overlayPanel id="plantPanel" for="plantOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+								<p:dataTable resizableColumns="true" id="tblPlant" var="p" value="#{orderbean.master}"
+											paginator="true" paginatorPosition="bottom" rows="8"
+											selectionMode="single" selection="#{orderbean.selectedMasterOverlay}"	rowKey="#{p.id}">
+									<p:ajax event="rowSelect" listener="#{orderbean.onRowMasterSelect}" update="plantName"/>
+									<p:column headerText="ชื่อ">
+			                <h:outputText value="#{p.company}" />
+			            </p:column>
+			            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{p.address}" />
+			            </p:column>
+			            <p:column headerText="Tel">
+			                <h:outputText value="#{p.mobilePhone}" />
+			            </p:column>
 								</p:dataTable>
+								</p:overlayPanel>
+							</p:column>
+							<p:column>
+								<p:commandButton con="ui-icon-plus" value="เพิ่ม Plant"
+								actionListener="#{orderbean.btnNewPlantClick()}"
+								oncomplete="PF('newPlantDlg').show()" process="@this"
+								update=":mainCenterForm" resetValues="true" />
 							</p:column>
 						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="Customer name :" />
+							</p:column>
+							<p:column>
+								<p:inputText id="customerName" readonly="true" value="#{orderbean.selectCustomerOverlay.company}"/>
+								<p:commandButton id="customerOverlay" value=".."/>
+								<p:overlayPanel id="customerPanel" for="customerOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+									<p:dataTable resizableColumns="true" id="tblcustomer" var="p" value="#{orderbean.customers}"
+												paginator="true" paginatorPosition="bottom" rows="8"
+												selectionMode="single" selection="#{orderbean.selectCustomerOverlay}"	rowKey="#{p.id}">
+										<p:ajax event="rowSelect" listener="#{orderbean.onRowCustomerSelect}" update="customerName"/>
+										<p:column headerText="ชื่อ">
+				                <h:outputText value="#{p.company}" />
+				            </p:column>
+				            <p:column headerText="ที่อยู่">
+				                <h:outputText value="#{p.address}" />
+				            </p:column>
+				            <p:column headerText="Tel">
+				                <h:outputText value="#{p.mobilePhone}" />
+				            </p:column>
+									</p:dataTable>
+								</p:overlayPanel>
+							</p:column>
+							<p:column>
+								<p:commandButton con="ui-icon-plus" value="เพิ่ม Customer"
+								actionListener="#{orderbean.btnNewCustomerClick()}"
+								oncomplete="PF('newCustomerDlg').show()" process="@this"
+								update=":mainCenterForm" resetValues="true" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputText value="Project name :" />
+							</p:column>
+							<p:column>
+								<p:inputText id="ProjectName" readonly="true" value="#{orderbean.selectProjectOverlay.projectName}"/>
+								<p:commandButton id="projectOverlay" value=".."/>
+								<p:overlayPanel id="projectPanel" for="projectOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+									<p:dataTable resizableColumns="true" id="tblproject" var="p" value="#{orderbean.projects}"
+												paginator="true" paginatorPosition="bottom" rows="8"
+												selectionMode="single" selection="#{orderbean.selectProjectOverlay}"	rowKey="#{p.id}">
+										<p:ajax event="rowSelect" listener="#{orderbean.onRowProjectSelect}" update="ProjectName"/>
+										<p:column headerText="ชื่อ Project">
+				                <h:outputText value="#{p.projectName}" />
+				            </p:column>
+									</p:dataTable>
+								</p:overlayPanel>
+							</p:column>
+							<p:column>
+								<p:commandButton con="ui-icon-plus" value="เพิ่ม Project"
+								actionListener="#{orderbean.btnNewProjectClick()}"
+								oncomplete="PF('newProjectDlg').show()" process="@this"
+								update=":mainCenterForm" resetValues="true" />
+							</p:column>
+						</p:row>
+						
 					</p:panelGrid>
 				</p:column>
 			</p:row>
 		</p:panelGrid>
+		
 	</p:panel>
-	
-	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
-	  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{orderbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-	  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
-  	</p:confirmDialog>
-  	
-  	<p:dialog id="newObjectDlg" header="Orders" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
-			<p:panelGrid id="panelInput">
-				<p:row>
-					<p:column>
-						<h:outputText for="shipName" value="Order : " />
-					</p:column>
-					<p:column>
-						<p:inputText id="shipName" value="#{orderbean.selectedRow.shipName}" required="true" requiredMessage="กรุณา กรอกชื่อหมายเลข การสั้ง"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="orderDate" value="Order date : " />
-					</p:column>
-					<p:column>
-						<p:calendar id="orderDate" value="#{orderbean.selectedRow.orderDate}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="paidDate" value="Paid date : " />
-					</p:column>
-					<p:column>
-						<p:calendar id="paidDate" value="#{orderbean.selectedRow.paidDate}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="paymentType" value="Payment type : " />
-					</p:column>
-					<p:column>
-						<p:inputText id="paymentType" value="#{orderbean.selectedRow.paymentType}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipAddress" value="Ship address: " />
-					</p:column>
-					<p:column>
-						<p:inputTextarea id="shipAddress" value="#{orderbean.selectedRow.shipAddress}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipCity" value="Ship city: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="shipCity" value="#{orderbean.selectedRow.shipCity}"/>
-					</p:column>			
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipCountry" value="Ship country: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="shipCountry" value="#{orderbean.selectedRow.shipCountryRegion}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipStartProvince" value="Ship province: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="shipStartProvince" value="#{orderbean.selectedRow.shipStateProvince}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipPostalcode" value="Ship postalcode: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="shipPostalcode" value="#{orderbean.selectedRow.shipZipPostalCode}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="shipFree" value="ship free: " />
-					</p:column>
-					<p:column>
-						<p:inputTextarea id="shipFree" value="#{orderbean.selectedRow.shippingFee}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="taxRate" value="tax rate: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="taxRate" value="#{orderbean.selectedRow.taxRate}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="taxes" value="taxes: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="taxes" value="#{orderbean.selectedRow.taxes}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="recipe" value="recipe: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="recipe" value="#{orderbean.selectedRow.recipe}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<h:outputText for="qty" value="qty: " />
-					</p:column>
-					<p:column>
-						<p:inputText id="qty" value="#{orderbean.selectedRow.qty}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column colspan="2" style="text-align: center">
-						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
-						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
-					</p:column>
-				</p:row>
-			</p:panelGrid>
-	</p:dialog>
-	
-	<p:dialog id="docketReportDlg" header="Docket Report" widgetVar="docketDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
-			<p:panelGrid id="docketReport">
-			</p:panelGrid>
-		</p:dialog>
-		
-		
+	<ui:include src="plantDialog.xhtml" />
+  <ui:include src="customerDialog.xhtml" />
+  <ui:include src="projectDialog.xhtml" />
+  
+	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteMasterDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelInput" onclick="PF('confirmDeleteMasterDialog').hide()" actionListener = "#{orderbean.confirmDeletePlantClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteMasterDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+	  </p:confirmDialog>
+	  
+	 <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteProjectDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelCustomerInput" onclick="PF('confirmDeleteProjectDialog').hide()" actionListener="#{orderbean.confirmDeleteCustomClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteProjectDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+	  </p:confirmDialog>
+	  
+	  <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteProjectDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelCustomerInput" onclick="PF('confirmDeleteProjectDialog').hide()" actionListener="#{orderbean.confirmDeleteProjectClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteProjectDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+	  </p:confirmDialog>
+  
+  
 	</ui:composition>
 </html>
+
+<!-- 
+<p:dialog id="editPlantDlg" header="เพิ่ม Plant" widgetVar="editPlantDlg"  modal="true" appendTo="@(body)" width="700px" height="700px" closable="true">
+			<p:panelGrid id="editPlantPanel">
+				<p:row>
+					<p:column>
+						<p:dataTable resizableColumns="true" var="r" value="#{orderbean.master}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectedMasterTable}"	rowKey="#{r.id}">
+								<p:column headerText="ชื่อ">
+		                <h:outputText value="#{r.company}" />
+		            </p:column>
+		            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{r.address}" />
+			            </p:column>
+			            <p:column headerText="เบอร์มือถือ">
+			                <h:outputText value="#{r.mobilePhone}" />
+			            </p:column>
+			            <p:column headerText="">
+			                <p:commandButton value="แก้ไข" />
+			            </p:column>
+			            <p:column headerText="">
+			            <p:commandButton value="ลบ"
+									actionListener="#{orderbean.btnDeletePlantClick(r)}"
+									oncomplete="PF('confirmDeleteCarDialog').show()" process="@this"
+									update="panelInput" resetValues="true"/>
+			            </p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+
+
+
+
+<p:dialog id="newPlantDlg" header="เพิ่ม Plant" widgetVar="newPlantDlg"  modal="true" appendTo="@(body)" width="700px" height="700px" closable="true">
+		<p:panelGrid id="panelInput">
+			<p:row>
+				<p:column>
+					<h:outputText for="firstName" value="ชื่อ : " />
+				</p:column>
+				<p:column>
+					<p:inputText id="firstName" value="#{plantbean.selectedRow.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
+				</p:column>
+				<p:column>
+					<h:outputText for="lastName" value="นามสกุล : " />
+				</p:column>
+				<p:column>
+					<p:inputText id="lastName" value="#{plantbean.selectedRow.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="mobilePhone" value="เบอร์โทรมือถือ : " />
+				</p:column>
+				<p:column>
+					<p:inputText id="mobilePhone" value="#{plantbean.selectedRow.mobilePhone}"/>
+				</p:column>
+				<p:column>
+					<h:outputText for="businessPhone" value="เบอร์โทรที่ทำงาน : " />
+				</p:column>
+				<p:column>
+					<p:inputText id="businessPhone" value="#{plantbean.selectedRow.businessPhone}"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="homePhone" value="เบอร์โทรบ้าน: " />
+				</p:column>
+				<p:column>
+					<p:inputText id="homePhone" value="#{plantbean.selectedRow.homePhone}"/>
+				</p:column>
+				<p:column>
+					<h:outputText for="faxPhone" value="แฟกช์ : " />
+				</p:column>
+				<p:column>
+					<p:inputText id="faxPhone" value="#{plantbean.selectedRow.faxNumber}"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="company" value="ชื่อ บริษัท: " />
+				</p:column>
+				<p:column>
+					<p:inputText id="company" value="#{plantbean.selectedRow.company}"/>
+				</p:column>
+				<p:column>
+					<h:outputText for="webpage" value="website: " />
+				</p:column>
+				<p:column>
+					<p:inputText id="webpage" value="#{plantbean.selectedRow.webPage}"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="email" value="email: " />
+				</p:column>
+				<p:column>
+					<p:inputText id="email" value="#{plantbean.selectedRow.emailAddress}"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="Address" value="ที่อยู่ : " />
+				</p:column>
+				<p:column>
+					<p:inputTextarea id="Address" value="#{plantbean.selectedRow.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputText for="attachments" value="Comment: " />
+				</p:column>
+				<p:column>
+					<p:inputTextarea id="attachments" value="#{plantbean.selectedRow.notes}"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="2" style="text-align: center">
+					<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{plantbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newplantDlg').show(); } else {PF('newplantDlg').hide(); }"/>
+					<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newplantDlg').hide()"/>
+				</p:column>
+			</p:row>
+			
+			
+		</p:panelGrid>
+	</p:dialog>
+ -->

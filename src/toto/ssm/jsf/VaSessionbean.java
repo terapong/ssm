@@ -20,17 +20,23 @@ public class VaSessionbean implements Serializable{
 	private Employees employee;
 	private java.lang.String username;
 	private java.lang.String programName;
-	//private String contentCenter = "log.xhtml";
 	private java.lang.String contentCenter = "admin/orderLookup.xhtml";
 
 	@EJB private VaSession session;
 	
 	@PostConstruct
 	public void init() {
-		List<Orders> os = session.querryAllOrderByCustomerID(1L);
-		if(os == null) {
-			contentCenter = "blank.xhtml";
+		List<Plant> plants = session.querryAllPlant();
+		if(plants.size() == 0) {
+			contentCenter = "admin/order.xhtml";
+		} else {
+			contentCenter = "admin/orderLookup.xhtml";
+//			List<Orders> os = session.querryAllOrderByPlantID(plants.get(0).getId());
+//			if(os == null) {
+//				
+//			}
 		}
+		
 	}
 	
 	@PreDestroy

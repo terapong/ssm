@@ -10,11 +10,45 @@ import javax.persistence.*;
 @LocalBean
 public class VaSession implements Serializable{
 	private static final long serialVersionUID = 1L;
-	//private static final transient Logger log = Logger.getLogger("VaSession");
+	//private static final transient Logger log  Logger.getLogger("VaSession");
 	
-	@PersistenceContext(unitName="ssm_testPU")
+	@PersistenceContext(unitName="ssm_test_exportPU")
 	EntityManager em;
 
+	public List<Project> querryAllProject() {
+		return em.createNativeQuery("select * from Project", Project.class).getResultList();
+	}
+	
+	public Project querryProjectById(long id) {
+		return em.find(Project.class, id);
+	}
+	
+	public void updateProject(Project p) {
+		em.merge(p);
+	}
+	
+	public void deleteProject(Project p) {
+		p = querryProjectById(p.getId());
+		em.remove(p);
+	}
+	
+	public List<Plant> querryAllPlant() {
+		return em.createNativeQuery("select * from plant", Plant.class).getResultList();
+	}
+	
+	public Plant querryPlantById(long id) {
+		return em.find(Plant.class, id);
+	}
+	
+	public void updatePlant(Plant p) {
+		em.merge(p);
+	}
+	
+	public void deletePlant(Plant p) {
+		p = querryPlantById(p.getId());
+		em.remove(p);
+	}
+	
 	public List<Privileges> querryAllPrivilege() {
 		return em.createNativeQuery("select * from privileges", Privileges.class).getResultList();
 	}
@@ -169,6 +203,10 @@ public class VaSession implements Serializable{
 	
 	public List<Orders> querryAllOrderByCustomerID(Long id) {
 		return em.createNativeQuery("select * from orders where customer_id = " + id, Orders.class).getResultList();
+	}
+	
+	public List<Orders> querryAllOrderByPlantID(Long id) {
+		return em.createNativeQuery("select * from orders where plant_id = " + id, Orders.class).getResultList();
 	}
 	
 	public Orders querryOrderById(long id) {

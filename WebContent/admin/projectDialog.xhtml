@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:dialog id="newProjectDlg" header="เพิ่ม Project" widgetVar="newProjectDlg"  modal="true" appendTo="@(body)" width="700px" height="700px" closable="true">
+		<p:panelGrid  id="panelProjectInput">
+			<p:row>
+				<p:column>
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<h:outputText  value="ชื่อ Project : " />
+							</p:column>
+							<p:column>
+								<p:inputText  value="#{orderbean.selectProject.projectName}" required="true" requiredMessage="กรุณา กรอกรชื่อ Project"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="2" style="text-align: center">
+								<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSaveProjectClick()}" update="panelProjectInput" process="@this panelProjectInput" />
+								<p:commandButton value="ยกเลิก" type="button" icon="ui-icon-close" onclick="PF('newProjectDlg').hide();"/>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
+				<p:row>
+					<p:column>
+						<p:dataTable resizableColumns="true" var="r" value="#{orderbean.projects}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectProjectTable}"	rowKey="#{r.id}">
+								<p:column headerText="ชื่อ Project:">
+		                <h:outputText value="#{r.projectName}" />
+		            </p:column>
+		            <p:column headerText="Create Date">
+										<h:outputText value="#{r.createDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+										</p:column>
+										<p:column headerText="Update Date">
+										<h:outputText value="#{r.updateDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+			            <p:column headerText="">
+			                <p:commandButton value="แก้ไข" actionListener="#{orderbean.btnEditProjectClick(r)}"
+												update="panelProjectInput" resetValues="true"/>
+			            </p:column>
+			            <p:column headerText="">
+			            <p:commandButton value="ลบ"
+									actionListener="#{orderbean.btnDeleteProjectClick(r)}"
+									oncomplete="PF('confirmDeleteProjectDialog').show()" process="@this"
+									update="panelProjectInput" resetValues="true"/>
+			            </p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+	</ui:composition>
+</html>

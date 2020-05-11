@@ -266,15 +266,16 @@ CREATE TABLE `orders` (
   `employee_id` bigint(20) DEFAULT NULL,
   `tax_status_id` bigint(20) DEFAULT NULL,
   `plant_id` bigint(20) DEFAULT NULL,
-  `shipper_id` bigint(20) DEFAULT NULL
+  `shipper_id` bigint(20) DEFAULT NULL,
+  `xtblDockets_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `create_date`, `create_user`, `current_status`, `notes`, `order_date`, `paid_date`, `payment_type`, `qty`, `recipe`, `ship_address`, `ship_city`, `ship_country_region`, `ship_name`, `ship_state_province`, `ship_zip_postal_code`, `shipped_date`, `shipping_fee`, `tax_rate`, `taxes`, `update_date`, `customer_id`, `employee_id`, `tax_status_id`, `plant_id`, `shipper_id`) VALUES
-(1, '2020-03-17 17:24:35', NULL, 1, '1', '2020-03-17 00:00:00', '2020-03-20 00:00:00', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2020-03-19 00:00:00', NULL, 1, NULL, '2020-03-17 17:24:35', 1, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` (`id`, `create_date`, `create_user`, `current_status`, `notes`, `order_date`, `paid_date`, `payment_type`, `qty`, `recipe`, `ship_address`, `ship_city`, `ship_country_region`, `ship_name`, `ship_state_province`, `ship_zip_postal_code`, `shipped_date`, `shipping_fee`, `tax_rate`, `taxes`, `update_date`, `customer_id`, `employee_id`, `tax_status_id`, `plant_id`, `shipper_id`, `xtblDockets_id`) VALUES
+(1, '2020-03-17 17:24:35', NULL, 1, '1', '2020-03-17 00:00:00', '2020-03-20 00:00:00', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2020-03-19 00:00:00', NULL, 1, NULL, '2020-03-17 17:24:35', 1, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -638,8 +639,7 @@ CREATE TABLE `xtbl_docket` (
   `watersp` varchar(45) DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `create_user` varchar(255) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `order_id` bigint(20) DEFAULT NULL
+  `update_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -702,7 +702,8 @@ ALTER TABLE `orders`
   ADD KEY `FK624gtjin3po807j3vix093tlf` (`customer_id`),
   ADD KEY `FKfhl8bv0xn3sj33q2f3scf1bq6` (`employee_id`),
   ADD KEY `FK7collrvo86jelcgiexmd86q0k` (`tax_status_id`),
-  ADD KEY `FKsk2tyu7xrdu2ienuay5yrpgoe` (`shipper_id`);
+  ADD KEY `FKsk2tyu7xrdu2ienuay5yrpgoe` (`shipper_id`),
+  ADD KEY `FKln9tl745p0eh0rwg93nau4e47` (`xtblDockets_id`);
 
 --
 -- Indexes for table `orders_orders_status`
@@ -810,8 +811,7 @@ ALTER TABLE `suppliers`
 -- Indexes for table `xtbl_docket`
 --
 ALTER TABLE `xtbl_docket`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK509xrtac3g8trx7u5psvcx9xi` (`order_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Constraints for dumped tables
@@ -846,7 +846,8 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `FK7collrvo86jelcgiexmd86q0k` FOREIGN KEY (`tax_status_id`) REFERENCES `orders_tax_status` (`id`),
   ADD CONSTRAINT `FKfhl8bv0xn3sj33q2f3scf1bq6` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `FKsk2tyu7xrdu2ienuay5yrpgoe` FOREIGN KEY (`shipper_id`) REFERENCES `shippers` (`id`),
-  ADD CONSTRAINT `FKpo5s3o9rsi37eu5topbkbaouu` FOREIGN KEY (`plant_id`) REFERENCES `plant` (`id`);
+  ADD CONSTRAINT `FKpo5s3o9rsi37eu5topbkbaouu` FOREIGN KEY (`plant_id`) REFERENCES `plant` (`id`),
+  ADD CONSTRAINT `FKln9tl745p0eh0rwg93nau4e47` FOREIGN KEY (`xtblDockets_id`) REFERENCES `xtbl_docket` (`id`);
 
 --
 -- Constraints for table `orders_orders_status`
@@ -895,8 +896,8 @@ ALTER TABLE `purchase_order_details`
 --
 -- Constraints for table `xtbl_docket`
 --
-ALTER TABLE `xtbl_docket`
-  ADD CONSTRAINT `FK509xrtac3g8trx7u5psvcx9xi` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+-- ALTER TABLE `xtbl_docket`
+--   ADD CONSTRAINT `FK509xrtac3g8trx7u5psvcx9xi` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

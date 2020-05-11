@@ -27,7 +27,7 @@ public class DocketBean implements Serializable {
 	
 	private Calendar cal;
 	
-	@ManagedProperty(value = "#{VaSessionbean}")
+	@ManagedProperty(value = "#{vaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;

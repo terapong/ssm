@@ -17,10 +17,11 @@
      		<p:separator/>
      		<p:panelMenu style="width:250px">
      			<p:submenu label="จัดการระบบ">
+     					<p:menuitem value="เปิดคำสั่งซื้อใหม่" icon="ui-icon-gear" action="#{menubean.orderClick}" ajax="false"/>
 	        		<p:menuitem value="Privilege Data" icon="ui-icon-gear" action="#{menubean.privilegeClick}" ajax="false"/>
 	        		<p:menuitem value="Employeee Data" icon="ui-icon-person" action="#{menubean.employeeClick}" ajax="false"/>
 	        		<p:menuitem value="Customer Data" icon="ui-icon-person" action="#{menubean.customerClick}" ajax="false"/>
-	        		<p:menuitem value="เปิดคำสั่งซื้อใหม่" icon="ui-icon-gear" action="#{menubean.orderClick}" ajax="false"/>
+	        		
      					<p:menuitem value="ข้อมูล สถานะ ใบสั่งซื้อ" icon="ui-icon-person" action="#{menubean.ordersStatusClick}" ajax="false"/>
      					
 	        		<p:menuitem value="Order tax status Data" icon="ui-icon-person" action="#{menubean.ordersTaxStatusClick}" ajax="false"/>

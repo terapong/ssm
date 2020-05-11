@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="ssm_testPU">
+    <persistence-unit name="ssm_test_exportPU">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:openejb/Resource/ssm_testDS</jta-data-source>
+        <jta-data-source>java:openejb/Resource/ssm_test_exportDS</jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
             <!-- proty name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" /-->

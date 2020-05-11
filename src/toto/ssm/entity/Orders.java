@@ -30,16 +30,14 @@ import javax.persistence.TemporalType;
 public class Orders  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private long id;
-     private Customer customer;
-     private Employees employees;
+     
      private OrdersTaxStatus ordersTaxStatus;
      private Shippers shippers;
-     private Date createDate;
+     
      private String createUser;
      private Long currentStatus;
      private String notes;
-     private Date orderDate;
-     private Date paidDate;
+     
      private String paymentType;
      private String qty;
      private String recipe;
@@ -53,17 +51,38 @@ public class Orders  implements java.io.Serializable {
      private BigDecimal shippingFee;
      private Double taxRate;
      private BigDecimal taxes;
+     
+     @Temporal(TemporalType.TIMESTAMP)
+     @Column(name="order_date", length=19)
+     private Date orderDate;
+     
+     @Temporal(TemporalType.TIMESTAMP)
+     @Column(name="paid_date", length=19)
+     private Date paidDate;
+     
+     @Temporal(TemporalType.TIMESTAMP)
+     @Column(name="update_date", length=19)
      private Date updateDate;
-     private List<XtblDocket> xtblDockets = new ArrayList<XtblDocket>(0);
+     
+     @Temporal(TemporalType.TIMESTAMP)
+     @Column(name="create_date", length=19)
+     private Date createDate;
+     
      private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
      private List<OrdersOrdersStatus> ordersOrdersStatuses = new ArrayList<OrdersOrdersStatus>(0);
      private List<OrderDetails> orderDetailses = new ArrayList<OrderDetails>(0);
      private List<OrdersStatusOrders> ordersStatusOrderses = new ArrayList<OrdersStatusOrders>(0);
      private List<Invoices> invoiceses = new ArrayList<Invoices>(0);
      private List<OrdersTaxStatus> ordersTaxStatuses = new ArrayList<OrdersTaxStatus>(0);
-     private Plant plant;
+     //private List<Recipe> recipe = new ArrayList<Recipe>(0);
      
-
+     private Plant plant;
+     private XtblDocket xtblDockets;
+     private Employees employees;
+     private Project project;
+     private Suppliers suppliers;
+     private Customer customer;
+     
     public Orders() {
     }
 
@@ -72,41 +91,6 @@ public class Orders  implements java.io.Serializable {
         this.id = id;
     }
     
-    public Orders(long id, Customer customer, Employees employees, OrdersTaxStatus ordersTaxStatus, Shippers shippers, Date createDate, String createUser, Long currentStatus, String notes, Date orderDate, Date paidDate, String paymentType, String qty, String recipe, String shipAddress, String shipCity, String shipCountryRegion, String shipName, String shipStateProvince, String shipZipPostalCode, Date shippedDate, BigDecimal shippingFee, Double taxRate, BigDecimal taxes, Date updateDate, List<XtblDocket> xtblDockets, List<InventoryTransactions> inventoryTransactionses, List<OrdersOrdersStatus> ordersOrdersStatuses, List<OrderDetails> orderDetailses, List<OrdersStatusOrders> ordersStatusOrderses, List<Invoices> invoiceses, List<OrdersTaxStatus> ordersTaxStatuses) {
-       this.id = id;
-       this.customer = customer;
-       this.employees = employees;
-       this.ordersTaxStatus = ordersTaxStatus;
-       this.shippers = shippers;
-       this.createDate = createDate;
-       this.createUser = createUser;
-       this.currentStatus = currentStatus;
-       this.notes = notes;
-       this.orderDate = orderDate;
-       this.paidDate = paidDate;
-       this.paymentType = paymentType;
-       this.qty = qty;
-       this.recipe = recipe;
-       this.shipAddress = shipAddress;
-       this.shipCity = shipCity;
-       this.shipCountryRegion = shipCountryRegion;
-       this.shipName = shipName;
-       this.shipStateProvince = shipStateProvince;
-       this.shipZipPostalCode = shipZipPostalCode;
-       this.shippedDate = shippedDate;
-       this.shippingFee = shippingFee;
-       this.taxRate = taxRate;
-       this.taxes = taxes;
-       this.updateDate = updateDate;
-       this.xtblDockets = xtblDockets;
-       this.inventoryTransactionses = inventoryTransactionses;
-       this.ordersOrdersStatuses = ordersOrdersStatuses;
-       this.orderDetailses = orderDetailses;
-       this.ordersStatusOrderses = ordersStatusOrderses;
-       this.invoiceses = invoiceses;
-       this.ordersTaxStatuses = ordersTaxStatuses;
-    }
-   
     @TableGenerator(
             name="SSMGen", 
             table="ID_GEN", 
@@ -124,16 +108,10 @@ public class Orders  implements java.io.Serializable {
     public void ListId(long id) {
         this.id = id;
     }
-
-    public void setCustomer(Customer customer) {
-		this.customer = customer;
+    
+    public void setId(long id) {
+		this.id = id;
 	}
-
-
-	public void setEmployees(Employees employees) {
-		this.employees = employees;
-	}
-
 
 	public void setOrdersTaxStatus(OrdersTaxStatus ordersTaxStatus) {
 		this.ordersTaxStatus = ordersTaxStatus;
@@ -244,62 +222,6 @@ public class Orders  implements java.io.Serializable {
 		this.updateDate = updateDate;
 	}
 
-
-	public void setXtblDockets(List<XtblDocket> xtblDockets) {
-		this.xtblDockets = xtblDockets;
-	}
-
-
-	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
-		this.inventoryTransactionses = inventoryTransactionses;
-	}
-
-
-	public void setOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
-		this.ordersOrdersStatuses = ordersOrdersStatuses;
-	}
-
-
-	public void setOrderDetailses(List<OrderDetails> orderDetailses) {
-		this.orderDetailses = orderDetailses;
-	}
-
-
-	public void setOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
-		this.ordersStatusOrderses = ordersStatusOrderses;
-	}
-
-
-	public void setInvoiceses(List<Invoices> invoiceses) {
-		this.invoiceses = invoiceses;
-	}
-
-
-	public void setOrdersTaxStatuses(List<OrdersTaxStatus> ordersTaxStatuses) {
-		this.ordersTaxStatuses = ordersTaxStatuses;
-	}
-
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="customer_id")
-    public Customer getCustomer() {
-        return this.customer;
-    }
-    
-    public void ListCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="employee_id")
-    public Employees getEmployees() {
-        return this.employees;
-    }
-    
-    public void ListEmployees(Employees employees) {
-        this.employees = employees;
-    }
-
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="tax_status_id")
     public OrdersTaxStatus getOrdersTaxStatus() {
@@ -320,21 +242,11 @@ public class Orders  implements java.io.Serializable {
         this.shippers = shippers;
     }
     
-
-	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name="create_date", length=19)
     public Date getCreateDate() {
         return this.createDate;
     }
     
-	@OneToOne
-    public Plant getPlant() {
-		return plant;
-	}
-
-	public void setPlant(Plant plant) {
-		this.plant = plant;
-	}
+    
 
 
 	public void ListCreateDate(Date createDate) {
@@ -350,7 +262,6 @@ public class Orders  implements java.io.Serializable {
     public void ListCreateUser(String createUser) {
         this.createUser = createUser;
     }
-
     
     @Column(name="current_status")
     public Long getCurrentStatus() {
@@ -371,8 +282,6 @@ public class Orders  implements java.io.Serializable {
         this.notes = notes;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="order_date", length=19)
     public Date getOrderDate() {
         return this.orderDate;
     }
@@ -381,8 +290,6 @@ public class Orders  implements java.io.Serializable {
         this.orderDate = orderDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="paid_date", length=19)
     public Date getPaidDate() {
         return this.paidDate;
     }
@@ -481,8 +388,6 @@ public class Orders  implements java.io.Serializable {
         this.shipZipPostalCode = shipZipPostalCode;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="shipped_date", length=19)
     public Date getShippedDate() {
         return this.shippedDate;
     }
@@ -521,8 +426,6 @@ public class Orders  implements java.io.Serializable {
         this.taxes = taxes;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="update_date", length=19)
     public Date getUpdateDate() {
         return this.updateDate;
     }
@@ -532,76 +435,110 @@ public class Orders  implements java.io.Serializable {
     }
     
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public List<XtblDocket> getXtblDockets() {
-        return this.xtblDockets;
-    }
-    
-    public void ListXtblDockets(List<XtblDocket> xtblDockets) {
-        this.xtblDockets = xtblDockets;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }
-    
-    public void ListInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
-        this.inventoryTransactionses = inventoryTransactionses;
-    }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public List<OrdersOrdersStatus> getOrdersOrdersStatuses() {
-        return this.ordersOrdersStatuses;
-    }
-    
-    public void ListOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
-        this.ordersOrdersStatuses = ordersOrdersStatuses;
-    }
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
     
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<OrderDetails> getOrderDetailses() {
         return this.orderDetailses;
     }
-    
-    public void ListOrderDetailses(List<OrderDetails> orderDetailses) {
-        this.orderDetailses = orderDetailses;
-    }
+
+	public void setOrderDetailses(List<OrderDetails> orderDetailses) {
+		this.orderDetailses = orderDetailses;
+	}
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<OrdersStatusOrders> getOrdersStatusOrderses() {
         return this.ordersStatusOrderses;
     }
-    
-    public void ListOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
-        this.ordersStatusOrderses = ordersStatusOrderses;
-    }
+
+	public void setOrdersStatusOrderses(List<OrdersStatusOrders> ordersStatusOrderses) {
+		this.ordersStatusOrderses = ordersStatusOrderses;
+	}
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<Invoices> getInvoiceses() {
         return this.invoiceses;
     }
     
-    public void ListInvoiceses(List<Invoices> invoiceses) {
-        this.invoiceses = invoiceses;
-    }
-
+	public void setInvoiceses(List<Invoices> invoiceses) {
+		this.invoiceses = invoiceses;
+	}
+	
 @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<OrdersTaxStatus> getOrdersTaxStatuses() {
         return this.ordersTaxStatuses;
     }
     
-    public void ListOrdersTaxStatuses(List<OrdersTaxStatus> ordersTaxStatuses) {
-        this.ordersTaxStatuses = ordersTaxStatuses;
-    }
-
-
-	public void setId(long id) {
-		this.id = id;
+	public void setOrdersTaxStatuses(List<OrdersTaxStatus> ordersTaxStatuses) {
+		this.ordersTaxStatuses = ordersTaxStatuses;
 	}
 
+@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
+    public List<OrdersOrdersStatus> getOrdersOrdersStatuses() {
+        return this.ordersOrdersStatuses;
+    }
 
+	public void setOrdersOrdersStatuses(List<OrdersOrdersStatus> ordersOrdersStatuses) {
+		this.ordersOrdersStatuses = ordersOrdersStatuses;
+	}
+	
+    @OneToOne
+	public void setEmployees(Employees employees) {
+		this.employees = employees;
+	}
+    
+    public Employees getEmployees() {
+        return this.employees;
+    }
 
+	@OneToOne
+	public Project getProject() {
+		return project;
+	}
 
+	public void setProject(Project project) {
+		this.project = project;
+	}
+    
+    @OneToOne
+    public Plant getPlant() {
+		return plant;
+	}
+
+	public void setPlant(Plant plant) {
+		this.plant = plant;
+	}
+	
+	@OneToOne
+    public XtblDocket getXtblDockets() {
+    	return xtblDockets;
+    }
+
+    public void setXtblDockets(XtblDocket xtblDockets) {
+		this.xtblDockets = xtblDockets;
+	}
+
+    @OneToOne
+	public Suppliers getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(Suppliers suppliers) {
+		this.suppliers = suppliers;
+	}
+	@OneToOne
+	public Customer getCustomer() {
+	    return this.customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }
 
 

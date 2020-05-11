@@ -24,7 +24,7 @@ public class CustomerBean implements Serializable {
 	private Customer selectedRow;
 	private Calendar cal;
 	
-	@ManagedProperty(value = "#{VaSessionbean}")
+	@ManagedProperty(value = "#{vaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;
@@ -43,7 +43,8 @@ public class CustomerBean implements Serializable {
 	public void btnNewClick() {
 		selectedRow = new Customer();
 		selectedRow.setUpdateDate(cal.getTime());
-		selectedRow.setCreateUser(vasessionbean.getUsername());
+		selectedRow.setCreateDate(cal.getTime());
+		//selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {

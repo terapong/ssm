@@ -2,16 +2,12 @@ package toto.ssm.entity;
 // Generated May 7, 2020 10:21:16 AM by Hibernate Tools 4.3.1
 
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -45,7 +41,7 @@ public class Customer  implements java.io.Serializable {
      private Date updateDate;
      private String webPage;
      private String zipPostalCode;
-     private List<Orders> orderses = new ArrayList<Orders>(0);
+     //private List<Orders> orderses = new ArrayList<Orders>(0);
 
     public Customer() {
     }
@@ -53,30 +49,6 @@ public class Customer  implements java.io.Serializable {
 	
     public Customer(long id) {
         this.id = id;
-    }
-    public Customer(long id, String address, String attachments, String businessPhone, String city, String company, String countryRegion, Date createDate, String createUser, String emailAddress, String faxNumber, String firstName, String homePhone, String jobTitle, String lastName, String mobilePhone, String notes, String stateProvince, Date updateDate, String webPage, String zipPostalCode, List<Orders> orderses) {
-       this.id = id;
-       this.address = address;
-       this.attachments = attachments;
-       this.businessPhone = businessPhone;
-       this.city = city;
-       this.company = company;
-       this.countryRegion = countryRegion;
-       this.createDate = createDate;
-       this.createUser = createUser;
-       this.emailAddress = emailAddress;
-       this.faxNumber = faxNumber;
-       this.firstName = firstName;
-       this.homePhone = homePhone;
-       this.jobTitle = jobTitle;
-       this.lastName = lastName;
-       this.mobilePhone = mobilePhone;
-       this.notes = notes;
-       this.stateProvince = stateProvince;
-       this.updateDate = updateDate;
-       this.webPage = webPage;
-       this.zipPostalCode = zipPostalCode;
-       this.orderses = orderses;
     }
    
     @TableGenerator(
@@ -86,6 +58,7 @@ public class Customer  implements java.io.Serializable {
             valueColumnName="GEN_VALUE", 
             pkColumnValue="CUSTOMER_ID", 
             allocationSize=1)
+    
     @Id 
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.TABLE, generator="SSMGen")
@@ -317,9 +290,9 @@ public class Customer  implements java.io.Serializable {
 	}
 
 
-	public void setOrderses(List<Orders> orderses) {
-		this.orderses = orderses;
-	}
+//	public void setOrderses(List<Orders> orderses) {
+//		this.orderses = orderses;
+//	}
 
 
 	@Column(name="job_title")
@@ -401,14 +374,14 @@ public class Customer  implements java.io.Serializable {
         this.zipPostalCode = zipPostalCode;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
-    public List<Orders> getOrderses() {
-        return this.orderses;
-    }
-    
-    public void ListOrderses(List<Orders> orderses) {
-        this.orderses = orderses;
-    }
+//@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
+//    public List<Orders> getOrderses() {
+//        return this.orderses;
+//    }
+//    
+//    public void ListOrderses(List<Orders> orderses) {
+//        this.orderses = orderses;
+//    }
 
 
 	public void setId(long id) {

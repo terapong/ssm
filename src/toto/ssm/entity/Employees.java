@@ -52,7 +52,7 @@ public class Employees  implements java.io.Serializable {
      private String webPage;
      private String zipPostalCode;
      private List<PurchaseOrders> purchaseOrderses = new ArrayList<PurchaseOrders>(0);
-     private List<Orders> orderses = new ArrayList<Orders>(0);
+     //private List<Orders> orderses = new ArrayList<Orders>(0);
 
     public Employees() {
     }
@@ -61,7 +61,7 @@ public class Employees  implements java.io.Serializable {
     public Employees(long id) {
         this.id = id;
     }
-    public Employees(long id, Privileges privileges, String address, String attachments, String businessPhone, String city, String company, String countryRegion, Date createDate, String createUser, String emailAddress, String faxNumber, String firstName, String homePhone, String jobTitle, String lastName, String mobilePhone, String notes, String password, String renderedDelete, String stateProvince, Date updateDate, String username, String webPage, String zipPostalCode, List<PurchaseOrders> purchaseOrderses, List<Orders> orderses) {
+    public Employees(long id, Privileges privileges, String address, String attachments, String businessPhone, String city, String company, String countryRegion, Date createDate, String createUser, String emailAddress, String faxNumber, String firstName, String homePhone, String jobTitle, String lastName, String mobilePhone, String notes, String password, String renderedDelete, String stateProvince, Date updateDate, String username, String webPage, String zipPostalCode, List<PurchaseOrders> purchaseOrderses) {
        this.id = id;
        this.privileges = privileges;
        this.address = address;
@@ -88,7 +88,7 @@ public class Employees  implements java.io.Serializable {
        this.webPage = webPage;
        this.zipPostalCode = zipPostalCode;
        this.purchaseOrderses = purchaseOrderses;
-       this.orderses = orderses;
+       //this.orderses = orderses;
     }
    
     @TableGenerator(
@@ -245,9 +245,9 @@ public class Employees  implements java.io.Serializable {
 	}
 
 
-	public void setOrderses(List<Orders> orderses) {
-		this.orderses = orderses;
-	}
+//	public void setOrderses(List<Orders> orderses) {
+//		this.orderses = orderses;
+//	}
 
 
 	@Column(name="address")
@@ -488,14 +488,14 @@ public class Employees  implements java.io.Serializable {
         this.purchaseOrderses = purchaseOrderses;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
-    public List<Orders> getOrderses() {
-        return this.orderses;
-    }
-    
-    public void ListOrderses(List<Orders> orderses) {
-        this.orderses = orderses;
-    }
+//@OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
+//    public List<Orders> getOrderses() {
+//        return this.orderses;
+//    }
+//    
+//    public void ListOrderses(List<Orders> orderses) {
+//        this.orderses = orderses;
+//    }
 
 
 	public void setId(long id) {

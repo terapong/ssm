@@ -16,17 +16,15 @@ import javax.faces.context.FacesContext;
 import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
-@ManagedBean(name = "privilegebean")
+@ManagedBean(name = "plantbean")
 @ViewScoped
-public class PrivilegeBean implements Serializable {
+public class PlantBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Privileges> slave;
-	private Privileges selectedRow;
+	private List<Plant> slave;
+	private Plant selectedRow;
 	private Calendar cal;
 	
-	private String renderedDelete;
-	
-	@ManagedProperty(value = "#{vaSessionbean}")
+	@ManagedProperty(value = "#{VaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;
@@ -34,41 +32,39 @@ public class PrivilegeBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		cal = Calendar.getInstance();
-		slave = session.querryAllPrivilege();
-		for(Privileges r : slave) {
-			if(r.getEmployeeses().isEmpty()) {
-				r.setRenderedDelete("true");
-			} else {
-				r.setRenderedDelete("false");
-			}
+		slave = session.querryAllPlant();
+		if(slave.size() != 0) {
+			selectedRow = slave.get(0);
+		} else {
+			selectedRow = new Plant();
 		}
 	}
-
+	
 	@PreDestroy
 	private void destroy() {
 		
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Privileges();
-		selectedRow.setCreateDate(cal.getTime());
+		System.out.println("btnNewClick :");
+		selectedRow = new Plant();
 		selectedRow.setUpdateDate(cal.getTime());
-		selectedRow.setCreateUser(vasessionbean.getProgramName());
+		selectedRow.setCreateDate(cal.getTime());
+		//selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveClick() {
-		selectedRow.setUpdateDate(cal.getTime());
-		session.updatePrivilege(selectedRow);
+		session.updatePlant(selectedRow);
 		init();
 	}
 	
-	public void btnEditClick(Privileges o) {
+	public void btnEditClick(Plant o) {
 		selectedRow = o;
 	}
 	
 	public void confirmDeleteClick() {
 		try {
-			session.deletePrivilege(selectedRow);
+			session.deletePlant(selectedRow);
 			init();
 		} catch(Exception ex) {
 			FacesMessage msg = new FacesMessage();
@@ -79,32 +75,24 @@ public class PrivilegeBean implements Serializable {
 		}
 	}
 	
-	public List<Privileges> getSlave() {
+	public void btnDeleteClick(Plant o) {
+		selectedRow = o;
+	}
+
+	public List<Plant> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Privileges> slave) {
+	public void setSlave(List<Plant> slave) {
 		this.slave = slave;
 	}
 
-	public Privileges getSelectedRow() {
+	public Plant getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Privileges selectedRow) {
+	public void setSelectedRow(Plant selectedRow) {
 		this.selectedRow = selectedRow;
-	}
-
-	public String getRenderedDelete() {
-		return renderedDelete;
-	}
-
-	public void setRenderedDelete(String renderedDelete) {
-		this.renderedDelete = renderedDelete;
-	}
-
-	public void btnDeleteClick(Privileges o) {
-		selectedRow = o;
 	}
 
 	public VaSessionbean getVasessionbean() {
@@ -113,5 +101,17 @@ public class PrivilegeBean implements Serializable {
 
 	public void setVasessionbean(VaSessionbean vasessionbean) {
 		this.vasessionbean = vasessionbean;
-	} 
+	}
+
+	public VaSession getSession() {
+		return session;
+	}
+
+	public void setSession(VaSession session) {
+		this.session = session;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

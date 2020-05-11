@@ -11,12 +11,24 @@
 		<p:panelGrid>
 			<p:row>
 				<p:column style="text-align: center">
-					<h:outputText value="รายชื่อลูกค้า : " />
-					<p:selectOneMenu id="selMaster" value="#{orderbean.selectedMasterId}">
-						<f:selectItems value="#{orderbean.master}" var="m"
-							itemLabel="#{m.company}" itemValue="#{m.id}" />
-						<p:ajax event="valueChange" listener="#{orderbean.selMasterChange}" update="tblOrder" process="@this" />
-					</p:selectOneMenu>
+					<p:inputText id="plantName" readonly="true" value="#{orderbean.selectedMasterOverlay.company}"/>
+					<p:commandButton id="plantOverlay" value="เลือก Plant"/>
+					<p:overlayPanel id="plantPanel" for="plantOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+						<p:dataTable resizableColumns="true" id="tblPlant" var="p" value="#{orderbean.master}"
+									paginator="true" paginatorPosition="bottom" rows="8"
+									selectionMode="single" selection="#{orderbean.selectedMasterOverlay}"	rowKey="#{p.id}">
+							<p:ajax event="rowSelect" listener="#{orderbean.onRowMasterSelect}" update="plantName"/>
+							<p:column headerText="ชื่อ">
+	                <h:outputText value="#{p.company}" />
+	            </p:column>
+	            <p:column headerText="ที่อยู่">
+	                <h:outputText value="#{p.address}" />
+	            </p:column>
+	            <p:column headerText="Tel">
+	                <h:outputText value="#{p.mobilePhone}" />
+	            </p:column>
+						</p:dataTable>
+					</p:overlayPanel>
 				</p:column>
 			</p:row>
 			<p:row>
@@ -26,8 +38,7 @@
 							<p:column>
 								<p:dataTable resizableColumns="true" id="tblOrder" var="r" value="#{orderbean.slave}"
 									paginator="true" paginatorPosition="bottom" rows="15"
-									selectionMode="single" selection="#{orderbean.selectedRow}"
-									rowKey="#{r.id}">
+									selectionMode="single" selection="#{orderbean.selectOrder}"	rowKey="#{r.id}">
 									<p:column headerText="Order name">
 										<h:outputText value="#{r.shipName}" />
 									</p:column>
@@ -50,7 +61,7 @@
 										</p:column>
 										<p:column headerText="">
 										<p:commandButton value="รายละเอียด"
-												actionListener="#{orderbean.btnEditClick(r)}"
+												actionListener="#{orderbean.btnEditPlantClick(r)}"
 												oncomplete="PF('newObjectDlg').show()" process="@this"
 												update=":mainCenterForm" resetValues="true" />
 									</p:column>
@@ -71,7 +82,7 @@
 						<h:outputText for="shipName" value="Order : " />
 					</p:column>
 					<p:column colspan="3">
-						<p:inputText id="shipName" value="#{orderbean.selectedRow.shipName}" readonly="true" size="60"/>
+						<p:inputText id="shipName" value="#{orderbean.selectOrder.shipName}" readonly="true" size="60"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -79,7 +90,7 @@
 						<h:outputText for="orderDate" value="Order date : " />
 					</p:column>
 					<p:column>
-						<p:inputText id="orderDate" value="#{orderbean.selectedRow.orderDate}" readonly="true">
+						<p:inputText id="orderDate" value="#{orderbean.selectOrder.orderDate}" readonly="true">
 							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
 						</p:inputText>
 					</p:column>
@@ -87,7 +98,7 @@
 						<h:outputText for="paidDate" value="Paid date : " />
 					</p:column>
 					<p:column>
-						<p:inputText id="paidDate" value="#{orderbean.selectedRow.paidDate}" readonly="true">
+						<p:inputText id="paidDate" value="#{orderbean.selectOrder.paidDate}" readonly="true">
 							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
 						</p:inputText>
 					</p:column>
@@ -97,13 +108,13 @@
 						<h:outputText for="paymentType" value="Payment type : " />
 					</p:column>
 					<p:column>
-						<p:inputText id="paymentType" value="#{orderbean.selectedRow.paymentType}" readonly="true"/>
+						<p:inputText id="paymentType" value="#{orderbean.selectOrder.paymentType}" readonly="true"/>
 					</p:column>
 					<p:column>
 						<h:outputText for="shipCity" value="Ship city: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipCity" value="#{orderbean.selectedRow.shipCity}" readonly="true"/>
+						<p:inputText id="shipCity" value="#{orderbean.selectOrder.shipCity}" readonly="true"/>
 					</p:column>			
 				</p:row>
 				<p:row>
@@ -111,13 +122,13 @@
 						<h:outputText for="shipCountry" value="Ship country: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipCountry" value="#{orderbean.selectedRow.shipCountryRegion}" readonly="true"/>
+						<p:inputText id="shipCountry" value="#{orderbean.selectOrder.shipCountryRegion}" readonly="true"/>
 					</p:column>
 					<p:column>
 						<h:outputText for="shipStartProvince" value="Ship province: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipStartProvince" value="#{orderbean.selectedRow.shipStateProvince}" readonly="true"/>
+						<p:inputText id="shipStartProvince" value="#{orderbean.selectOrder.shipStateProvince}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -125,7 +136,7 @@
 						<h:outputText for="shipAddress" value="Ship address: " />
 					</p:column>
 					<p:column colspan="3">
-						<p:inputText id="shipAddress" value="#{orderbean.selectedRow.shipAddress}" readonly="true" size="60"/>
+						<p:inputText id="shipAddress" value="#{orderbean.selectOrder.shipAddress}" readonly="true" size="60"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -133,13 +144,13 @@
 						<h:outputText for="shipPostalcode" value="Ship postalcode: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipPostalcode" value="#{orderbean.selectedRow.shipZipPostalCode}" readonly="true"/>
+						<p:inputText id="shipPostalcode" value="#{orderbean.selectOrder.shipZipPostalCode}" readonly="true"/>
 					</p:column>
 					<p:column>
 						<h:outputText for="shipFree" value="ship free: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="shipFree" value="#{orderbean.selectedRow.shippingFee}" readonly="true"/>
+						<p:inputText id="shipFree" value="#{orderbean.selectOrder.shippingFee}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -147,13 +158,13 @@
 						<h:outputText for="taxRate" value="tax rate: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="taxRate" value="#{orderbean.selectedRow.taxRate}" readonly="true"/>
+						<p:inputText id="taxRate" value="#{orderbean.selectOrder.taxRate}" readonly="true"/>
 					</p:column>
 					<p:column>
 						<h:outputText for="taxes" value="taxes: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="taxes" value="#{orderbean.selectedRow.taxes}" readonly="true"/>
+						<p:inputText id="taxes" value="#{orderbean.selectOrder.taxes}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -161,13 +172,13 @@
 						<h:outputText for="recipe" value="recipe: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="recipe" value="#{orderbean.selectedRow.recipe}" readonly="true"/>
+						<p:inputText id="recipe" value="#{orderbean.selectOrder.recipe}" readonly="true"/>
 					</p:column>
 					<p:column>
 						<h:outputText for="qty" value="qty: " />
 					</p:column>
 					<p:column>
-						<p:inputText id="qty" value="#{orderbean.selectedRow.qty}" readonly="true"/>
+						<p:inputText id="qty" value="#{orderbean.selectOrder.qty}" readonly="true"/>
 					</p:column>
 				</p:row>
 				<p:row>

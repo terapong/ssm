@@ -24,7 +24,7 @@ public class InventoryTransactionTypeBean implements Serializable {
 	private InventoryTransactionTypes selectedRow;
 	private Calendar cal;
 	
-	@ManagedProperty(value = "#{VaSessionbean}")
+	@ManagedProperty(value = "#{vaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;

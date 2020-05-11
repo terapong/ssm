@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cars</title>
+    </h:head>
+    <h:body>
+        <h:form id="rootform">
+			    <p:growl id="growl" showDetail="true" />
+			 
+			    DialogReturn with Button:<br />
+			    <p:commandButton id="btn" value="View" icon="pi pi-home" action="#{dfRootView.openLevel1}">
+			        <p:ajax event="dialogReturn" listener="#{dfRootView.onReturnFromLevel1}" update="growl"/>
+			    </p:commandButton>
+			 
+			    <br />
+			    <br />
+			    DialogReturn with Link:<br />
+			    <p:commandLink id="lnk" value="View" action="#{dfRootView.openLevel1}">
+			        <p:ajax event="dialogReturn" listener="#{dfRootView.onReturnFromLevel1}" update="growl"/>
+			    </p:commandLink>
+			 
+			    <br />
+			    <br />
+			    DialogReturn with a Menu:<br />
+			    <p:menu>
+			        <p:submenu label="Dialog Framework">
+			            <p:menuitem value="View" action="#{dfRootView.openLevel1}">
+			                <p:ajax event="dialogReturn" listener="#{dfRootView.onReturnFromLevel1}" update="growl"/>
+			            </p:menuitem>
+			        </p:submenu>
+			    </p:menu>
+			</h:form>
+    </h:body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:dialog id="newCustomerDlg" header="เพิ่ม Customer" widgetVar="newCustomerDlg"  modal="true" appendTo="@(body)" width="700px" height="700px" closable="true">
+			<p:panelGrid id="panelCustomerInput">
+				<p:row>
+					<p:column>
+						<p:panelGrid>
+							<p:row>
+								<p:column>
+									<h:outputText for="firstName" value="ชื่อ : " />
+								</p:column>
+								<p:column>
+									<p:inputText id="firstName" value="#{orderbean.selectCustomer.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
+								</p:column>
+								<p:column>
+									<h:outputText for="lastName" value="นามสกุล : " />
+								</p:column>
+								<p:column>
+									<p:inputText id="lastName" value="#{orderbean.selectCustomer.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="mobilePhone" value="เบอร์โทรมือถือ : " />
+								</p:column>
+								<p:column>
+									<p:inputText id="mobilePhone" value="#{orderbean.selectCustomer.mobilePhone}"/>
+								</p:column>
+								<p:column>
+									<h:outputText for="businessPhone" value="เบอร์โทรที่ทำงาน : " />
+								</p:column>
+								<p:column>
+									<p:inputText id="businessPhone" value="#{orderbean.selectCustomer.businessPhone}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="homePhone" value="เบอร์โทรบ้าน: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="homePhone" value="#{orderbean.selectCustomer.homePhone}"/>
+								</p:column>
+								<p:column>
+									<h:outputText for="faxPhone" value="แฟกช์ : " />
+								</p:column>
+								<p:column>
+									<p:inputText id="faxPhone" value="#{orderbean.selectCustomer.faxNumber}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="company" value="ชื่อ บริษัท: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="company" value="#{orderbean.selectCustomer.company}"/>
+								</p:column>
+								<p:column>
+									<h:outputText for="webpage" value="website: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="webpage" value="#{orderbean.selectCustomer.webPage}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="email" value="email: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="email" value="#{orderbean.selectCustomer.emailAddress}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="Address" value="ที่อยู่ : " />
+								</p:column>
+								<p:column>
+									<p:inputTextarea id="Address" value="#{orderbean.selectCustomer.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText for="attachments" value="Comment: " />
+								</p:column>
+								<p:column>
+									<p:inputTextarea id="attachments" value="#{orderbean.selectCustomer.notes}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2" style="text-align: center">
+									<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSaveCustomerClick}" update="panelCustomerInput" process="@this panelCustomerInput" />
+									<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newCustomerDlg').hide()"/>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:panelGrid>
+							<p:row>
+								<p:column>
+									<p:dataTable resizableColumns="true" var="r" value="#{orderbean.customers}"
+										paginator="true" paginatorPosition="bottom" rows="15"
+										selectionMode="single" selection="#{orderbean.selectCustomerTable}"
+										rowKey="#{r.id}">
+										<f:facet name="header">
+											<p:commandButton 
+												icon="ui-icon-plus" value="เพิ่ม"
+												actionListener="#{orderbean.btnNewCustomerClick}"
+												oncomplete="PF('newCustomerDlg').show()" process="@this"
+												update=":mainCenterForm" resetValues="true" />
+										</f:facet>
+										<p:column headerText="Id">
+											<h:outputText value="#{r.id}" />
+										</p:column>
+										<p:column headerText="Name">
+											<h:outputText value="#{r.firstName}" />
+										</p:column>
+										<p:column headerText="Update Date">
+											<h:outputText value="#{r.updateDate}">
+												<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+											</h:outputText>
+										</p:column>
+										<p:column headerText="">
+												<p:commandButton value="แก้ไข" 
+												actionListener="#{orderbean.btnEditCustomerClick(r)}"
+												oncomplete="PF('newCustomerDlg').show()" process="@this"
+												update="panelCustomerInput" resetValues="true"/>
+										</p:column>
+										<p:column headerText="">
+											<p:commandButton value="ลบ"
+												actionListener="#{orderbean.btnDeleteCustomerClick(r)}"
+												oncomplete="PF('confirmDeleteCustomerDialog').show()" process="@this"
+												update="panelCustomerInput" resetValues="true"/>
+										</p:column>
+									</p:dataTable>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+		
+		
+	</ui:composition>
+</html>
