@@ -36,7 +36,7 @@
 					<p:panelGrid style="width: 75%">
 						<p:row>
 							<p:column>
-								<p:dataTable resizableColumns="true" id="tblOrder" var="r" value="#{orderbean.slave}"
+								<p:dataTable resizableColumns="true" id="tblOrder" var="r" value="#{orderbean.orders}"
 									paginator="true" paginatorPosition="bottom" rows="15"
 									selectionMode="single" selection="#{orderbean.selectOrder}"	rowKey="#{r.id}">
 									<p:column headerText="Order name">

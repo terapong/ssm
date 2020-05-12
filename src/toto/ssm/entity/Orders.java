@@ -489,13 +489,13 @@ public class Orders  implements java.io.Serializable {
 	}
 	
     @OneToOne
+    public Employees getEmployees() {
+        return this.employees;
+    }
 	public void setEmployees(Employees employees) {
 		this.employees = employees;
 	}
     
-    public Employees getEmployees() {
-        return this.employees;
-    }
 
 	@OneToOne
 	public Project getProject() {

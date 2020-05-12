@@ -9,16 +9,16 @@
 		<p:panelGrid  id="panelInput">
 			<p:row>
 				<p:column>
-					<p:panelGrid>
+					<p:panelGrid id="plantDetailInput">
 						<p:row>
 							<p:column>
-								<h:outputText  value="ชื่อ : " />
+								<p:outputLabel value="ชื่อ : " styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputText  value="#{orderbean.selectedMaster.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
 							</p:column>
 							<p:column>
-								<h:outputText  value="นามสกุล : " />
+								<h:outputText  value="นามสกุล : " styleClass="required" />
 							</p:column>
 							<p:column>
 								<p:inputText  value="#{orderbean.selectedMaster.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
@@ -26,10 +26,10 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText  value="เบอร์โทรมือถือ : " />
+								<h:outputText  value="เบอร์โทรมือถือ : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputText value="#{orderbean.selectedMaster.mobilePhone}"/>
+								<p:inputText value="#{orderbean.selectedMaster.mobilePhone}" required="true" requiredMessage="กรุณา กรอกเบอร์ มือถือ"/>
 							</p:column>
 							<p:column>
 								<h:outputText  value="เบอร์โทรที่ทำงาน : " />
@@ -54,10 +54,10 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText  value="ชื่อ บริษัท: " />
+								<h:outputText  value="ชื่อ บริษัท: "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputText value="#{orderbean.selectedMaster.company}"/>
+								<p:inputText value="#{orderbean.selectedMaster.company}" required="true" requiredMessage="กรุณากรอก ชื่อบริษัท"/>
 							</p:column>
 							<p:column>
 								<h:outputText  value="website: " />
@@ -76,7 +76,7 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText  value="ที่อยู่ : " />
+								<h:outputText  value="ที่อยู่ : " styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputTextarea  value="#{orderbean.selectedMaster.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
@@ -104,6 +104,11 @@
 						<p:dataTable resizableColumns="true" var="r" value="#{orderbean.master}"
 								paginator="true" paginatorPosition="bottom" rows="8"
 								selectionMode="single" selection="#{orderbean.selectedMasterTable}"	rowKey="#{r.id}">
+								<f:facet name="header">
+									<p:commandButton icon="ui-icon-plus" value="เพิ่ม"
+										actionListener="#{orderbean.btnNewPlantClick()}"
+										process="@this"	update="plantDetailInput" resetValues="true" />
+								</f:facet>
 								<p:column headerText="ชื่อ บริษัท:">
 		                <h:outputText value="#{r.company}" />
 		            </p:column>
@@ -113,6 +118,11 @@
 			            <p:column headerText="เบอร์มือถือ">
 			                <h:outputText value="#{r.mobilePhone}"/>
 			            </p:column>
+			            <p:column headerText="Update Date">
+										<h:outputText value="#{r.updateDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
 			            <p:column headerText="">
 			                <p:commandButton value="แก้ไข" actionListener="#{orderbean.btnEditPlantClick(r)}"
 												update="panelInput" resetValues="true"/>

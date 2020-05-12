@@ -14,6 +14,22 @@ public class VaSession implements Serializable{
 	
 	@PersistenceContext(unitName="ssm_test_exportPU")
 	EntityManager em;
+	
+	public List<Suppliers> querryAllSuppliers() {
+		return em.createNativeQuery("select * from Suppliers", Suppliers.class).getResultList();
+	}
+	
+	public Suppliers querrySuppliersById(long id) {
+		return em.find(Suppliers.class, id);
+	}
+	public void updateSuppliers(Suppliers p) {
+		em.merge(p);
+	}
+	
+	public void deleteSuppliers(Suppliers p) {
+		p = querrySuppliersById(p.getId());
+		em.remove(p);
+	}
 
 	public List<Project> querryAllProject() {
 		return em.createNativeQuery("select * from Project", Project.class).getResultList();

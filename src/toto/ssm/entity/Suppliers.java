@@ -415,10 +415,6 @@ public class Suppliers  implements java.io.Serializable {
 	public void setPurchaseOrderses(List<PurchaseOrders> purchaseOrderses) {
 		this.purchaseOrderses = purchaseOrderses;
 	}
-
-
-
-
 }
 
 

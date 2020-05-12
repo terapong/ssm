@@ -10,7 +10,7 @@
 		<p:panelGrid  id="panelProjectInput">
 			<p:row>
 				<p:column>
-					<p:panelGrid>
+					<p:panelGrid id="projectDetailInput">
 						<p:row>
 							<p:column>
 								<h:outputText  value="ชื่อ Project : " />
@@ -33,6 +33,11 @@
 						<p:dataTable resizableColumns="true" var="r" value="#{orderbean.projects}"
 								paginator="true" paginatorPosition="bottom" rows="8"
 								selectionMode="single" selection="#{orderbean.selectProjectTable}"	rowKey="#{r.id}">
+								<f:facet name="header">
+									<p:commandButton icon="ui-icon-plus" value="เพิ่ม"
+										actionListener="#{orderbean.btnNewProjectClick()}"
+										process="@this"	update="projectDetailInput" resetValues="true" />
+								</f:facet>
 								<p:column headerText="ชื่อ Project:">
 		                <h:outputText value="#{r.projectName}" />
 		            </p:column>
@@ -51,10 +56,9 @@
 												update="panelProjectInput" resetValues="true"/>
 			            </p:column>
 			            <p:column headerText="">
-			            <p:commandButton value="ลบ"
-									actionListener="#{orderbean.btnDeleteProjectClick(r)}"
-									oncomplete="PF('confirmDeleteProjectDialog').show()" process="@this"
-									update="panelProjectInput" resetValues="true"/>
+					            <p:commandButton value="ลบ"	actionListener="#{orderbean.btnDeleteProjectClick(r)}"
+											oncomplete="PF('confirmDeleteProjectDialog').show()" process="@this"
+											update="panelProjectInput" resetValues="true"/>
 			            </p:column>
 						</p:dataTable>
 					</p:column>

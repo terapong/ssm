@@ -42,9 +42,17 @@ public class OrderBean implements Serializable {
 	private Project selectProjectOverlay;
 	private String mode_project;
 	
+	//Jobsite zone
+	private List<Suppliers> suppliers;
+	private Suppliers selectSupplier;
+	private Suppliers selectSupplierTable;
+	private Suppliers selectSupplierOverLay;;
+	private String mode_supplier;
+	
 	//Order zone
-	private List<Orders> slave;
-	private Orders selectOrder;
+	private List<Orders> orders;
+	private Orders selectOrder = new Orders();
+	private Orders selectOrderTable;
 	private Orders selectOrderOverlay;
 	private String addDisabled;
 	private List<OrdersStatus> OrderStatus;
@@ -64,22 +72,23 @@ public class OrderBean implements Serializable {
 		master = session.querryAllPlant();
 		customers = session.querryAllCustomer();
 		projects = session.querryAllProject();
+		suppliers = session.querryAllSuppliers();
 		if(master.isEmpty()) {
 			addDisabled = "true";
+			selectedMaster = new Plant();
+			selectedMasterId = 0;
 		} else {
 			addDisabled = "false";
-			if(selectedMaster == null) {
-				selectedMaster = master.get(0);
-				//selectedRow = selectedMaster.getEmployees().get(0);
-			}
+			selectedMaster = master.get(0);
+			selectedMasterId = selectedMaster.getId();
 		}
+		//selectedRow = selectedMaster.getEmployees().get(0);
 		//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
-		selectedMasterId = selectedMaster.getId();
+		
 		mode_plant = "ADD";
 		mode_customer = "ADD";
 		mode_project = "ADD";
 		mode_order = "ADD";
-		selectedMaster = new Plant();
 	}
 	
 	@PreDestroy
@@ -97,6 +106,10 @@ public class OrderBean implements Serializable {
 	
 	public void onRowProjectSelect() {
 		System.out.println("Project name :" + selectProjectOverlay.getProjectName());
+	}  
+	
+	public void onRowSuppliersSelect() {
+		System.out.println("Suppliers name :" + selectSupplierOverLay.getCompany());
 	}
 	
 	public void onRowOrderSelect() {
@@ -123,6 +136,13 @@ public class OrderBean implements Serializable {
 		selectProject= new Project();
 		selectProject.setCreateDate(cal.getTime());
 		selectProject.setUpdateDate(cal.getTime());
+	}  
+	
+	public void btnNewSuppliersClick() {
+		mode_supplier = "ADD";
+		selectSupplier= new Suppliers();
+		selectSupplier.setCreateDate(cal.getTime());
+		selectSupplier.setUpdateDate(cal.getTime());
 	}
 	
 	public void btnSavePlantClick() {
@@ -153,6 +173,16 @@ public class OrderBean implements Serializable {
 			//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
 			//selectedMasterId = selectedMaster.getId();
 		} 
+	} 
+	
+	public void btnSaveSuppliersClick() {
+		if(mode_supplier.equals("ADD") || mode_supplier.equals("EDIT")) {
+			session.updateSuppliers(selectSupplier);
+			suppliers = session.querryAllSuppliers();
+			btnNewSuppliersClick();
+			//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
+			//selectedMasterId = selectedMaster.getId();
+		} 
 	}
 	
 	public void btnEditPlantClick(Plant o) {
@@ -171,6 +201,12 @@ public class OrderBean implements Serializable {
 		selectProject = o;
 		selectProject.setUpdateDate(cal.getTime());
 		mode_project = "EDIT";
+	}  
+	
+	public void btnEditSuppliersClick(Suppliers o) {
+		selectSupplier = o;
+		selectSupplier.setUpdateDate(cal.getTime());
+		mode_supplier = "EDIT";
 	}
 	
 	public void confirmDeletePlantClick() {
@@ -204,8 +240,22 @@ public class OrderBean implements Serializable {
 	public void confirmDeleteProjectClick() {
 		try {
 			session.deleteProject(selectProject);
-			customers = session.querryAllCustomer();
-			btnNewCustomerClick();
+			projects = session.querryAllProject();
+			btnNewProjectClick();
+		} catch(Exception ex) {
+			FacesMessage msg = new FacesMessage();
+			msg.setSummary("ไม่สามารถ ลบ ได้");
+			msg.setDetail("ไม่สามารถ ลบ ได้ เพราะมี ข้อมูลที่เกี่ยวข้อง");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	public void confirmDeleteSuppliersClick() {
+		try {
+			session.deleteSuppliers(selectSupplier);
+			suppliers = session.querryAllSuppliers();
+			btnNewSuppliersClick();
 		} catch(Exception ex) {
 			FacesMessage msg = new FacesMessage();
 			msg.setSummary("ไม่สามารถ ลบ ได้");
@@ -227,6 +277,11 @@ public class OrderBean implements Serializable {
 	
 	public void btnDeleteProjectClick(Project o) {
 		selectProject = o;
+		mode_project = "DELETE";
+	}
+	
+	public void btnDeleteSupplierClick(Suppliers o) {
+		selectSupplier = o;
 		mode_project = "DELETE";
 	}
 	
@@ -315,12 +370,12 @@ public class OrderBean implements Serializable {
 		this.selectedMaster = selectedMaster;
 	}
 
-	public List<Orders> getSlave() {
-		return slave;
+	public List<Orders> getOrders() {
+		return orders;
 	}
 
-	public void setSlave(List<Orders> slave) {
-		this.slave = slave;
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
 	}
 
 	public Orders getSelectOrder() {
@@ -329,6 +384,14 @@ public class OrderBean implements Serializable {
 
 	public void setSelectOrder(Orders selectOrder) {
 		this.selectOrder = selectOrder;
+	}
+
+	public Orders getSelectOrderTable() {
+		return selectOrderTable;
+	}
+
+	public void setSelectOrderTable(Orders selectOrderTable) {
+		this.selectOrderTable = selectOrderTable;
 	}
 
 	public Orders getSelectOrderOverlay() {
@@ -489,5 +552,45 @@ public class OrderBean implements Serializable {
 
 	public void setSelectedMasterOverlay(Plant selectedMasterOverlay) {
 		this.selectedMasterOverlay = selectedMasterOverlay;
+	}
+
+	public List<Suppliers> getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(List<Suppliers> suppliers) {
+		this.suppliers = suppliers;
+	}
+
+	public Suppliers getSelectSupplier() {
+		return selectSupplier;
+	}
+
+	public void setSelectSupplier(Suppliers selectSupplier) {
+		this.selectSupplier = selectSupplier;
+	}
+
+	public Suppliers getSelectSupplierTable() {
+		return selectSupplierTable;
+	}
+
+	public void setSelectSupplierTable(Suppliers selectSupplierTable) {
+		this.selectSupplierTable = selectSupplierTable;
+	}
+
+	public Suppliers getSelectSupplierOverLay() {
+		return selectSupplierOverLay;
+	}
+
+	public void setSelectSupplierOverLay(Suppliers selectSupplierOverLay) {
+		this.selectSupplierOverLay = selectSupplierOverLay;
+	}
+
+	public String getMode_supplier() {
+		return mode_supplier;
+	}
+
+	public void setMode_supplier(String mode_supplier) {
+		this.mode_supplier = mode_supplier;
 	}
 }

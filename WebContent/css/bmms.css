@@ -23,4 +23,6 @@ root {
     background: transparent !important;
 }
 
+.required:after { content:"* ";color: red; font-weight: bold; font-size: 13px}
+
 /* .ui-datatable table { width: auto !important; } */

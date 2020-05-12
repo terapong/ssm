@@ -24,13 +24,16 @@
 			<ui:include src="menu.xhtml"/>
     </p:layoutUnit> 
 		<p:layoutUnit position="center" id="mainCenter"  scrollable="true" style="padding: 0; border: none">
-			<p:growl id="growl" showDetail="true" autoUpdate="true" 	showSummary="false" sticky="true"/>
+		<p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+    </p:messages>
+			<p:growl id="growl" showDetail="false" autoUpdate="true" showSummary="false" sticky="true" />
+			<p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
 				<h:form id="mainCenterForm" prependId="false">
 					<ui:include src="#{vasessionbean.contentCenter}"/>
 				</h:form>
 		</p:layoutUnit>
 	</p:layout>	
-	
 	<p:dialog modal="true" widgetVar="statusDialog" header="กำลังทำงาน" draggable="false" closable="false">
 		<h:graphicImage value="images/ajax-loading-bar.gif" />
 	</p:dialog>
