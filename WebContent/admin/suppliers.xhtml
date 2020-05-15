@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:dataTable id = "tblSuppliers" var="r" value="#{suppliersbean.slave}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{suppliersbean.selectedRowTable}"	rowKey="#{r.id}">
+								<f:facet name="header">
+									<p:commandButton icon="ui-icon-plus" value="เพิ่ม"
+										actionListener="#{suppliersbean.btnNewClick}" oncomplete="PF('newObjectDlg').show()"
+										process="@this"	update=":mainCenterForm" resetValues="true" />
+								</f:facet>
+								<p:column headerText="ชื่อ บริษัท:" style="width: 100px">
+		                <h:outputText value="#{r.company}" />
+		            </p:column>
+		            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{r.address}" />
+			            </p:column>
+			            <p:column headerText="เบอร์โทร" style="width: 70px">
+			                <h:outputText value="#{r.mobilePhone}"/>
+			            </p:column>
+			            <p:column headerText="Update Date" style="width: 80px">
+										<h:outputText value="#{r.updateDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+			            <p:column headerText="" style="width: 50px">
+		                <p:commandButton value="แก้ไข" actionListener="#{suppliersbean.btnEditClick(r)}"
+		                	oncomplete="PF('newObjectDlg').show()" process="@this"
+		                	update=":mainCenterForm" resetValues="true"/>
+			            </p:column>
+			            <p:column headerText="" style="width: 50px">
+				            <p:commandButton value="ลบ"
+											actionListener="#{suppliersbean.btnDeleteClick(r)}"
+											oncomplete="PF('confirmDeleteClick').show()" process="@this"
+											update=":mainCenterForm" resetValues="true"/>
+			            </p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+		
+		<p:dialog id="newObjectDlg" header="เพิ่ม Plant" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+			<p:panelGrid id="panelInput">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="ชื่อ : " styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.firstName}" required="true" requiredMessage="#{msg['plant.name']}"/>
+					</p:column>
+					<p:column>
+						<h:outputText  value="นามสกุล : " styleClass="required" />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.lastName}" required="true" requiredMessage="#{msg['plant.surename']}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText  value="เบอร์โทรมือถือ : "  styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:inputText value="#{suppliersbean.selectedRow.mobilePhone}" required="true" requiredMessage="#{msg['plant.phone.mobile']}"/>
+					</p:column>
+					<p:column>
+						<h:outputText  value="เบอร์โทรที่ทำงาน : " />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.businessPhone}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText  value="เบอร์โทรบ้าน: " />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.homePhone}"/>
+					</p:column>
+					<p:column>
+						<h:outputText  value="แฟกช์ : " />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.faxNumber}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText  value="ชื่อ บริษัท: "  styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:inputText value="#{suppliersbean.selectedRow.company}" required="true" requiredMessage="#{msg['plant.companyname']}"/>
+					</p:column>
+					<p:column>
+						<h:outputText  value="website: " />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.webPage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="email: " />
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{suppliersbean.selectedRow.emailAddress}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText  value="ที่อยู่ : " styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:inputTextarea  value="#{suppliersbean.selectedRow.address}" required="true" requiredMessage="#{msg['plant.address']}"/>
+					</p:column>
+					<p:column>
+						<h:outputText  value="Comment: " />
+					</p:column>
+					<p:column>
+						<p:inputTextarea  value="#{suppliersbean.selectedRow.notes}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align: center">
+						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{suppliersbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+		
+		<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteClick" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteClick').hide()" actionListener = "#{suppliersbean.confirmDeleteClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteClick').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	</ui:composition>
+</html>

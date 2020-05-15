@@ -41,9 +41,27 @@ public class MenuBean implements Serializable{
 		return "main?facesRedirect=true";
 	}
 	
+	public String plantClick() {
+		vaSessionbean.setProgramName("Plant data");
+		vaSessionbean.setContentCenter("admin/plant.xhtml");
+		return "main?facesRedirect=true";
+	}
+	
 	public String customerClick() {
 		vaSessionbean.setProgramName("Customer data");
 		vaSessionbean.setContentCenter("admin/customer.xhtml");
+		return "main?facesRedirect=true";
+	}
+	
+	public String projectClick() {
+		vaSessionbean.setProgramName("Project data");
+		vaSessionbean.setContentCenter("admin/project.xhtml");
+		return "main?facesRedirect=true";
+	}
+	
+	public String jobsiteClick() {
+		vaSessionbean.setProgramName("Jobsite data");
+		vaSessionbean.setContentCenter("admin/suppliers.xhtml");
 		return "main?facesRedirect=true";
 	}
 	

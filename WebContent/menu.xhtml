@@ -10,24 +10,17 @@
 			<p:panelGrid columns="1" styleClass="alignTopCenterMenu">
 				<p:menu style="width:250px">  
 					<p:menuitem value="คำสั่งซื้อ" icon="ui-icon-home" action="#{menubean.orderLookupClick}" ajax="false"/>
-	  				<p:menuitem value="Report PO" icon="ui-icon-home" action="#{menubean.PoClick}" ajax="false"/>
-	  				<p:menuitem value="Report transport" icon="ui-icon-home" action="#{menubean.TransportClick}" ajax="false"/>
-	  				<p:menuitem value="Report tax" icon="ui-icon-disk" action="#{menubean.TaxClick}" ajax="false"/>
-	     		</p:menu>
+	     	</p:menu>
      		<p:separator/>
      		<p:panelMenu style="width:250px">
      			<p:submenu label="จัดการระบบ">
-     					<p:menuitem value="เปิดคำสั่งซื้อใหม่" icon="ui-icon-gear" action="#{menubean.orderClick}" ajax="false"/>
-	        		<p:menuitem value="Privilege Data" icon="ui-icon-gear" action="#{menubean.privilegeClick}" ajax="false"/>
-	        		<p:menuitem value="Employeee Data" icon="ui-icon-person" action="#{menubean.employeeClick}" ajax="false"/>
-	        		<p:menuitem value="Customer Data" icon="ui-icon-person" action="#{menubean.customerClick}" ajax="false"/>
-	        		
-     					<p:menuitem value="ข้อมูล สถานะ ใบสั่งซื้อ" icon="ui-icon-person" action="#{menubean.ordersStatusClick}" ajax="false"/>
-     					
-	        		<p:menuitem value="Order tax status Data" icon="ui-icon-person" action="#{menubean.ordersTaxStatusClick}" ajax="false"/>
-	        		<p:menuitem value="Order detail Data" icon="ui-icon-person" action="#{menubean.orderDetailClick}" ajax="false"/>
-	        		<p:menuitem value="Inventory transaction Types Data" icon="ui-icon-person" action="#{menubean.inventoryTtranSactionTypesClick}" ajax="false"/>
-	        		<p:menuitem value="Purchse order status Data" icon="ui-icon-person" action="#{menubean.purchseorderstatusClick}" ajax="false"/>
+	        		<p:menuitem value="Privilege data" icon="ui-icon-gear" action="#{menubean.privilegeClick}" ajax="false"/>
+	        		<p:menuitem value="Employeee data" icon="ui-icon-person" action="#{menubean.employeeClick}" ajax="false"/>
+	        		<p:menuitem value="Plant data" icon="ui-icon-person" action="#{menubean.plantClick}" ajax="false"/>
+	        		<p:menuitem value="Customer data" icon="ui-icon-person" action="#{menubean.customerClick}" ajax="false"/>
+	        		<p:menuitem value="Project data" icon="ui-icon-person" action="#{menubean.projectClick}" ajax="false"/>
+	        		<p:menuitem value="Jobsite data" icon="ui-icon-person" action="#{menubean.jobsiteClick}" ajax="false"/>
+	        		<p:menuitem value="New order data" icon="ui-icon-gear" action="#{menubean.orderClick}" ajax="false"/>
 	        	</p:submenu>
      		</p:panelMenu> 
      		 

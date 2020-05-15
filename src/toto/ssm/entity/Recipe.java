@@ -33,6 +33,7 @@ public class Recipe  implements java.io.Serializable {
     private String stateProvince;
     private String webPage;
     private String zipPostalCode;
+    //private Orders orders;
     //private List<Orders> orderses = new ArrayList<Orders>(0);
 	
 	@Temporal(TemporalType.TIMESTAMP)

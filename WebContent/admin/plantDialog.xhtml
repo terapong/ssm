@@ -15,13 +15,13 @@
 								<p:outputLabel value="ชื่อ : " styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputText  value="#{orderbean.selectedMaster.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
+								<p:inputText  value="#{orderbean.selectedMaster.firstName}" required="true" requiredMessage="#{msg['plant.name']}"/>
 							</p:column>
 							<p:column>
 								<h:outputText  value="นามสกุล : " styleClass="required" />
 							</p:column>
 							<p:column>
-								<p:inputText  value="#{orderbean.selectedMaster.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+								<p:inputText  value="#{orderbean.selectedMaster.lastName}" required="true" requiredMessage="#{msg['plant.surename']}"/>
 							</p:column>
 						</p:row>
 						<p:row>
@@ -29,7 +29,7 @@
 								<h:outputText  value="เบอร์โทรมือถือ : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputText value="#{orderbean.selectedMaster.mobilePhone}" required="true" requiredMessage="กรุณา กรอกเบอร์ มือถือ"/>
+								<p:inputText value="#{orderbean.selectedMaster.mobilePhone}" required="true" requiredMessage="#{msg['plant.phone.mobile']}"/>
 							</p:column>
 							<p:column>
 								<h:outputText  value="เบอร์โทรที่ทำงาน : " />
@@ -57,7 +57,7 @@
 								<h:outputText  value="ชื่อ บริษัท: "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputText value="#{orderbean.selectedMaster.company}" required="true" requiredMessage="กรุณากรอก ชื่อบริษัท"/>
+								<p:inputText value="#{orderbean.selectedMaster.company}" required="true" requiredMessage="#{msg['plant.companyname']}"/>
 							</p:column>
 							<p:column>
 								<h:outputText  value="website: " />
@@ -79,7 +79,7 @@
 								<h:outputText  value="ที่อยู่ : " styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:inputTextarea  value="#{orderbean.selectedMaster.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+								<p:inputTextarea  value="#{orderbean.selectedMaster.address}" required="true" requiredMessage="#{msg['plant.address']}"/>
 							</p:column>
 						</p:row>
 						<p:row>

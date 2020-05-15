@@ -1,31 +1,31 @@
 package toto.ssm.jsf;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 
 import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
-@ManagedBean(name = "plantbean")
+@ManagedBean(name = "recipebean")
 @ViewScoped
-public class PlantBean implements Serializable {
+public class RecipeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Plant> slave;
-	private Plant selectedRow;
-	private Plant selectedRowTable;
+	private List<Orders> master;
+	private Orders selectMasterRow;
+	private List<Recipe> slave;
+	private Recipe selectedRow;
 	private Calendar cal;
 	
-	@ManagedProperty(value = "#{VaSessionbean}")
+	@ManagedProperty(value = "#{vaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
 	@EJB private VaSession session;
@@ -33,8 +33,15 @@ public class PlantBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		cal = Calendar.getInstance();
-		slave = session.querryAllPlant();
-		btnNewClick();
+		master = session.querryAllOrder();
+		if(master.size() == 0) {
+			selectMasterRow = new Orders();
+			slave = new ArrayList<Recipe>();
+		} else {
+			selectMasterRow = master.get(0);
+			slave = session.querryAllRecipeByOrderId(selectMasterRow);
+		}
+		
 	}
 	
 	@PreDestroy
@@ -42,29 +49,29 @@ public class PlantBean implements Serializable {
 		
 	}
 	
+	public void onRowRecipeSelect() {
+		System.out.println("onRowRecipeSelect yyyyyyy");
+	}
+	
 	public void btnNewClick() {
-		selectedRow = new Plant();
+		selectedRow = new Recipe();
 		selectedRow.setUpdateDate(cal.getTime());
 		selectedRow.setCreateDate(cal.getTime());
 		//selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
-	public void btnCancleClick() {
-		btnNewClick();
-	}
-	
 	public void btnSaveClick() {
-		session.updatePlant(selectedRow);
+		session.updateRecipe(selectedRow);
 		init();
 	}
 	
-	public void btnEditClick(Plant o) {
+	public void btnEditClick(Recipe o) {
 		selectedRow = o;
 	}
 	
 	public void confirmDeleteClick() {
 		try {
-			session.deletePlant(selectedRow);
+			session.deleteRecipe(selectedRow);
 			init();
 		} catch(Exception ex) {
 			FacesMessage msg = new FacesMessage();
@@ -75,23 +82,23 @@ public class PlantBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(Plant o) {
+	public void btnDeleteClick(Recipe o) {
 		selectedRow = o;
 	}
 
-	public List<Plant> getSlave() {
+	public List<Recipe> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Plant> slave) {
+	public void setSlave(List<Recipe> slave) {
 		this.slave = slave;
 	}
 
-	public Plant getSelectedRow() {
+	public Recipe getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Plant selectedRow) {
+	public void setSelectedRow(Recipe selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 
@@ -101,25 +108,5 @@ public class PlantBean implements Serializable {
 
 	public void setVasessionbean(VaSessionbean vasessionbean) {
 		this.vasessionbean = vasessionbean;
-	}
-
-	public VaSession getSession() {
-		return session;
-	}
-
-	public void setSession(VaSession session) {
-		this.session = session;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Plant getSelectedRowTable() {
-		return selectedRowTable;
-	}
-
-	public void setSelectedRowTable(Plant selectedRowTable) {
-		this.selectedRowTable = selectedRowTable;
 	}
 }

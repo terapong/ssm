@@ -8,56 +8,30 @@
 	<ui:composition>
 		<p:panel closable="true" header="#{vasessionbean.programName}">
 		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
-		<p:panelGrid>
-			<p:row>
-				<p:column>
-					<p:panelGrid>
-					
-					<!-- Begin Plant Form 
-						
-						 End Plant Form -->
-						
-						<!-- Begin Customer Form -->
-						
-						<!-- End Customer Form -->
-						
-						<!-- Begin Project Form -->
-						
-						<!-- End Project Form -->
-						
-						<!-- Begin Jobsite Form -->
-						
-						<!-- End Jobsite Form -->
-						
-					</p:panelGrid>
-				</p:column>
-			</p:row>
-			<!-- End Jobsite Form -->
-			
-			<!-- Begin Order Form -->
+		<p:panelGrid id="panelOrderMainInput" style="width: 80%">
 			<p:row>
 				<p:column style="text-align: left">
-					<p:panelGrid id="panelInputMain">
+					<p:panelGrid id="panelOrderInput">
 						<p:row>
 							<p:column>
-								<h:outputText for="shipName" value="Order : " />
+								<h:outputText for="shipName" value="Order : " styleClass="required"/>
 							</p:column>
 							<p:column colspan="3">
-								<p:inputText id="shipName" value="#{orderbean.selectOrder.shipName}" size="62"/>
+								<p:inputText id="shipName" value="#{orderbean.selectOrder.shipName}" size="62" required="true" requiredMessage="#{msg.message}"/>
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText for="orderDate" value="Order date : " />
+								<h:outputText for="orderDate" value="Order date : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:calendar id="orderDate" size="16" value="#{orderbean.selectOrder.orderDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+								<p:calendar locale="th" id="orderDate" size="16" value="#{orderbean.selectOrder.orderDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
 							</p:column>
 							<p:column>
-								<h:outputText for="paidDate" value="Paid date : " />
+								<h:outputText for="paidDate" value="Paid date : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:calendar id="paidDate" size="16" value="#{orderbean.selectOrder.paidDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+								<p:calendar locale="th" id="paidDate" size="16" value="#{orderbean.selectOrder.paidDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
 							</p:column>
 						</p:row>
 						<p:row>
@@ -90,7 +64,7 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText for="shipAddress" value="Ship address: " />
+								<h:outputText for="shipAddress" value="Ship address: "  styleClass="required"/>
 							</p:column>
 							<p:column colspan="3">
 								<p:inputText id="shipAddress" value="#{orderbean.selectOrder.shipAddress}" size="62"/>
@@ -126,15 +100,9 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText for="recipe" value="recipe: " />
-							</p:column>
-							<p:column>
-								<p:inputText id="recipe" value="#{orderbean.selectOrder.recipe}" />
-							</p:column>
-							<p:column>
 								<h:outputText for="qty" value="qty: " />
 							</p:column>
-							<p:column>
+							<p:column colspan="3">
 								<p:inputText id="qty" value="#{orderbean.selectOrder.qty}" />
 							</p:column>
 						</p:row>
@@ -266,7 +234,54 @@
 					</p:panelGrid>
 				</p:column>
 			</p:row>
-			<!-- End Order Form -->
+			<p:row>
+				<p:column style="text-align: center">
+					<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{orderbean.btnSaveOrderClick()}" update="panelOrderInput" process="@this panelOrderInput" />
+					<p:commandButton value="ยกเลิก" type="button" icon="ui-icon-close" onclick="PF('newProjectDlg').hide();"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="text-align: center">
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:dataTable resizableColumns="true" id="tblRecipe" var="p" value="#{recipebean.slave}"
+									paginator="true" paginatorPosition="bottom" rows="8"
+									selectionMode="single" selection="#{recipebean.selectedRow}"	rowKey="#{p.id}">
+									<f:facet name="header">
+										<p:commandButton 
+											icon="ui-icon-plus" value="เพิ่ม"
+											actionListener="#{recipebean.btnNewClick}"
+											oncomplete="PF('newRecipeDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</f:facet>
+									<p:column headerText="ชื่อ Jobsite">
+			                <h:outputText value="#{p.company}" />
+			            </p:column>
+			            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{p.address}" />
+			            </p:column>
+			            <p:column headerText="Tel">
+			                <h:outputText value="#{p.mobilePhone}" />
+			            </p:column>
+			            <p:column headerText="">
+										<p:commandButton value="แก้ไข" 
+											actionListener="#{recipebean.btnEditClick(r)}"
+											oncomplete="PF('newObjectDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</p:column>
+									<p:column headerText="">
+										<p:commandButton value="ลบ"
+											actionListener="#{recipebean.btnDeleteClick(r)}"
+											oncomplete="PF('confirmDeleteCarDialog').show()" process="@this"
+											update=":mainCenterForm" resetValues="true"/>
+									</p:column>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
 		</p:panelGrid>
 		
 	</p:panel>

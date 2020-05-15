@@ -1,0 +1,17 @@
+ipaddress		port	user		password	detail
+171.100.118.102		80	xbatchssm01	Admin100_	Apache2
+171.100.118.102		12000	xbatchssm01	Admin100_	SSH
+171.100.118.102		8080	xbatchssm01	Admin100_	Tomee
+
+remote desktop
+171.100.118.102:30000
+ai pass 45418888
+
+
+<context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/resourcest</param-value>
+    </context-param>
+
+
+หมายเลข ใบ สั่งซื้อ290751355186628  projector

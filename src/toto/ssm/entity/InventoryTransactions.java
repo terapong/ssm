@@ -48,21 +48,6 @@ public class InventoryTransactions  implements java.io.Serializable {
         this.id = id;
         this.quantity = quantity;
     }
-    public InventoryTransactions(long id, InventoryTransactionTypes inventoryTransactionTypes, Orders orders, Products products, PurchaseOrders purchaseOrders, String comments, Date createDate, String createUser, int quantity, Date transactionCreatedDate, Date transactionModifiedDate, Date updateDate, List<PurchaseOrderDetails> purchaseOrderDetailses) {
-       this.id = id;
-       this.inventoryTransactionTypes = inventoryTransactionTypes;
-       this.orders = orders;
-       this.products = products;
-       this.purchaseOrders = purchaseOrders;
-       this.comments = comments;
-       this.createDate = createDate;
-       this.createUser = createUser;
-       this.quantity = quantity;
-       this.transactionCreatedDate = transactionCreatedDate;
-       this.transactionModifiedDate = transactionModifiedDate;
-       this.updateDate = updateDate;
-       this.purchaseOrderDetailses = purchaseOrderDetailses;
-    }
    
     @TableGenerator(
             name="SSMGen", 

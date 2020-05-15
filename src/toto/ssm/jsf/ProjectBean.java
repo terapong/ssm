@@ -16,13 +16,13 @@ import javax.faces.context.FacesContext;
 import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
-@ManagedBean(name = "plantbean")
+@ManagedBean(name = "projectbean")
 @ViewScoped
-public class PlantBean implements Serializable {
+public class ProjectBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Plant> slave;
-	private Plant selectedRow;
-	private Plant selectedRowTable;
+	private List<Project> slave;
+	private Project selectedRow;
+	private Project selectedRowTable;
 	private Calendar cal;
 	
 	@ManagedProperty(value = "#{VaSessionbean}")
@@ -33,7 +33,7 @@ public class PlantBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		cal = Calendar.getInstance();
-		slave = session.querryAllPlant();
+		slave = session.querryAllProject();
 		btnNewClick();
 	}
 	
@@ -43,7 +43,7 @@ public class PlantBean implements Serializable {
 	}
 	
 	public void btnNewClick() {
-		selectedRow = new Plant();
+		selectedRow = new Project();
 		selectedRow.setUpdateDate(cal.getTime());
 		selectedRow.setCreateDate(cal.getTime());
 		//selectedRow.setCreateUser(vasessionbean.getUsername());
@@ -54,17 +54,17 @@ public class PlantBean implements Serializable {
 	}
 	
 	public void btnSaveClick() {
-		session.updatePlant(selectedRow);
+		session.updateProject(selectedRow);
 		init();
 	}
 	
-	public void btnEditClick(Plant o) {
+	public void btnEditClick(Project o) {
 		selectedRow = o;
 	}
 	
 	public void confirmDeleteClick() {
 		try {
-			session.deletePlant(selectedRow);
+			session.deleteProject(selectedRow);
 			init();
 		} catch(Exception ex) {
 			FacesMessage msg = new FacesMessage();
@@ -75,23 +75,23 @@ public class PlantBean implements Serializable {
 		}
 	}
 	
-	public void btnDeleteClick(Plant o) {
+	public void btnDeleteClick(Project o) {
 		selectedRow = o;
 	}
 
-	public List<Plant> getSlave() {
+	public List<Project> getSlave() {
 		return slave;
 	}
 
-	public void setSlave(List<Plant> slave) {
+	public void setSlave(List<Project> slave) {
 		this.slave = slave;
 	}
 
-	public Plant getSelectedRow() {
+	public Project getSelectedRow() {
 		return selectedRow;
 	}
 
-	public void setSelectedRow(Plant selectedRow) {
+	public void setSelectedRow(Project selectedRow) {
 		this.selectedRow = selectedRow;
 	}
 
@@ -115,11 +115,11 @@ public class PlantBean implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Plant getSelectedRowTable() {
+	public Project getSelectedRowTable() {
 		return selectedRowTable;
 	}
 
-	public void setSelectedRowTable(Plant selectedRowTable) {
+	public void setSelectedRowTable(Project selectedRowTable) {
 		this.selectedRowTable = selectedRowTable;
 	}
 }

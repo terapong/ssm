@@ -25,29 +25,31 @@
 											oncomplete="PF('newObjectDlg').show()" process="@this"
 											update=":mainCenterForm" resetValues="true" />
 									</f:facet>
-									<p:column headerText="Id">
-										<h:outputText value="#{r.id}" />
-									</p:column>
-									<p:column headerText="Name">
-										<h:outputText value="#{r.firstName}" />
-									</p:column>
-									<p:column headerText="Update Date">
+									<p:column headerText="ชื่อ บริษัท:" style="width: 100px">
+		                <h:outputText value="#{r.company}" />
+		            </p:column>
+		            <p:column headerText="ที่อยู่">
+			                <h:outputText value="#{r.address}" />
+			            </p:column>
+			            <p:column headerText="เบอร์โทร" style="width: 70px">
+			                <h:outputText value="#{r.mobilePhone}"/>
+			            </p:column>
+			            <p:column headerText="Update Date" style="width: 80px">
 										<h:outputText value="#{r.updateDate}">
 											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
 										</h:outputText>
 									</p:column>
-									<p:column headerText="">
-										<p:commandButton value="แก้ไข" 
-											actionListener="#{customerbean.btnEditClick(r)}"
-											oncomplete="PF('newObjectDlg').show()" process="@this"
-											update=":mainCenterForm" resetValues="true" />
-									</p:column>
-									<p:column headerText="">
-										<p:commandButton value="ลบ"
+			            <p:column headerText="" style="width: 50px">
+		                <p:commandButton value="แก้ไข" actionListener="#{customerbean.btnEditClick(r)}"
+		                	oncomplete="PF('newObjectDlg').show()" process="@this"
+		                	update=":mainCenterForm" resetValues="true"/>
+			            </p:column>
+			            <p:column headerText="" style="width: 50px">
+				            <p:commandButton value="ลบ"
 											actionListener="#{customerbean.btnDeleteClick(r)}"
-											oncomplete="PF('confirmDeleteCarDialog').show()" process="@this"
+											oncomplete="PF('confirmDeleteClick').show()" process="@this"
 											update=":mainCenterForm" resetValues="true"/>
-									</p:column>
+			            </p:column>
 								</p:dataTable>
 							</p:column>
 						</p:row>
@@ -57,100 +59,98 @@
 		</p:panelGrid>
 	</p:panel>
 	
-	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
-	  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{customerbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-	  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
-  	</p:confirmDialog>
-  	
   	<p:dialog id="newObjectDlg" header="เพิ่มผู้ใช้งาน" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
-		<p:panelGrid id="panelInput">
-			<p:row>
-				<p:column>
-					<h:outputText value="ชื่อ : " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.firstName}" required="true" requiredMessage="กรุณา กรอกรชื่อผู้ใช้งาน"/>
-				</p:column>
-				<p:column>
-					<h:outputText value="นามสกุล : " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="เบอร์โทรมือถือ : " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.mobilePhone}"/>
-				</p:column>
-				<p:column>
-					<h:outputText value="เบอร์โทรที่ทำงาน : " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.businessPhone}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="เบอร์โทรบ้าน: " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.homePhone}"/>
-				</p:column>
-				<p:column>
-					<h:outputText for="faxPhone" value="แฟกช์ : " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.faxNumber}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="ชื่อ บริษัท: " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.company}"/>
-				</p:column>
-				<p:column>
-					<h:outputText value="website: " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.webPage}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="email: " />
-				</p:column>
-				<p:column>
-					<p:inputText value="#{customerbean.selectedRow.emailAddress}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="ที่อยู่ : " />
-				</p:column>
-				<p:column>
-					<p:inputTextarea value="#{customerbean.selectedRow.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputText value="Comment: " />
-				</p:column>
-				<p:column>
-					<p:inputTextarea value="#{customerbean.selectedRow.notes}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column colspan="2" style="text-align: center">
-					<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{customerbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
-					<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
-				</p:column>
-			</p:row>
-		</p:panelGrid>
-	</p:dialog>
+			<p:panelGrid id="panelInput">
+				<p:row>
+					<p:column>
+						<h:outputText value="ชื่อ : " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.firstName}" required="true" requiredMessage="กรุณา กรอกชื่อผู้ใช้งาน"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="นามสกุล : " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.lastName}" required="true" requiredMessage="กรุณา กรอกนามสกุล"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="เบอร์โทรมือถือ : " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.mobilePhone}"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="เบอร์โทรที่ทำงาน : " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.businessPhone}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="เบอร์โทรบ้าน: " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.homePhone}"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="faxPhone" value="แฟกช์ : " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.faxNumber}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="ชื่อ บริษัท: " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.company}"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="website: " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.webPage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="email: " />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{customerbean.selectedRow.emailAddress}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="ที่อยู่ : " />
+					</p:column>
+					<p:column>
+						<p:inputTextarea value="#{customerbean.selectedRow.address}" required="true" requiredMessage="กรุณา กรอกที่อยู่"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="Comment: " />
+					</p:column>
+					<p:column>
+						<p:inputTextarea value="#{customerbean.selectedRow.notes}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align: center">
+						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{customerbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+	
+		<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCarDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{customerbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/> 
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
+  	</p:confirmDialog>
 	</ui:composition>
 </html>

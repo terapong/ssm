@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:dataTable id = "tblProject" var="r" value="#{projectbean.slave}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{projectbean.selectedRowTable}"	rowKey="#{r.id}">
+								<f:facet name="header">
+									<p:commandButton icon="ui-icon-plus" value="เพิ่ม"
+										actionListener="#{projectbean.btnNewClick}" oncomplete="PF('newObjectDlg').show()"
+										process="@this"	update=":mainCenterForm" resetValues="true" />
+								</f:facet>
+								<p:column headerText="ชื่อ บริษัท:" style="width: 100px">
+		                <h:outputText value="#{r.projectName}" />
+		            </p:column>
+			            <p:column headerText="Update Date" style="width: 80px">
+										<h:outputText value="#{r.updateDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+			            <p:column headerText="" style="width: 50px">
+		                <p:commandButton value="แก้ไข" actionListener="#{projectbean.btnEditClick(r)}"
+		                	oncomplete="PF('newObjectDlg').show()" process="@this"
+		                	update=":mainCenterForm" resetValues="true"/>
+			            </p:column>
+			            <p:column headerText="" style="width: 50px">
+				            <p:commandButton value="ลบ"
+											actionListener="#{projectbean.btnDeleteClick(r)}"
+											oncomplete="PF('confirmDeleteClick').show()" process="@this"
+											update=":mainCenterForm" resetValues="true"/>
+			            </p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+		
+		<p:dialog id="newObjectDlg" header="เพิ่ม Plant" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+			<p:panelGrid id="panelInput">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="ชื่อ : " styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:inputText  value="#{projectbean.selectedRow.projectName}" required="true" requiredMessage="#{msg['plant.name']}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align: center">
+						<p:commandButton value="บันทึก" icon="ui-icon-disk" actionListener="#{projectbean.btnSaveClick}" update=":mainCenterForm" process="@this panelInput" oncomplete="if (args.validationFailed) {PF('newObjectDlg').show(); } else {PF('newObjectDlg').hide(); }"/>
+						<p:commandButton value="ยกเลิก" icon="ui-icon-close" onclick="PF('newObjectDlg').hide()"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:dialog>
+		
+		<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteClick" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteClick').hide()" actionListener = "#{projectbean.confirmDeleteClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteClick').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	</ui:composition>
+</html>

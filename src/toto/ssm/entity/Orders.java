@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class Orders  implements java.io.Serializable {
      
      private String paymentType;
      private String qty;
-     private String recipe;
+     //private String recipe;
      private String shipAddress;
      private String shipCity;
      private String shipCountryRegion;
@@ -69,6 +70,7 @@ public class Orders  implements java.io.Serializable {
      private Date createDate;
      
      private List<InventoryTransactions> inventoryTransactionses = new ArrayList<InventoryTransactions>(0);
+     private List<Recipe> recipes = new ArrayList<Recipe>(0);
      private List<OrdersOrdersStatus> ordersOrdersStatuses = new ArrayList<OrdersOrdersStatus>(0);
      private List<OrderDetails> orderDetailses = new ArrayList<OrderDetails>(0);
      private List<OrdersStatusOrders> ordersStatusOrderses = new ArrayList<OrdersStatusOrders>(0);
@@ -163,9 +165,6 @@ public class Orders  implements java.io.Serializable {
 	}
 
 
-	public void setRecipe(String recipe) {
-		this.recipe = recipe;
-	}
 
 
 	public void setShipAddress(String shipAddress) {
@@ -318,17 +317,6 @@ public class Orders  implements java.io.Serializable {
         this.qty = qty;
     }
 
-    
-    @Column(name="recipe")
-    public String getRecipe() {
-        return this.recipe;
-    }
-    
-    public void ListRecipe(String recipe) {
-        this.recipe = recipe;
-    }
-
-    
     @Column(name="ship_address")
     public String getShipAddress() {
         return this.shipAddress;
@@ -434,7 +422,17 @@ public class Orders  implements java.io.Serializable {
         this.updateDate = updateDate;
     }
     
-@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name="order_id")
+    public List<Recipe> getRecipe() {
+    	return this.recipes;
+    }
+    
+    public void setRecipe(List<Recipe> recipes) {
+    	this.recipes = recipes;
+    }
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<InventoryTransactions> getInventoryTransactionses() {
         return this.inventoryTransactionses;
     }

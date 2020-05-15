@@ -16,9 +16,9 @@ import javax.faces.context.FacesContext;
 import toto.ssm.entity.*;
 import toto.ssm.session.VaSession;
 
-@ManagedBean(name = "orderbean")
+@ManagedBean(name = "ordernewbean")
 @ViewScoped
-public class OrderBean implements Serializable {
+public class OrderNewBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//Plant zone
 	private List<Plant> master;
@@ -73,21 +73,6 @@ public class OrderBean implements Serializable {
 		customers = session.querryAllCustomer();
 		projects = session.querryAllProject();
 		suppliers = session.querryAllSuppliers();
-		if(master.isEmpty()) {
-			addDisabled = "true";
-			selectedMaster = new Plant();
-			selectedMaster.setCreateDate(cal.getTime());
-			selectedMaster.setUpdateDate(cal.getTime());
-			//selectedMaster.setCreateUser(vasessionbean.getUsername());
-			selectedMasterId = 0;
-		} else {
-			addDisabled = "false";
-			selectedMaster = master.get(0);
-			selectedMaster.setUpdateDate(cal.getTime());
-			selectedMasterId = selectedMaster.getId();
-		}
-		//selectedRow = selectedMaster.getEmployees().get(0);
-		//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
 		
 		mode_plant = "ADD";
 		mode_customer = "ADD";

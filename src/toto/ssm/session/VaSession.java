@@ -15,13 +15,35 @@ public class VaSession implements Serializable{
 	@PersistenceContext(unitName="ssm_test_exportPU")
 	EntityManager em;
 	
+	public List<Recipe> querryAllRecipe() {
+		return em.createNativeQuery("select * from recipe", Suppliers.class).getResultList();
+	}
+	
+	public List<Recipe> querryAllRecipeByOrderId(Orders o) {
+		return em.createNativeQuery("select * from recipe where order_d = " + o.getId(), Suppliers.class).getResultList();
+	}
+	
+	public Recipe querryRecipeById(long id) {
+		return em.find(Recipe.class, id);
+	}
+	
+	public void updateRecipe(Recipe p) {
+		em.merge(p);
+	}
+	
+	public void deleteRecipe(Recipe p) {
+		p = querryRecipeById(p.getId());
+		em.remove(p);
+	}
+	
 	public List<Suppliers> querryAllSuppliers() {
-		return em.createNativeQuery("select * from Suppliers", Suppliers.class).getResultList();
+		return em.createNativeQuery("select * from suppliers", Suppliers.class).getResultList();
 	}
 	
 	public Suppliers querrySuppliersById(long id) {
 		return em.find(Suppliers.class, id);
 	}
+	
 	public void updateSuppliers(Suppliers p) {
 		em.merge(p);
 	}
@@ -32,7 +54,7 @@ public class VaSession implements Serializable{
 	}
 
 	public List<Project> querryAllProject() {
-		return em.createNativeQuery("select * from Project", Project.class).getResultList();
+		return em.createNativeQuery("select * from project", Project.class).getResultList();
 	}
 	
 	public Project querryProjectById(long id) {
