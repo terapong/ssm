@@ -3,9 +3,12 @@ package toto.ssm.entity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -33,7 +36,7 @@ public class Recipe  implements java.io.Serializable {
     private String stateProvince;
     private String webPage;
     private String zipPostalCode;
-    //private Orders orders;
+    private Orders orders;
     //private List<Orders> orderses = new ArrayList<Orders>(0);
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -75,6 +78,16 @@ public class Recipe  implements java.io.Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="order_id")
+    public Orders getOrders() {
+        return this.orders;
+    }
+    
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
 
 	public Date getCreateDate() {
 		return createDate;

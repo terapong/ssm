@@ -25,13 +25,13 @@
 								<h:outputText for="orderDate" value="Order date : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:calendar locale="th" id="orderDate" size="16" value="#{orderbean.selectOrder.orderDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+								<p:calendar locale="th" id="orderDate" size="16" value="#{orderbean.selectOrder.orderDate}" pattern="dd/MM/yyy" showOn="button"/>
 							</p:column>
 							<p:column>
 								<h:outputText for="paidDate" value="Paid date : "  styleClass="required"/>
 							</p:column>
 							<p:column>
-								<p:calendar locale="th" id="paidDate" size="16" value="#{orderbean.selectOrder.paidDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+								<p:calendar locale="th" id="paidDate" size="16" value="#{orderbean.selectOrder.paidDate}" pattern="dd/MM/yyy" showOn="button"/>
 							</p:column>
 						</p:row>
 						<p:row>
@@ -106,11 +106,11 @@
 								<p:inputText id="qty" value="#{orderbean.selectOrder.qty}" />
 							</p:column>
 						</p:row>
-						
 						<p:row>
-							<!-- Begin plant zone -->
+						
+							<!-- Begin Plant zone -->
 							<p:column>
-								<h:outputText value="Plant name :" />
+								<h:outputText value="Plant name :"  styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputText id="plantName" readonly="true" size="12" value="#{orderbean.selectedMasterOverlay.company}"/>
@@ -118,16 +118,16 @@
 								<p:overlayPanel id="plantPanel" for="plantOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
 									<p:dataTable resizableColumns="true" id="tblPlant" var="p" value="#{orderbean.master}"
 												paginator="true" paginatorPosition="bottom" rows="8"
-												selectionMode="single" selection="#{orderbean.selectedMasterOverlay}"	rowKey="#{p.id}">
+												selectionMode="single" selection="#{orderbean.selectedMaster}"	rowKey="#{p.id}">
 										<p:ajax event="rowSelect" listener="#{orderbean.onRowMasterSelect}" update="plantName"/>
-										<p:column headerText="ชื่อ Plant">
+										<p:column headerText="ชื่อ" style="width: 100px">
 				                <h:outputText value="#{p.company}" />
 				            </p:column>
-				            <p:column headerText="ที่อยู่">
+				            <p:column headerText="ที่อยู่" style="width: 200px">
 				                <h:outputText value="#{p.address}" />
 				            </p:column>
 				            <p:column headerText="Tel">
-				                <h:outputText value="#{p.mobilePhone}" />
+				                <h:outputText value="#{p.mobilePhone}" style="width: 70px"/>
 				            </p:column>
 									</p:dataTable>
 								</p:overlayPanel>
@@ -136,11 +136,11 @@
 								oncomplete="PF('newPlantDlg').show()" process="@this"
 								update=":mainCenterForm" resetValues="true" />
 							</p:column>
-							<!-- End plant zone -->
+							<!-- End Plant zone -->
 							
 							<!-- Begin Customer zone -->
 							<p:column>
-								<h:outputText value="Customer name :" />
+								<h:outputText value="Customer name :"  styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputText id="customerName" readonly="true" size="12" value="#{orderbean.selectCustomerOverlay.company}"/>
@@ -173,7 +173,7 @@
 						
 							<!-- Begin project zone -->
 							<p:column>
-								<h:outputText value="Project name :" />
+								<h:outputText value="Project name :"  styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputText id="projectName" readonly="true" size="12" value="#{orderbean.selectProjectOverlay.projectName}"/>
@@ -203,7 +203,7 @@
 							
 							<!-- Begin Jobsite Form -->
 							<p:column>
-								<h:outputText value="Jobsite name :" />
+								<h:outputText value="Jobsite name :"  styleClass="required"/>
 							</p:column>
 							<p:column>
 								<p:inputText id="JobsiteName" readonly="true" size="12" value="#{orderbean.selectSupplierOverLay.company}"/>
@@ -240,7 +240,39 @@
 					<p:commandButton value="ยกเลิก" type="button" icon="ui-icon-close" onclick="PF('newProjectDlg').hide();"/>
 				</p:column>
 			</p:row>
-			<p:row>
+		</p:panelGrid>
+		
+	</p:panel>
+	<ui:include src="plantDialog.xhtml" />
+  <ui:include src="customerDialog.xhtml" />
+  <ui:include src="projectDialog.xhtml" />
+  <ui:include src="jobSiteDialog.xhtml" />
+  
+	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteMasterDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelInput" onclick="PF('confirmDeleteMasterDialog').hide()" actionListener = "#{orderbean.confirmDeletePlantClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteMasterDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	  
+	 <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCustomerDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelCustomerInput" onclick="PF('confirmDeleteCustomerDialog').hide()" actionListener="#{orderbean.confirmDeleteCustomClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCustomerDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	  
+	  <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteProjectDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelProjectInput" onclick="PF('confirmDeleteProjectDialog').hide()" actionListener="#{orderbean.confirmDeleteProjectClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteProjectDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+  
+  	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteSuppliersDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelJobsiteInput" onclick="PF('confirmDeleteSuppliersDialog').hide()" actionListener="#{orderbean.confirmDeleteSuppliersClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteSuppliersDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+  
+	</ui:composition>
+</html>
+
+<!--
+<p:row>
 				<p:column style="text-align: center">
 					<p:panelGrid>
 						<p:row>
@@ -281,34 +313,5 @@
 						</p:row>
 					</p:panelGrid>
 				</p:column>
-			</p:row>
-		</p:panelGrid>
-		
-	</p:panel>
-	<ui:include src="plantDialog.xhtml" />
-  <ui:include src="customerDialog.xhtml" />
-  <ui:include src="projectDialog.xhtml" />
-  <ui:include src="jobSiteDialog.xhtml" />
-  
-	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteMasterDialog" appendTo="@(body)">  
-		  <p:commandButton value="ใช่" update="panelInput" onclick="PF('confirmDeleteMasterDialog').hide()" actionListener = "#{orderbean.confirmDeletePlantClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
-		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteMasterDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
-	  </p:confirmDialog>
-	  
-	 <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCustomerDialog" appendTo="@(body)">  
-		  <p:commandButton value="ใช่" update="panelCustomerInput" onclick="PF('confirmDeleteCustomerDialog').hide()" actionListener="#{orderbean.confirmDeleteCustomClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCustomerDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
-	  </p:confirmDialog>
-	  
-	  <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteProjectDialog" appendTo="@(body)">  
-		  <p:commandButton value="ใช่" update="panelProjectInput" onclick="PF('confirmDeleteProjectDialog').hide()" actionListener="#{orderbean.confirmDeleteProjectClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteProjectDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
-	  </p:confirmDialog>
-  
-  	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteSuppliersDialog" appendTo="@(body)">  
-		  <p:commandButton value="ใช่" update="panelJobsiteInput" onclick="PF('confirmDeleteSuppliersDialog').hide()" actionListener="#{orderbean.confirmDeleteSuppliersClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
-		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteSuppliersDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
-	  </p:confirmDialog>
-  
-	</ui:composition>
-</html>
+			</p:row> 
+ -->

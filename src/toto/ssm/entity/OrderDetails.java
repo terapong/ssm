@@ -80,7 +80,7 @@ public class OrderDetails  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="status_id")
     public OrderDetailsStatus getOrderDetailsStatus() {
         return this.orderDetailsStatus;
@@ -90,7 +90,7 @@ public class OrderDetails  implements java.io.Serializable {
         this.orderDetailsStatus = orderDetailsStatus;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
     public Orders getOrders() {
         return this.orders;
@@ -100,7 +100,7 @@ public class OrderDetails  implements java.io.Serializable {
         this.orders = orders;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="product_id")
     public Products getProducts() {
         return this.products;

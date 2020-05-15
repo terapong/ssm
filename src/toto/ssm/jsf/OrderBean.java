@@ -60,7 +60,6 @@ public class OrderBean implements Serializable {
 	
 	private Calendar cal;
 	
-	
 	@ManagedProperty(value = "#{vaSessionbean}")
 	private VaSessionbean vasessionbean;
 	
@@ -69,23 +68,47 @@ public class OrderBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		cal = Calendar.getInstance();
+		selectOrder = new Orders();
+		selectOrder.setCreateDate(cal.getTime());
+		selectOrder.setUpdateDate(cal.getTime());
+		
 		master = session.querryAllPlant();
-		customers = session.querryAllCustomer();
-		projects = session.querryAllProject();
-		suppliers = session.querryAllSuppliers();
-		if(master.isEmpty()) {
-			addDisabled = "true";
-			selectedMaster = new Plant();
-			selectedMaster.setCreateDate(cal.getTime());
-			selectedMaster.setUpdateDate(cal.getTime());
-			//selectedMaster.setCreateUser(vasessionbean.getUsername());
-			selectedMasterId = 0;
-		} else {
-			addDisabled = "false";
-			selectedMaster = master.get(0);
-			selectedMaster.setUpdateDate(cal.getTime());
-			selectedMasterId = selectedMaster.getId();
+		if(master.size() != 0) {
+			selectedMasterOverlay = master.get(0);
+			selectOrder.setPlant(selectedMasterOverlay);
 		}
+		
+		customers = session.querryAllCustomer();
+		if(customers.size() != 0) {
+			selectCustomerOverlay = customers.get(0);
+			selectOrder.setCustomer(selectCustomerOverlay);
+		}
+		
+		projects = session.querryAllProject();
+		if(projects.size() != 0) {
+			selectProjectOverlay = projects.get(0);
+			selectOrder.setProject(selectProjectOverlay);
+		}
+		
+		suppliers = session.querryAllSuppliers();
+		if(suppliers.size() != 0) {
+			selectSupplierOverLay = suppliers.get(0);
+			selectOrder.setSuppliers(selectSupplierOverLay);
+		}
+		
+//		if(master.isEmpty()) {
+//			addDisabled = "true";
+//			selectedMaster = new Plant();
+//			selectedMaster.setCreateDate(cal.getTime());
+//			selectedMaster.setUpdateDate(cal.getTime());
+//			//selectedMaster.setCreateUser(vasessionbean.getUsername());
+//			selectedMasterId = 0;
+//		} else {
+//			addDisabled = "false";
+//			selectedMaster = master.get(0);
+//			selectedMaster.setUpdateDate(cal.getTime());
+//			selectedMasterId = selectedMaster.getId();
+//		}
 		//selectedRow = selectedMaster.getEmployees().get(0);
 		//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
 		
@@ -185,17 +208,6 @@ public class OrderBean implements Serializable {
 			session.updateSuppliers(selectSupplier);
 			suppliers = session.querryAllSuppliers();
 			btnNewSuppliersClick();
-			//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
-			//selectedMasterId = selectedMaster.getId();
-		} 
-	}
-	
-	public void btnSaveOrdersClick() {
-		System.out.println("Order name :" + selectOrder.getShipName());
-		if(mode_order.equals("ADD") || mode_order.equals("EDIT")) {
-//			session.updateOrders(selectOrder);
-//			orders = session.querryAllOrder();
-//			btnNewOrderClick();
 			//slave = session.querryAllOrderByPlantID(selectedMaster.getId());
 			//selectedMasterId = selectedMaster.getId();
 		} 
@@ -302,23 +314,21 @@ public class OrderBean implements Serializable {
 	}
 	
 	public void btnNewOrderClick() {
-//		selectedRow = new Orders();
-//		selectedRow.setCustomer(selectedMaster);
-//		selectedRow.setCreateDate(cal.getTime());
-//		selectedRow.setUpdateDate(cal.getTime());
+		init();
+//		selectOrder = new Orders();
+//		selectOrder.setCreateDate(cal.getTime());
+//		selectOrder.setUpdateDate(cal.getTime());
 		//selectedRow.setCreateUser(vasessionbean.getUsername());
 	}
 	
 	public void btnSaveOrderClick() {
-		try {
-			//selectOrder.setCustomer(selectedMaster);
+		System.out.println("Order name :" + selectOrder.getShipName());
+		if(mode_order.equals("ADD") || mode_order.equals("EDIT")) {
+			selectOrder.setCreateDate(cal.getTime());
 			selectOrder.setUpdateDate(cal.getTime());
-			//session.updateOrders(selectOrder);
-			System.out.println("1111111111111111111vvvvvv");
-		} catch(Exception ex) {
-			ex.printStackTrace();
+			session.updateOrders(selectOrder);
+			init();
 		}
-//		init();
 	}
 	
 	public void btnOrderStatusClick(Orders o) {

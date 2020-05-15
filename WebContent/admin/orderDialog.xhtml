@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:dialog id="newObjectDlg" header="เพิ่มผู้ใช้งาน" widgetVar="newObjectDlg"  modal="true" appendTo="@(body)" width="700px" height="500px" closable="true">
+			<p:panelGrid id="panelOrderInput">
+				<p:row>
+					<p:column>
+						<h:outputText for="shipName" value="Order : " styleClass="required"/>
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText id="shipName" value="#{orderbean.selectOrder.shipName}" size="62" required="true" requiredMessage="#{msg.message}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="orderDate" value="Order date : "  styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:calendar locale="th" id="orderDate" size="16" value="#{orderbean.selectOrder.orderDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="paidDate" value="Paid date : "  styleClass="required"/>
+					</p:column>
+					<p:column>
+						<p:calendar locale="th" id="paidDate" size="16" value="#{orderbean.selectOrder.paidDate}" readonly="true" pattern="dd/MM/yyy" showOn="button"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="paymentType" value="Payment type : " />
+					</p:column>
+					<p:column>
+						<p:inputText id="paymentType" value="#{orderbean.selectOrder.paymentType}"/>
+					</p:column>
+					<p:column>
+						<h:outputText for="shipCity" value="Ship city: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="shipCity" value="#{orderbean.selectOrder.shipCity}" />
+					</p:column>			
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="shipCountry" value="Ship country: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="shipCountry" value="#{orderbean.selectOrder.shipCountryRegion}" />
+					</p:column>
+					<p:column>
+						<h:outputText for="shipStartProvince" value="Ship province: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="shipStartProvince" value="#{orderbean.selectOrder.shipStateProvince}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="shipAddress" value="Ship address: "  styleClass="required"/>
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText id="shipAddress" value="#{orderbean.selectOrder.shipAddress}" size="62"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="shipPostalcode" value="Ship postalcode: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="shipPostalcode" value="#{orderbean.selectOrder.shipZipPostalCode}" />
+					</p:column>
+					<p:column>
+						<h:outputText for="shipFree" value="ship free: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="shipFree" value="#{orderbean.selectOrder.shippingFee}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="taxRate" value="tax rate: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="taxRate" value="#{orderbean.selectOrder.taxRate}" />
+					</p:column>
+					<p:column>
+						<h:outputText for="taxes" value="taxes: " />
+					</p:column>
+					<p:column>
+						<p:inputText id="taxes" value="#{orderbean.selectOrder.taxes}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText for="qty" value="qty: " />
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText id="qty" value="#{orderbean.selectOrder.qty}" />
+					</p:column>
+				</p:row>
+				<p:row>
+			<!-- Begin Customer zone -->
+			<p:column>
+				<h:outputText value="Customer name :" />
+			</p:column>
+			<p:column>
+				<p:inputText id="customerName" readonly="true" size="12" value="#{orderbean.selectCustomerOverlay.company}"/>
+				<p:commandButton id="customerOverlay" icon = "ui-icon-arrow-4-diag"/>
+				<p:overlayPanel id="customerPanel" for="customerOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+					<p:dataTable resizableColumns="true" id="tblcustomer" var="p" value="#{orderbean.customers}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectCustomerOverlay}"	rowKey="#{p.id}">
+						<p:ajax event="rowSelect" listener="#{orderbean.onRowCustomerSelect}" update="customerName"/>
+						<p:column headerText="ชื่อ Customer">
+                <h:outputText value="#{p.company}" />
+            </p:column>
+            <p:column headerText="ที่อยู่">
+                <h:outputText value="#{p.address}" />
+            </p:column>
+            <p:column headerText="Tel">
+                <h:outputText value="#{p.mobilePhone}" />
+            </p:column>
+					</p:dataTable>
+				</p:overlayPanel>
+				<p:commandButton icon="ui-icon-plus"
+				actionListener="#{orderbean.btnNewCustomerClick()}"
+				oncomplete="PF('newCustomerDlg').show()" process="@this"
+				update=":mainCenterForm" resetValues="true" />
+			</p:column>
+			<!-- End Customer zone -->
+			
+			<!-- Begin project zone -->
+			<p:column>
+				<h:outputText value="Project name :" />
+			</p:column>
+			<p:column>
+				<p:inputText id="projectName" readonly="true" size="12" value="#{orderbean.selectProjectOverlay.projectName}"/>
+				<p:commandButton id="projectOverlay" icon = "ui-icon-arrow-4-diag"/>
+				<p:overlayPanel id="projectPanel" for="projectOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+					<p:dataTable resizableColumns="true" id="tblpro" var="p" value="#{orderbean.projects}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectProjectOverlay}"	rowKey="#{p.id}">
+						<p:ajax event="rowSelect" listener="#{orderbean.onRowProjectSelect}" update="projectName"/>
+						<p:column headerText="ชื่อ Project">
+                <h:outputText value="#{p.projectName}" />
+            </p:column>
+            <p:column headerText="Create date">
+                <h:outputText value="#{p.createDate}" />
+            </p:column>
+            <p:column headerText="Update date">
+                <h:outputText value="#{p.updateDate}" />
+            </p:column>
+					</p:dataTable>
+				</p:overlayPanel>
+				<p:commandButton icon="ui-icon-plus"
+				actionListener="#{orderbean.btnNewProjectClick()}"
+				oncomplete="PF('newProjectDlg').show()" process="@this"
+				update=":mainCenterForm" resetValues="true" />
+			</p:column>
+			<!-- End project zone -->
+		</p:row>
+		<p:row>
+			
+			<!-- Begin Jobsite Form -->
+			<p:column>
+				<h:outputText value="Jobsite name :" />
+			</p:column>
+			<p:column colspan="3">
+				<p:inputText id="JobsiteName" readonly="true" size="12" value="#{orderbean.selectSupplierOverLay.company}"/>
+				<p:commandButton id="jobsiteOverlay" icon = "ui-icon-arrow-4-diag"/>
+				<p:overlayPanel id="jobsitePanel" for="jobsiteOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+					<p:dataTable resizableColumns="true" id="tblJobsite" var="p" value="#{orderbean.suppliers}"
+								paginator="true" paginatorPosition="bottom" rows="8"
+								selectionMode="single" selection="#{orderbean.selectSupplierOverLay}"	rowKey="#{p.id}">
+						<p:ajax event="rowSelect" listener="#{orderbean.onRowSuppliersSelect}" update="JobsiteName"/>
+						<p:column headerText="ชื่อ Jobsite">
+                <h:outputText value="#{p.company}" />
+            </p:column>
+            <p:column headerText="ที่อยู่">
+                <h:outputText value="#{p.address}" />
+            </p:column>
+            <p:column headerText="Tel">
+                <h:outputText value="#{p.mobilePhone}" />
+            </p:column>
+					</p:dataTable>
+				</p:overlayPanel>
+				<p:commandButton icon="ui-icon-plus"
+				actionListener="#{orderbean.btnNewSuppliersClick()}"
+				oncomplete="PF('newJobSiteDlg').show()" process="@this"
+				update=":mainCenterForm" resetValues="true" />
+			</p:column>
+			<!-- End Jobsite Form -->
+		</p:row>
+			</p:panelGrid>
+		</p:dialog>
+	</ui:composition>
+</html>

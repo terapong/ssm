@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -422,8 +421,16 @@ public class Orders  implements java.io.Serializable {
         this.updateDate = updateDate;
     }
     
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name="order_id")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="orders")
+    public List<InventoryTransactions> getInventoryTransactionses() {
+        return this.inventoryTransactionses;
+    }
+
+	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
+		this.inventoryTransactionses = inventoryTransactionses;
+	}
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="orders")
     public List<Recipe> getRecipe() {
     	return this.recipes;
     }
@@ -433,15 +440,6 @@ public class Orders  implements java.io.Serializable {
     }
     
     @OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
-    public List<InventoryTransactions> getInventoryTransactionses() {
-        return this.inventoryTransactionses;
-    }
-
-	public void setInventoryTransactionses(List<InventoryTransactions> inventoryTransactionses) {
-		this.inventoryTransactionses = inventoryTransactionses;
-	}
-    
-@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<OrderDetails> getOrderDetailses() {
         return this.orderDetailses;
     }
@@ -450,7 +448,7 @@ public class Orders  implements java.io.Serializable {
 		this.orderDetailses = orderDetailses;
 	}
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="orders")
     public List<OrdersStatusOrders> getOrdersStatusOrderses() {
         return this.ordersStatusOrderses;
     }

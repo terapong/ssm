@@ -66,7 +66,7 @@ public class MenuBean implements Serializable{
 	}
 	
 	public String orderClick() {
-		vaSessionbean.setProgramName("เปิดคำสั่งซื้อใหม่");
+		vaSessionbean.setProgramName("คำสั่งซื้อใหม่");
 		vaSessionbean.setContentCenter("admin/order.xhtml");
 		return "main?facesRedirect=true";
 	}

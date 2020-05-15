@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<p:panel closable="true" header="#{vasessionbean.programName}">
+		<p:ajax event="close" listener="#{menubean.handleClose}" update=":mainCenterForm" />
+		<p:panelGrid>
+			<p:row>
+				<p:column style="text-align: center">
+					<p:inputText id="plantName" readonly="true" value="#{orderbean.selectedMaster.company}"/>
+					<p:commandButton id="plantOverlay" value="เลือก Plant"/>
+					<p:overlayPanel id="plantPanel" for="plantOverlay" hideEffect="fade" dynamic="true" style="width:600px" modal="true" appendTo="@(body)" showCloseIcon="true">
+						<p:dataTable resizableColumns="true" id="tblPlant" var="p" value="#{orderbean.master}"
+									paginator="true" paginatorPosition="bottom" rows="8"
+									selectionMode="single" selection="#{orderbean.selectedMaster}"	rowKey="#{p.id}">
+							<p:ajax event="rowSelect" listener="#{orderbean.onRowMasterSelect}" update="plantName"/>
+							<p:column headerText="ชื่อ" style="width: 100px">
+	                <h:outputText value="#{p.company}" />
+	            </p:column>
+	            <p:column headerText="ที่อยู่" style="width: 200px">
+	                <h:outputText value="#{p.address}" />
+	            </p:column>
+	            <p:column headerText="Tel">
+	                <h:outputText value="#{p.mobilePhone}" style="width: 70px"/>
+	            </p:column>
+						</p:dataTable>
+					</p:overlayPanel>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:dataTable resizableColumns="false" id="tblOrder" var="r" value="#{orderbean.orders}"
+									paginator="true" paginatorPosition="bottom" rows="15"
+									selectionMode="single" selection="#{orderbean.selectOrder}"	rowKey="#{r.id}">
+									<f:facet name="header">
+										<p:commandButton 
+											icon="ui-icon-plus" value="เพิ่ม"
+											actionListener="#{customerbean.btnNewClick}"
+											oncomplete="PF('newObjectDlg').show()" process="@this"
+											update=":mainCenterForm" resetValues="true" />
+									</f:facet>
+									<p:column headerText="Order name" style="width: 100px">
+										<h:outputText value="#{r.shipName}" />
+									</p:column>
+									<p:column headerText="ที่อยู่">
+										<h:outputText value="#{r.shipAddress}" />
+									</p:column>
+									<p:column headerText="วันที่สั่ง" style="width: 80px">
+										<h:outputText value="#{r.orderDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+									<p:column headerText="วันที่จ่าย" style="width: 80px">
+										<h:outputText value="#{r.paidDate}">
+											<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+									<p:column headerText="recipe" style="width: 50px">
+										<h:outputText value="#{r.recipe}" />
+									</p:column>
+									<p:column headerText="qty" style="width: 30px">
+										<h:outputText value="#{r.qty}" />
+									</p:column>
+									<p:column headerText="" style="width: 70px">
+										<p:commandButton value="รายละเอียด"
+												actionListener="#{orderbean.btnEditPlantClick(r)}"
+												oncomplete="PF('newObjectDlg').show()" process="@this"
+												update=":mainCenterForm" resetValues="true" />
+									</p:column>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+	<ui:include src="plantDialog.xhtml" />
+  <ui:include src="customerDialog.xhtml" />
+  <ui:include src="projectDialog.xhtml" />
+  <ui:include src="jobSiteDialog.xhtml" />
+  <ui:include src="orderDialog.xhtml" />
+  
+	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteMasterDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelInput" onclick="PF('confirmDeleteMasterDialog').hide()" actionListener = "#{orderbean.confirmDeletePlantClick()}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick=" PF('confirmDeleteMasterDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	  
+	 <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteCustomerDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelCustomerInput" onclick="PF('confirmDeleteCustomerDialog').hide()" actionListener="#{orderbean.confirmDeleteCustomClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCustomerDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+	  
+	  <p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteProjectDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelProjectInput" onclick="PF('confirmDeleteProjectDialog').hide()" actionListener="#{orderbean.confirmDeleteProjectClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteProjectDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+  
+  	<p:confirmDialog message="คุณต้องการ ลบ ใช่หรือไม่ ?" closable="flase" header="ลบ" severity="alert" widgetVar="confirmDeleteSuppliersDialog" appendTo="@(body)">  
+		  <p:commandButton value="ใช่" update="panelJobsiteInput" onclick="PF('confirmDeleteSuppliersDialog').hide()" actionListener="#{orderbean.confirmDeleteSuppliersClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
+		  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteSuppliersDialog').hide()" type="button"  icon="ui-icon-closethick" resetValues="true"/>   
+	  </p:confirmDialog>
+  
+	</ui:composition>
+</html>
